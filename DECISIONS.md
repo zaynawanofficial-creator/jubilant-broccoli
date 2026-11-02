@@ -1,4 +1,14 @@
 # Owner decisions (approval required before production)
+
+## Locked — 2 Nov 2026 (Phase 01)
+| Item | Decision |
+|---|---|
+| Build route | **`wordpress`**: keep the existing WoodMart + Elementor + WooCommerce on seobooster.uk, plus the custom `seo-booster-core` plugin (see ARCHITECTURE.md) |
+| Visual builder | Elementor (existing), with WoodMart theme settings; no block theme |
+| Environment | Build directly on seobooster.uk while pre-launch; Hostinger backup before each write phase; noindex until launch |
+| Payment methods | Stripe, PayPal, BACS (Payoneer/bank transfer), **test/sandbox mode only** until owner approves going live |
+
+## Original assumptions and open questions
 | Item | Current assumption / question |
 |---|---|
 | Build route | A: WordPress + WooCommerce **preferred**; B: custom full-stack optional |
