@@ -132,6 +132,7 @@ class SB_Importer {
 				}
 			}
 			$sort[ $group ] += 10;
+			$idx             = (int) ( $sort[ $group ] / 10 ); // 1-based position within the group.
 
 			$product = $existing ? wc_get_product( $existing ) : new WC_Product_Simple();
 			$product->set_name( $row['package_title'] );
@@ -156,15 +157,20 @@ class SB_Importer {
 				'_sb_sort'           => (string) $sort[ $group ],
 				'_sb_price_approved' => 'YES' === $row['price_approved'] ? '1' : '',
 				'_sb_scope_approved' => 'YES' === $row['scope_approved'] ? '1' : '',
-				'_sb_featured'       => in_array( $qty, $gc['featured'] ?? array(), true ) ? '1' : '',
+				'_sb_featured'       => ( in_array( $qty, $gc['featured'] ?? array(), true ) || in_array( $idx, $gc['featured_index'] ?? array(), true ) ) ? '1' : '',
 			);
 			foreach ( array( 'deliverables', 'exclusions', 'requirements' ) as $k ) {
 				if ( isset( $gc[ $k ] ) ) {
 					$meta[ '_sb_' . $k ] = $gc[ $k ];
 				}
 			}
+			if ( isset( $gc['deliverables_by_index'][ $idx ] ) ) {
+				$meta['_sb_deliverables'] = $gc['deliverables_by_index'][ $idx ];
+			}
 			if ( isset( $gc['ideal_for'][ $qty ] ) ) {
 				$meta['_sb_ideal_for'] = $gc['ideal_for'][ $qty ];
+			} elseif ( isset( $gc['ideal_for_index'][ $idx ] ) ) {
+				$meta['_sb_ideal_for'] = $gc['ideal_for_index'][ $idx ];
 			}
 			foreach ( $meta as $k => $v ) {
 				$product->update_meta_data( $k, $v );

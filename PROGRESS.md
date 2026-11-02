@@ -1,5 +1,22 @@
 # PROGRESS
 
+## Pricing + catalogue · 2 Nov 2026 (later the same day)
+- **Owner input:** Premium Links prices (DR10+ $10, DR20+ $25, DR30+ $49, DR50+ $89) and an instruction to research and set prices for the other services.
+- **SERVICE_CATALOG.csv** rewritten, 57 packages:
+  - 47 READY: Off-Page 16, Content 7, Design 7, Maintenance 5, Web 4, Technical SEO 3, SEO Audit 2
+  - 1 quote-only: Enterprise audit
+  - 9 DRAFT: PPC, Analytics, Email and Automation, including the quote-only "Managed Automation"
+- Rationale and sources are in **PRICING_RESEARCH.md**.
+- `data/group-content.php` now has deliverables, exclusions, requirements and ideal-for lines for every MVP group. New per-position overrides (`featured_index`, `ideal_for_index`, `deliverables_by_index`) handle groups where the quantity is the same on every package.
+- **New test:** `php tests/importer-smoke.php` exercises the importer against the real CSV using stubbed WordPress/WooCommerce functions. **14/14 PASS**:
+  - dry run saves nothing
+  - re-importing upserts instead of duplicating
+  - publish/draft/quote rules are applied correctly
+  - exactly one featured premium tier
+  - no published package is missing a price or deliverables
+- **Still blocked:** the second Application Password was also rejected (`incorrect_password`), so nothing is installed on the site yet.
+- `docs/package-preview.html` and its screenshots predate this pricing; they still show Premium Links as quote cards.
+
 ## Phase 02 + 03 (repo side) · 2 Nov 2026 · 🟡 built, not yet installed on the site
 **Owner input received:** Off-Page tier structure and price anchors, placeholder business details, permission for Claude to design the logo and favicon. All recorded in DECISIONS.md.
 

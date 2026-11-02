@@ -8,10 +8,11 @@
 | Environment | Build directly on seobooster.uk while pre-launch; Hostinger backup before each write phase; noindex until launch |
 | Payment methods | Stripe, PayPal, BACS (Payoneer/bank transfer), **test/sandbox mode only** until owner approves going live |
 | Off-Page group A (2 Nov) | "Profiles and Citations": 8 tiers of 5 / 10 / 15 / 20 / 30 / 50 / 75 / 100 links. A mix of business listings, directory submissions, local citations and profile links. Owner's price anchors: 5 links = $5, 10 = $10, 20 = $15–18. Claude filled in the other tiers on the same volume-discount curve: 15 = $14, 20 = $17, 30 = $24, 50 = $37, 75 = $52, 100 = $65. **Owner can change any price in wp-admin.** |
-| Off-Page group B (2 Nov) | "Premium Links": 8 tiers. Guest posts at DR 20+, 30+, 40+, 50+, 60+ and 70+, plus press release Standard and Premium. Price depends on publisher metrics, so these are **quote-only** until the owner sets "from" prices |
+| Off-Page group B (2 Nov, updated) | "Premium Links": 7 guest-post tiers plus press release. Owner prices: DR10+ $10, DR20+ $25, DR30+ $49, DR50+ $89. Claude extended the curve: DR40+ $69, DR60+ $139, DR70+ $199, Press Release writing + distribution $99. Fixed price, no longer quote-only |
+| All other prices (2 Nov) | Owner told Claude to research and set prices. Set in the budget-marketplace band; see PRICING_RESEARCH.md. PPC, Analytics, Email and Automation stay DRAFT until their service pages are written |
 | Business details (2 Nov) | Owner said to use placeholders for now and will replace them later. Public brand is "SEO Booster". Contact email placeholder is `hello@seobooster.uk`, and that mailbox must exist. **No invented address, company number or legal name is published.** Those fields are left out of the site until the owner supplies them |
 | Logo / favicon (2 Nov) | Claude designed placeholder versions in `brand/`, approved by the owner for use now |
-| App password rotation | Owner declined rotation. Note: the password supplied is **rejected by the site** (`incorrect_password`), so a working one is needed |
+| App password | Two passwords supplied (2 Nov). **Both rejected by the site** (`incorrect_password` for `admin` and the owner's email login). Stored only in the local user config, never in git |
 
 ## Original assumptions and open questions
 | Item | Current assumption / question |
