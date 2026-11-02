@@ -13,7 +13,7 @@ function get_term_by( $f, $slug, $tax ) { return $GLOBALS['terms'][ $tax ][ $slu
 function wp_insert_term( $name, $tax, $a ) { $id = count( $GLOBALS['terms'], COUNT_RECURSIVE ) + 1; $GLOBALS['terms'][ $tax ][ $a['slug'] ] = (object) array( 'term_id' => $id, 'name' => $name, 'parent' => $a['parent'] ); return array( 'term_id' => $id ); }
 function is_wp_error( $x ) { return false; }
 function update_term_meta( $id, $k, $v ) { $GLOBALS['term_meta'][ $id ][ $k ] = $v; }
-function wp_update_term( $id, $tax, $a ) {}
+function wp_update_term( $id, $tax, $a ) { foreach ( $GLOBALS['terms'][ $tax ] as $t ) { if ( $t->term_id === $id && isset( $a['parent'] ) ) { $t->parent = $a['parent']; } } }
 function wc_get_product_id_by_sku( $sku ) { foreach ( $GLOBALS['products'] as $id => $p ) { if ( $p->sku === $sku ) { return $id; } } return 0; }
 function wc_get_product( $id ) { return $GLOBALS['products'][ $id ]; }
 function wp_set_object_terms( $id, $t, $tax ) { $GLOBALS['obj_terms'][ $id ] = $t; }
@@ -30,6 +30,8 @@ $fail = 0;
 function check( $cond, $msg ) { global $fail; echo ( $cond ? "PASS " : "FAIL " ) . $msg . "\n"; if ( ! $cond ) { $fail++; } }
 
 $csv = dirname( __DIR__ ) . '/SERVICE_CATALOG.csv';
+// Simulate a pre-existing top-level category (as found on the live site).
+wp_insert_term( 'Content Writing', 'product_cat', array( 'slug' => 'content-writing', 'parent' => 0 ) );
 $dry = SB_Importer::import( $csv, true );
 check( count( $GLOBALS['products'] ) === 0, 'dry run saves nothing' );
 SB_Importer::import( $csv );
@@ -56,6 +58,8 @@ foreach ( $by as $sku => $p ) {
 	if ( 'publish' === $p->status && empty( $p->meta['_sb_deliverables'] ) ) { check( false, "published package without deliverables: $sku" ); }
 }
 check( true, 'no published fixed package lacks a price or deliverables' );
+$cw = $GLOBALS['terms']['product_cat']['content-writing']; $fam = $GLOBALS['terms']['product_cat']['content'];
+check( $cw->parent === $fam->term_id, 'pre-existing service category is moved under its family' );
 check( false === SB_Packages::$bypass_gate, 'publish gate bypass reset after import' );
 echo $fail ? "\n$fail FAILED\n" : "\nALL PASSED\n";
 exit( $fail ? 1 : 0 );

@@ -1,5 +1,18 @@
 # PROGRESS
 
+## Plugin live on seobooster.uk · 2 Nov 2026
+- Owner installed `seo-booster-core` 0.1.0 and ran the import.
+- Verified through the public Store API (`/wp-json/wc/store/v1/products`):
+  - **45 published packages**, as expected: 44 fixed plus 1 quote-only.
+  - Prices match the CSV (e.g. DR30+ is 4900 cents = $49).
+  - All packages are purchasable.
+- **Bug found:** `website-maintenance`, `content-writing` and `graphic-design` were already on the site as top-level categories, and the importer did not re-parent existing terms.
+  - Fixed in **0.1.1**: the importer now moves an existing service category under its family.
+  - New smoke-test case added; **15/15 PASS**.
+  - **To apply:** upload 0.1.1 over 0.1.0, then re-run the import (it upserts, so no duplicates).
+- Not verifiable from here: product virtual flag, order statuses, brief and checkout. These need an admin-authenticated session, which the cloud proxy blocks.
+- Owner added the WoodMart MCP to **Claude Desktop on their Windows PC**. That makes it available to sessions running on that PC, not to this cloud session (no computer is connected via Remote Control).
+
 ## Access diagnosis · 2 Nov 2026
 - A third Application Password, created on the WoodMart MCP screen for `admin`, was also rejected from this container.
 - Evidence the passwords are not the problem:
@@ -12,7 +25,7 @@
 ## Pricing + catalogue · 2 Nov 2026 (later the same day)
 - **Owner input:** Premium Links prices (DR10+ $10, DR20+ $25, DR30+ $49, DR50+ $89) and an instruction to research and set prices for the other services.
 - **SERVICE_CATALOG.csv** rewritten, 57 packages:
-  - 47 READY: Off-Page 16, Content 7, Design 7, Maintenance 5, Web 4, Technical SEO 3, SEO Audit 2
+  - 44 READY: Off-Page 16, Content 7, Design 7, Maintenance 5, Web 4, Technical SEO 3, SEO Audit 2 (an earlier note said 47; that was a miscount)
   - 1 quote-only: Enterprise audit
   - 9 DRAFT: PPC, Analytics, Email and Automation, including the quote-only "Managed Automation"
 - Rationale and sources are in **PRICING_RESEARCH.md**.

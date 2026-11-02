@@ -87,6 +87,10 @@ class SB_Importer {
 		$slug  = sanitize_title( $name );
 		$found = get_term_by( 'slug', $slug, $tax );
 		if ( $found ) {
+			// Pre-existing term (e.g. created by hand or a theme demo): make sure it sits under the right parent.
+			if ( (int) $found->parent !== $parent ) {
+				wp_update_term( (int) $found->term_id, $tax, array( 'parent' => $parent ) );
+			}
 			return (int) $found->term_id;
 		}
 		$res = wp_insert_term( $name, $tax, array( 'slug' => $slug, 'parent' => $parent ) );
