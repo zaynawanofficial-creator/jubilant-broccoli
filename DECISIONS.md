@@ -12,7 +12,7 @@
 | All other prices (2 Nov) | Owner told Claude to research and set prices. Set in the budget-marketplace band; see PRICING_RESEARCH.md. PPC, Analytics, Email and Automation stay DRAFT until their service pages are written |
 | Business details (2 Nov) | Owner said to use placeholders for now and will replace them later. Public brand is "SEO Booster". Contact email placeholder is `hello@seobooster.uk`, and that mailbox must exist. **No invented address, company number or legal name is published.** Those fields are left out of the site until the owner supplies them |
 | Logo / favicon (2 Nov) | Claude designed placeholder versions in `brand/`, approved by the owner for use now |
-| App password | Two passwords supplied (2 Nov). **Both rejected by the site** (`incorrect_password` for `admin` and the owner's email login). Stored only in the local user config, never in git |
+| App password | Three passwords supplied (2 Nov). All got `incorrect_password` **from inside this cloud container only**. Cause found: requests through the container's egress proxy get `401 incorrect_password` from `/wp-json/` even with **no** credentials, while a direct request returns 200. So the proxy path alters the Authorization header, and the passwords are probably valid. Not worked around (proxy must not be bypassed). Owner installs the plugin zip manually; MCP should work from the owner's own machine. Passwords stored only in the local user config, never in git |
 
 ## Original assumptions and open questions
 | Item | Current assumption / question |

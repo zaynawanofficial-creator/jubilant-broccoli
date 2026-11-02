@@ -1,5 +1,14 @@
 # PROGRESS
 
+## Access diagnosis · 2 Nov 2026
+- A third Application Password, created on the WoodMart MCP screen for `admin`, was also rejected from this container.
+- Evidence the passwords are not the problem:
+  - Unauthenticated `GET /wp-json/` through the session proxy returns `401 incorrect_password`.
+  - The same request made directly returns `200`.
+  - `/wp-json/wc/store/v1/products` (public, ignores auth) returns 200 through the proxy.
+- Conclusion: the cloud session's egress path changes the `Authorization` header on requests to seobooster.uk. Not bypassed, per the proxy rules.
+- Owner is installing `seo-booster-core.zip` manually (zip delivered).
+
 ## Pricing + catalogue · 2 Nov 2026 (later the same day)
 - **Owner input:** Premium Links prices (DR10+ $10, DR20+ $25, DR30+ $49, DR50+ $89) and an instruction to research and set prices for the other services.
 - **SERVICE_CATALOG.csv** rewritten, 57 packages:
