@@ -9,6 +9,10 @@ define( 'SB_CORE_DIR', dirname( __DIR__ ) . '/wp-content/plugins/seo-booster-cor
 $GLOBALS['terms'] = array(); $GLOBALS['products'] = array(); $GLOBALS['obj_terms'] = array(); $GLOBALS['term_meta'] = array();
 function sanitize_title( $s ) { return trim( preg_replace( '/[^a-z0-9]+/', '-', strtolower( str_replace( '&', 'and', $s ) ) ), '-' ); }
 function __( $s ) { return $s; }
+function esc_html__( $s ) { return $s; }
+function esc_html( $s ) { return htmlspecialchars( $s, ENT_QUOTES ); }
+function esc_url( $s ) { return $s; }
+function home_url( $p = '' ) { return 'https://example.test' . $p; }
 function get_term_by( $f, $slug, $tax ) { return $GLOBALS['terms'][ $tax ][ $slug ] ?? false; }
 function wp_insert_term( $name, $tax, $a ) { $id = count( $GLOBALS['terms'], COUNT_RECURSIVE ) + 1; $GLOBALS['terms'][ $tax ][ $a['slug'] ] = (object) array( 'term_id' => $id, 'name' => $name, 'parent' => $a['parent'] ); return array( 'term_id' => $id ); }
 function is_wp_error( $x ) { return false; }
@@ -19,8 +23,8 @@ function wc_get_product( $id ) { return $GLOBALS['products'][ $id ]; }
 function wp_set_object_terms( $id, $t, $tax ) { $GLOBALS['obj_terms'][ $id ] = $t; }
 class SB_Packages { const TAX = 'sb_package_group'; public static bool $bypass_gate = false; }
 class WC_Product_Simple {
-	public $id = 0, $name, $sku, $status, $price, $virtual, $downloadable, $meta = array(), $cats;
-	function __call( $m, $a ) { $map = array( 'set_name' => 'name', 'set_sku' => 'sku', 'set_status' => 'status', 'set_regular_price' => 'price', 'set_virtual' => 'virtual', 'set_downloadable' => 'downloadable', 'set_category_ids' => 'cats' ); if ( isset( $map[ $m ] ) ) { $this->{$map[ $m ]} = $a[0]; } }
+	public $id = 0, $description = '', $name, $sku, $status, $price, $virtual, $downloadable, $meta = array(), $cats;
+	function __call( $m, $a ) { $map = array( 'set_description' => 'description', 'set_name' => 'name', 'set_sku' => 'sku', 'set_status' => 'status', 'set_regular_price' => 'price', 'set_virtual' => 'virtual', 'set_downloadable' => 'downloadable', 'set_category_ids' => 'cats' ); if ( isset( $map[ $m ] ) ) { $this->{$map[ $m ]} = $a[0]; } }
 	function update_meta_data( $k, $v ) { $this->meta[ $k ] = $v; }
 	function save() { if ( ! $this->id ) { $this->id = count( $GLOBALS['products'] ) + 1; } $GLOBALS['products'][ $this->id ] = $this; return $this->id; }
 }
@@ -60,6 +64,7 @@ foreach ( $by as $sku => $p ) {
 check( true, 'no published fixed package lacks a price or deliverables' );
 $cw = $GLOBALS['terms']['product_cat']['content-writing']; $fam = $GLOBALS['terms']['product_cat']['content'];
 check( $cw->parent === $fam->term_id, 'pre-existing service category is moved under its family' );
+check( str_contains( $by['off-page-seo-profiles-and-citations-1']->description, '<li>Manually created' ) && str_contains( $by['off-page-seo-profiles-and-citations-1']->description, '/services/off-page-seo/' ), 'product description lists deliverables and links back to the service page' );
 check( false === SB_Packages::$bypass_gate, 'publish gate bypass reset after import' );
 echo $fail ? "\n$fail FAILED\n" : "\nALL PASSED\n";
 exit( $fail ? 1 : 0 );

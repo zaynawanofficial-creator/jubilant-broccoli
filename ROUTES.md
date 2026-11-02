@@ -1,5 +1,14 @@
 # ROUTES — URL map
 
+> **Built 2 Nov 2026 (block theme).** The setup screen creates the URLs below. Changes from the original plan:
+> - **No `/services/seo/` hub.** `/services/` groups everything.
+> - **No `/work/` page** until verified case studies exist.
+> - **`/insights/` is the posts page.**
+>
+> Pages created: `/`, `/services/`, `/services/{off-page-seo, seo-audit, technical-seo, website-development, website-maintenance, content-writing, graphic-design}/`, `/packages/`, `/how-it-works/`, `/about/`, `/contact/`, `/get-a-quote/`, `/faq/`, `/insights/`, `/terms/`, `/refund-policy/`, `/privacy-policy/`, `/cookie-policy/`, `/accessibility/`.
+>
+> Articles: `/citations-vs-profile-backlinks/`, `/choose-guest-post-dr-tier/`, `/wordpress-speed-checklist/`.
+
 Status legend:
 - **MVP**: built in phases 02–06.
 - **Draft**: created but kept unpublished.

@@ -1,0 +1,39 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sb-main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group sb-main"><!-- wp:group {"align":"full","className":"sb-page-hero","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-page-hero"><!-- wp:query-title {"type":"archive"} /-->
+
+<!-- wp:term-description /--></div>
+<!-- /wp:group -->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide","className":"sb-posts"} -->
+<div class="wp-block-query alignwide sb-posts"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"className":"sb-post-card","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sb-post-card"><!-- wp:post-terms {"term":"category","className":"sb-post-card__cat"} /-->
+
+<!-- wp:post-title {"level":3,"isLink":true} /-->
+
+<!-- wp:post-excerpt {"excerptLength":24} /-->
+
+<!-- wp:post-date {"className":"sb-post-card__date"} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Nothing here yet. Browse our <a href="/services/">services</a> or <a href="/contact/">get in touch</a>.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

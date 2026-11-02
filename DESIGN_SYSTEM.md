@@ -82,7 +82,7 @@ The mark is three ascending bars with a growth arrow, standing for "boost". The 
 | Hero, service tiles, process steps, FAQ accordion, CTA band, breadcrumbs, blog cards, trust panel | Phase 04 | Elementor templates saved as global widgets |
 
 ## 5. Evidence
-Screenshots come from the static preview `docs/package-preview.html`, which uses the plugin's real CSS and JS and the same markup the shortcode outputs. They are in `docs/screens/`:
+Full-page screenshots of the generated pages are in `docs/screens/site/` (approximate render; see PROGRESS.md). Earlier package-only screenshots came from the static preview `docs/package-preview.html`, which uses the plugin's real CSS and JS and the same markup the shortcode outputs. They are in `docs/screens/`:
 - `cards-1440.png`: four columns, two featured tiers
 - `cards-premium-1440.png`: Premium Links tab after the ArrowRight key (`aria-selected=true`, panel 0 hidden)
 - `cards-768.png`: tablet layout

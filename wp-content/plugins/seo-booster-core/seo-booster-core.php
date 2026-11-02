@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEO Booster Core
  * Description:       Service packages, package groups, post-purchase project briefs and service order workflow for SEO Booster (WooCommerce).
- * Version:           0.1.1
+ * Version:           0.2.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SB_CORE_VERSION', '0.1.1' );
+define( 'SB_CORE_VERSION', '0.2.0' );
 define( 'SB_CORE_FILE', __FILE__ );
 define( 'SB_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SB_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -25,6 +25,8 @@ require_once SB_CORE_DIR . 'includes/class-sb-shortcode.php';
 require_once SB_CORE_DIR . 'includes/class-sb-orders.php';
 require_once SB_CORE_DIR . 'includes/class-sb-brief.php';
 require_once SB_CORE_DIR . 'includes/class-sb-importer.php';
+require_once SB_CORE_DIR . 'includes/class-sb-site.php';
+require_once SB_CORE_DIR . 'includes/class-sb-leads.php';
 
 // Declare HPOS + cart/checkout blocks compatibility.
 add_action(
@@ -54,6 +56,8 @@ add_action(
 		SB_Orders::init();
 		SB_Brief::init();
 		SB_Importer::init();
+		SB_Site::init();
+		SB_Leads::init();
 	}
 );
 
@@ -63,6 +67,7 @@ register_activation_hook(
 		SB_Packages::register_taxonomy();
 		SB_Brief::add_endpoint();
 		SB_Brief::protect_upload_dir();
+		SB_Leads::register();
 		flush_rewrite_rules();
 	}
 );

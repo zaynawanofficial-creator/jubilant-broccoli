@@ -3,8 +3,8 @@
 ## Locked — 2 Nov 2026 (Phase 01)
 | Item | Decision |
 |---|---|
-| Build route | **`wordpress`**: keep the existing WoodMart + Elementor + WooCommerce on seobooster.uk, plus the custom `seo-booster-core` plugin (see ARCHITECTURE.md) |
-| Visual builder | Elementor (existing), with WoodMart theme settings; no block theme |
+| Build route | **`wordpress`** with WooCommerce and the custom `seo-booster-core` plugin. **Changed 2 Nov (owner): custom block theme `seo-booster` (theme.json + templates/index.html) replaces WoodMart/Elementor**, "build the complete website in one go" |
+| Visual builder | WordPress block editor / Site Editor (native). WoodMart and Elementor stay installed but inactive, so you can roll back |
 | Environment | Build directly on seobooster.uk while pre-launch; Hostinger backup before each write phase; noindex until launch |
 | Payment methods | Stripe, PayPal, BACS (Payoneer/bank transfer), **test/sandbox mode only** until owner approves going live |
 | Off-Page group A (2 Nov) | "Profiles and Citations": 8 tiers of 5 / 10 / 15 / 20 / 30 / 50 / 75 / 100 links. A mix of business listings, directory submissions, local citations and profile links. Owner's price anchors: 5 links = $5, 10 = $10, 20 = $15–18. Claude filled in the other tiers on the same volume-discount curve: 15 = $14, 20 = $17, 30 = $24, 50 = $37, 75 = $52, 100 = $65. **Owner can change any price in wp-admin.** |

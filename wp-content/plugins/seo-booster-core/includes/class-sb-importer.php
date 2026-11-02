@@ -66,6 +66,42 @@ class SB_Importer {
 		}
 	}
 
+	/**
+	 * Product page description built from the package fields, so the single product page explains the package.
+	 *
+	 * @param array<string,string> $meta Package meta.
+	 */
+	public static function description( array $meta, string $service, string $service_slug ): string {
+		$list = static function ( string $title, string $lines ): string {
+			$items = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $lines ) ) );
+			if ( ! $items ) {
+				return '';
+			}
+			return '<h3>' . esc_html( $title ) . '</h3><ul>' . implode( '', array_map( static fn( $i ) => '<li>' . esc_html( $i ) . '</li>', $items ) ) . '</ul>';
+		};
+		$html  = '<div class="sb-product-info">';
+		$html .= ! empty( $meta['_sb_ideal_for'] ) ? '<p><strong>' . esc_html__( 'Ideal for:', 'seo-booster-core' ) . '</strong> ' . esc_html( $meta['_sb_ideal_for'] ) . '</p>' : '';
+		$html .= $list( __( "What's included", 'seo-booster-core' ), $meta['_sb_deliverables'] ?? '' );
+		$html .= $list( __( 'Not included', 'seo-booster-core' ), $meta['_sb_exclusions'] ?? '' );
+		$html .= $list( __( 'What we need from you', 'seo-booster-core' ), $meta['_sb_requirements'] ?? '' );
+		$facts = array_filter(
+			array(
+				__( 'Delivery', 'seo-booster-core' )  => $meta['_sb_turnaround'] ?? '',
+				__( 'Revisions', 'seo-booster-core' ) => $meta['_sb_revisions'] ?? '',
+			)
+		);
+		if ( $facts ) {
+			$html .= '<h3>' . esc_html__( 'Delivery & revisions', 'seo-booster-core' ) . '</h3><ul>';
+			foreach ( $facts as $k => $v ) {
+				$html .= '<li><strong>' . esc_html( $k ) . ':</strong> ' . esc_html( $v ) . '</li>';
+			}
+			$html .= '</ul>';
+		}
+		$html .= '<p>' . esc_html__( 'After checkout you will complete a short project brief in your account. The delivery time starts when the brief is complete.', 'seo-booster-core' ) . '</p>';
+		$html .= '<p><a href="' . esc_url( home_url( '/services/' . $service_slug . '/' ) ) . '">' . esc_html( sprintf( /* translators: %s: service */ __( 'Compare all %s packages', 'seo-booster-core' ), $service ) ) . ' →</a></p>';
+		return $html . '</div>';
+	}
+
 	/** @return array<int,array<string,string>> */
 	public static function read_csv( string $file ): array {
 		$rows = array();
@@ -179,6 +215,7 @@ class SB_Importer {
 			foreach ( $meta as $k => $v ) {
 				$product->update_meta_data( $k, $v );
 			}
+			$product->set_description( self::description( $meta, $row['service'], sanitize_title( $row['service'] ) ) );
 			SB_Packages::$bypass_gate = true;
 			$id                       = $product->save();
 			SB_Packages::$bypass_gate = false;
