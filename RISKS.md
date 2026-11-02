@@ -3,7 +3,7 @@
 ## A. Launch blockers (owner input required; the build continues around them)
 | # | Blocker | Needed from owner | Blocks |
 |---|---|---|---|
-| B1 | **All package prices, scope, turnaround and revisions are `TBD`** in SERVICE_CATALOG.csv | Approved price + deliverables + turnaround + revisions per package (start with Off-Page SEO's 16 tiers) | Publishing any package or live checkout |
+| B1 | Prices/scope for packages other than Off-Page group A (group A priced 2 Nov; Premium Links quote-only) | "From" prices for Premium Links; prices + scope for Web, Content, Design, Technical SEO, Audit | Publishing those packages |
 | B2 | Legal trading entity, registered address, company number, jurisdiction | Exact details | Footer, Terms, Privacy, tax, payment accounts |
 | B3 | Stripe and PayPal account eligibility for that entity and country | Confirmation that both accounts are active and in good standing | Live card/PayPal payments (sandbox can proceed) |
 | B4 | Payoneer / bank transfer details for BACS | Account details, entered by the owner in wp-admin | BACS instructions |
