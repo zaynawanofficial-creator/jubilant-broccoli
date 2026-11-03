@@ -28,6 +28,10 @@ add_action( 'rest_api_init', function () {
 					'rank_math'        => class_exists( 'RankMath' ),
 					'log'              => array_slice( (array) get_option( 'rrm_import_log', array() ), -15 ),
 					'last_fatal'       => get_option( 'rrm_last_fatal' ),
+					'template_dir'     => get_template_directory(),
+					'template_exists'  => file_exists( get_template_directory() . '/index.php' ),
+					'theme_errors'     => is_wp_error( wp_get_theme()->errors() ) ? wp_get_theme()->errors()->get_error_messages() : array(),
+					'php'              => PHP_VERSION,
 				);
 			},
 		)
@@ -37,7 +41,7 @@ add_action( 'rest_api_init', function () {
 register_shutdown_function(
 	function () {
 		$e = error_get_last();
-		if ( $e && in_array( $e['type'], array( E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_RECOVERABLE_ERROR ), true ) && false !== strpos( $e['file'], 'rankright' ) ) {
+		if ( $e && in_array( $e['type'], array( E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_RECOVERABLE_ERROR ), true ) ) {
 			update_option( 'rrm_last_fatal', gmdate( 'c' ) . ' ' . substr( $e['message'], 0, 600 ) . ' @ ' . str_replace( WP_CONTENT_DIR, '', $e['file'] ) . ':' . $e['line'], false );
 		}
 	}
