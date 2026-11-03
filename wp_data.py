@@ -386,7 +386,7 @@ def main():
                      "currency_code": "USD", "indexable": False,
                      "llms_summary": "RankRight Media Ltd is a UK-based digital marketing agency (Ilford, England) serving clients in the UK and worldwide. It sells fixed-price packages for SEO, link building, website development, SEO content writing, PPC management and social media marketing, with clear deliverables and reporting."},
         "service_order": C.SERVICE_ORDER, "services": services, "pages": pages, "products": prods, "posts": posts,
-        "media": media, "media_reset": "2", "partials": partials, "redirects": REDIRECTS,
+        "media": media, "media_reset": "2", "importer_rev": 3, "partials": partials, "redirects": REDIRECTS,
         "author": {"name": "Zain Ul Abdeen", "first": "Zain", "last": "Ul Abdeen", "bio": C.TEAM[0]["bio"]},
     }
     blob = json.dumps(data, ensure_ascii=False, sort_keys=True)

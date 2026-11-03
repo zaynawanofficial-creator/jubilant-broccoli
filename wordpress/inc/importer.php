@@ -150,6 +150,14 @@ function rrm_step_settings( &$state, $deadline ) {
 		foreach ( $wc as $k => $v ) {
 			update_option( $k, $v );
 		}
+		// Classic (shortcode) cart & checkout: reliable with every gateway and our slim service checkout.
+		foreach ( array( 'checkout' => '[woocommerce_checkout]', 'cart' => '[woocommerce_cart]' ) as $pg => $sc ) {
+			$pid = wc_get_page_id( $pg );
+			if ( $pid > 0 ) {
+				wp_update_post( array( 'ID' => $pid, 'post_content' => '<!-- wp:shortcode -->' . $sc . '<!-- /wp:shortcode -->' ) );
+				update_post_meta( $pid, 'rank_math_robots', array( 'noindex', 'follow' ) );
+			}
+		}
 		update_option(
 			'woocommerce_permalinks',
 			array(

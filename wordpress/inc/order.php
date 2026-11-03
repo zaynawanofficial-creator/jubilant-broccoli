@@ -282,3 +282,24 @@ add_shortcode(
 		return ob_get_clean();
 	}
 );
+
+/* Services need no postal address: slim checkout to name, email, (optional) phone/company, country. */
+add_filter(
+	'woocommerce_checkout_fields',
+	function ( $fields ) {
+		if ( ! function_exists( 'WC' ) || ! WC()->cart || WC()->cart->needs_shipping() ) {
+			return $fields;
+		}
+		foreach ( array( 'billing_address_1', 'billing_address_2', 'billing_city', 'billing_state', 'billing_postcode' ) as $k ) {
+			unset( $fields['billing'][ $k ] );
+		}
+		unset( $fields['order']['order_comments'] );
+		if ( isset( $fields['billing']['billing_email'] ) ) {
+			$fields['billing']['billing_email']['priority'] = 5;
+		}
+		return $fields;
+	},
+	99
+);
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+add_filter( 'woocommerce_order_button_text', function () { return 'Pay securely & start my project'; } );

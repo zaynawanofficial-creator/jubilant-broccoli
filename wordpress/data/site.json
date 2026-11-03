@@ -3882,6 +3882,7 @@
   }
  ],
  "media_reset": "2",
+ "importer_rev": 3,
  "partials": {
   "cta": "<section class=\"section-tight\"><div class=\"container\"><div class=\"cta reveal\">\n<h2>Ready to grow your business online?</h2><p class=\"lead\">Tell us about your goals and we’ll recommend the right package — no pressure, no jargon.</p>\n<div class=\"btn-row\"><a class=\"btn btn-primary\" href=\"/contact-us/\">Get a free quote <svg aria-hidden=\"true\" focusable=\"false\"><use href=\"{{ASSETS}}/img/icons.svg#i-arrow\"></use></svg></a>\n<a class=\"btn btn-ghost\" href=\"tel:+447446254421\"><svg aria-hidden=\"true\" focusable=\"false\"><use href=\"{{ASSETS}}/img/icons.svg#i-phone\"></use></svg>Call +44 7446 254421</a></div></div></div></section>",
   "stats": "<section class=\"stats\" aria-label=\"RankRight Media in numbers\"><div class=\"container stats-grid\"><div class=\"stat\"><b data-count=\"1\" data-suffix=\"K+\">1K+</b><span>Projects delivered</span></div><div class=\"stat\"><b data-count=\"500\" data-suffix=\"+\">500+</b><span>Happy clients</span></div><div class=\"stat\"><b data-count=\"5\" data-suffix=\"+\">5+</b><span>Industry awards</span></div></div></section>"
@@ -3904,5 +3905,5 @@
   "last": "Ul Abdeen",
   "bio": "Founder of SEO Booster UK with 10+ years of experience in SEO, website development and eCommerce strategy. Helping businesses grow online with data-driven, results-focused solutions."
  },
- "version": "dff27de568d3"
+ "version": "17f97846f550"
 }
