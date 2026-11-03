@@ -62,10 +62,14 @@ function rrm_maybe_import() {
 	if ( ! $version || get_option( 'rrm_imported_version' ) === $version ) {
 		return;
 	}
-	if ( get_transient( 'rrm_import_lock' ) ) {
+	// Atomic lock: add_option() is an INSERT on a unique key, so only one request can win.
+	$lock = get_option( 'rrm_import_lock' );
+	if ( $lock && ( time() - (int) $lock ) > 180 ) {
+		delete_option( 'rrm_import_lock' ); // stale lock from a crashed request
+	}
+	if ( ! add_option( 'rrm_import_lock', time(), '', 'no' ) ) {
 		return;
 	}
-	set_transient( 'rrm_import_lock', 1, 90 );
 	@set_time_limit( 120 ); // phpcs:ignore
 	wp_raise_memory_limit( 'admin' );
 
@@ -102,7 +106,7 @@ function rrm_maybe_import() {
 		rrm_log( 'ERROR: ' . $e->getMessage() . ' @' . basename( $e->getFile() ) . ':' . $e->getLine() );
 	}
 	kses_init_filters();
-	delete_transient( 'rrm_import_lock' );
+	delete_option( 'rrm_import_lock' );
 }
 
 /* ---------------------------------------------------------------- settings */
@@ -265,6 +269,15 @@ function rrm_media_id( $rel ) {
 function rrm_step_media( &$state, $deadline ) {
 	$media = (array) rrm_data( 'media' );
 	$map   = (array) get_option( 'rrm_media_map', array() );
+	$reset = (string) rrm_data( 'media_reset' );
+	if ( 0 === $state['cursor'] && $reset && get_option( 'rrm_media_reset' ) !== $reset ) {
+		foreach ( get_posts( array( 'post_type' => 'attachment', 'numberposts' => -1, 'fields' => 'ids', 'meta_key' => '_rrm_hash' ) ) as $aid ) {
+			wp_delete_attachment( $aid, true );
+		}
+		$map = array();
+		update_option( 'rrm_media_reset', $reset, false );
+		rrm_log( 'Media library reset ' . $reset );
+	}
 	for ( $i = $state['cursor']; $i < count( $media ); $i++ ) {
 		if ( microtime( true ) > $deadline ) {
 			$state['cursor'] = $i;
@@ -301,6 +314,13 @@ function rrm_step_media( &$state, $deadline ) {
 		$map[ $m['file'] ] = $id;
 	}
 	update_option( 'rrm_media_map', $map, false );
+	// Remove orphaned copies (e.g. from an interrupted run).
+	$keep = array_map( 'intval', array_values( $map ) );
+	foreach ( get_posts( array( 'post_type' => 'attachment', 'numberposts' => -1, 'fields' => 'ids', 'meta_key' => '_rrm_hash' ) ) as $aid ) {
+		if ( ! in_array( (int) $aid, $keep, true ) ) {
+			wp_delete_attachment( $aid, true );
+		}
+	}
 	return true;
 }
 
@@ -394,6 +414,16 @@ function rrm_step_products( &$state, $deadline ) {
 		update_post_meta( $shop, 'rank_math_description', 'Compare every RankRight Media package: SEO, link building, website development, content writing, PPC and social media, with clear prices and deliverables.' );
 	}
 	$items = (array) rrm_data( 'products' );
+	if ( 0 === $state['cursor'] ) {
+		// Delete managed products that are not the canonical SKU holder (duplicates / removed packages).
+		$skus = wp_list_pluck( $items, 'sku' );
+		foreach ( get_posts( array( 'post_type' => 'product', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids', 'meta_key' => '_rrm_managed' ) ) as $pid ) {
+			$sku = get_post_meta( $pid, '_sku', true );
+			if ( ! $sku || ! in_array( $sku, $skus, true ) || (int) wc_get_product_id_by_sku( $sku ) !== (int) $pid ) {
+				wp_delete_post( $pid, true );
+			}
+		}
+	}
 	for ( $i = $state['cursor']; $i < count( $items ); $i++ ) {
 		if ( microtime( true ) > $deadline ) {
 			$state['cursor'] = $i;

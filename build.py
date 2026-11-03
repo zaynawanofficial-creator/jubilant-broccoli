@@ -489,7 +489,7 @@ def page_home():
     tools = ["Google Search Console", "Google Analytics 4", "Google Ads", "Google Business Profile", "Ahrefs", "Semrush", "Meta Ads", "WordPress", "Shopify", "TikTok Ads"]
     tool_li = "".join(f"<li>{icon('i-check')}{esc(t)}</li>" for t in tools)
     stamp = """<svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="circ" d="M66 66 m-48 0 a48 48 0 1 1 96 0 a48 48 0 1 1 -96 0"/></defs>
-<text font-family="Outfit, sans-serif" font-size="11.5" font-weight="700" fill="#16051f"><textPath href="#circ" textLength="298" lengthAdjust="spacing">PREMIUM SERVICES &amp; SUPPORT • PREMIUM SERVICES &amp; SUPPORT • </textPath></text></svg>"""
+<text font-family="Outfit, sans-serif" font-size="10" font-weight="700" fill="#16051f"><textPath href="#circ" textLength="298" lengthAdjust="spacing">PREMIUM SERVICES &amp; SUPPORT • PREMIUM SERVICES &amp; SUPPORT • </textPath></text></svg>"""
     item_list = {"@type": "ItemList", "@id": DOMAIN + "/#services", "name": "RankRight Media services",
                  "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": abs_url(svc_url(k)), "name": C.SERVICES[k]["name"]} for i, k in enumerate(C.SERVICE_ORDER)]}
     hc = C.STATS[1]

@@ -148,8 +148,8 @@ ul{padding-left:1.2em}
 .kpi span{display:block;font-size:.72rem;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
 .kpi b{display:flex;align-items:center;gap:6px;font:650 1rem var(--font-head);margin-top:4px}
 .kpi b svg{width:16px;height:16px;color:var(--mint)}
-.hero-visual{padding-bottom:56px}
-.serp{position:absolute;left:-34px;bottom:-56px;width:min(310px,72%);padding:14px 16px;border-radius:16px;background:#fff;color:#1d1530;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);transform:rotate(-2deg)}
+.hero-visual{padding-bottom:100px}
+.serp{position:absolute;left:-34px;bottom:-104px;width:min(310px,72%);padding:14px 16px;border-radius:16px;background:#fff;color:#1d1530;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);transform:rotate(-2deg)}
 .serp small{display:flex;align-items:center;gap:6px;color:#4b4361;font-size:.72rem}
 .serp small i{width:16px;height:16px;border-radius:50%;background:var(--grad);display:inline-block}
 .serp strong{display:block;color:#3b1fa8;font:600 .98rem/1.3 var(--font-head);margin:4px 0 2px}
