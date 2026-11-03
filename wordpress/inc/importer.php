@@ -27,11 +27,21 @@ add_action( 'rest_api_init', function () {
 					'woocommerce'      => class_exists( 'WooCommerce' ),
 					'rank_math'        => class_exists( 'RankMath' ),
 					'log'              => array_slice( (array) get_option( 'rrm_import_log', array() ), -15 ),
+					'last_fatal'       => get_option( 'rrm_last_fatal' ),
 				);
 			},
 		)
 	);
 } );
+
+register_shutdown_function(
+	function () {
+		$e = error_get_last();
+		if ( $e && in_array( $e['type'], array( E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_RECOVERABLE_ERROR ), true ) && false !== strpos( $e['file'], 'rankright' ) ) {
+			update_option( 'rrm_last_fatal', gmdate( 'c' ) . ' ' . substr( $e['message'], 0, 600 ) . ' @ ' . str_replace( WP_CONTENT_DIR, '', $e['file'] ) . ':' . $e['line'], false );
+		}
+	}
+);
 
 function rrm_log( $msg ) {
 	$log   = (array) get_option( 'rrm_import_log', array() );
