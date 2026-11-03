@@ -83,12 +83,13 @@ final class SBT_Setup {
 		wp_nonce_field( self::ACTION );
 		$opts = array(
 			'pages'     => array( true, __( 'Create pages (Home, Services and 7 service pages, Packages, How it works, About, Contact, Get a quote, FAQ, Insights, 5 policy drafts)', 'seo-booster' ) ),
-			'overwrite' => array( false, __( 'Overwrite pages previously created by this screen (your own pages are never touched)', 'seo-booster' ) ),
+			'overwrite' => array( false, __( 'Overwrite pages previously created by this screen with the latest design (tick this when updating the theme; your own pages are never touched)', 'seo-booster' ) ),
 			'posts'     => array( true, __( 'Create 3 starter Insights articles', 'seo-booster' ) ),
 			'reading'   => array( true, __( 'Set Home as the front page and Insights as the posts page', 'seo-booster' ) ),
 			'brand'     => array( true, __( 'Upload the logo and site icon, set the site title and tagline', 'seo-booster' ) ),
 			'demo'      => array( true, __( 'Move old WoodMart demo pages to Draft: ', 'seo-booster' ) . implode( ', ', self::DEMO ) ),
 			'woo'       => array( true, __( 'WooCommerce for services: require an account at checkout (needed for the project brief), USD currency, link Terms page at checkout', 'seo-booster' ) ),
+			'bacs'      => array( false, __( 'Enable "Direct bank transfer" as a payment method so test orders can be placed (orders stay On hold until you confirm payment). Connect Stripe / PayPal separately.', 'seo-booster' ) ),
 		);
 		echo '<table class="form-table" role="presentation"><tbody>';
 		foreach ( $opts as $key => $o ) {
@@ -247,6 +248,15 @@ final class SBT_Setup {
 				update_option( 'wp_page_for_privacy_policy', $privacy );
 			}
 			$log[] = 'SET   WooCommerce: account required at checkout, USD, terms + privacy pages linked';
+		}
+
+		if ( ! empty( $o['bacs'] ) && class_exists( 'WooCommerce' ) ) {
+			$bacs                = (array) get_option( 'woocommerce_bacs_settings', array() );
+			$bacs['enabled']     = 'yes';
+			$bacs['title']       = $bacs['title'] ?? __( 'Bank transfer', 'seo-booster' );
+			$bacs['description'] = $bacs['description'] ?? __( 'Pay by bank transfer. Use your order number as the reference. Work starts once payment is received.', 'seo-booster' );
+			update_option( 'woocommerce_bacs_settings', $bacs );
+			$log[] = 'SET   Direct bank transfer enabled (add your bank details in WooCommerce → Settings → Payments)';
 		}
 
 		flush_rewrite_rules();

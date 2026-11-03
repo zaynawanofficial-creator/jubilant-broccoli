@@ -107,4 +107,65 @@ service_art('design', window(30, 30, 330, 300, inner=(
     ''.join(f'<rect x="{54+i*58}" y="234" width="48" height="48" rx="10" fill="{c}"/>' for i, c in enumerate([INK, BLUE, LIME, '#60A5FA', LINE])) + lines(54, 296, [120]))) +
     f'<g transform="translate(330 120)"><rect x="0" y="0" width="170" height="220" rx="18" fill="{WHITE}" stroke="{LINE}" stroke-width="2"/><text x="24" y="70" font-family="Manrope, Arial, sans-serif" font-size="54" font-weight="800" fill="{INK}">Aa</text>' + lines(24, 96, [120, 90, 110], gap=18, h=9) + f'<rect x="24" y="160" width="122" height="36" rx="10" fill="{BLUE}"/></g>',
     'Illustration: brand colours, logo and typography on an artboard')
+
+# ---------- Inner-page heroes (3 Nov 2026) ----------
+def chip(x, y, w, label_w, color):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="26" rx="13" fill="{color}"/>' + f'<rect x="{x+12}" y="{y+10}" width="{label_w}" height="6" rx="3" fill="{INK}" opacity=".55"/>'
+
+def pkg_card(x, y, w, h, accent, featured=False):
+    stroke = INK if featured else LINE
+    out = f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="16" fill="{WHITE}" stroke="{stroke}" stroke-width="{3 if featured else 1.5}"/>'
+    out += f'<rect x="{x}" y="{y}" width="{w}" height="{int(h*.32)}" rx="16" fill="{INK}"/><rect x="{x}" y="{y+int(h*.32)-16}" width="{w}" height="16" fill="{INK}"/>'
+    out += f'<rect x="{x+18}" y="{y+22}" width="{int(w*.35)}" height="26" rx="6" fill="{accent}"/>'
+    out += lines(x+18, y+int(h*.32)+20, [int(w*.6), int(w*.4)], color=INK, h=9, gap=18)
+    out += ''.join(f'<circle cx="{x+26}" cy="{y+int(h*.32)+76+i*22}" r="6" fill="{LIME}"/>' + lines(x+40, y+int(h*.32)+73+i*22, [int(w*.5)]) for i in range(3))
+    out += f'<rect x="{x+18}" y="{y+h-46}" width="{w-36}" height="30" rx="8" fill="{BLUE}"/>'
+    if featured:
+        out += f'<rect x="{x+w/2-44}" y="{y-12}" width="88" height="24" rx="12" fill="{LIME}"/>'
+    return out
+
+write('art-packages.svg', svg(520, 380, pkg_card(20, 70, 150, 270, '#60A5FA') + pkg_card(185, 40, 160, 300, LIME, True) + pkg_card(360, 70, 150, 270, '#60A5FA'), 'Illustration: three package cards with the middle one highlighted'))
+
+proc = f'<path d="M70 190 C150 90, 210 290, 270 190 S390 90, 450 190" fill="none" stroke="#2B416E" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>'
+for i, (cx, cy, glyph) in enumerate([(70, 190, 'M60 190h20M70 180v20'), (200, 210, 'M190 210l7 7 13-14'), (330, 170, 'M320 165h20M320 175h14'), (450, 190, 'M440 195l8-14 8 8 8-12')]):
+    col = LIME if i == 3 else (BLUE if i else WHITE)
+    proc += f'<circle cx="{cx}" cy="{cy}" r="44" fill="{INK2}" stroke="#2B416E" stroke-width="2"/><circle cx="{cx}" cy="{cy}" r="30" fill="{col}"/><path d="{glyph}" fill="none" stroke="{INK if col != BLUE else WHITE}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+    proc += f'<rect x="{cx-36}" y="{cy+58}" width="72" height="10" rx="5" fill="#2B416E"/><rect x="{cx-24}" y="{cy+76}" width="48" height="8" rx="4" fill="#1B2F5A"/>'
+write('art-process.svg', svg(520, 380, proc, 'Illustration: four connected steps from order to delivery'))
+
+ab = window(30, 40, 300, 220, inner=lines(54, 82, [160, 110]) + bars(60, 108, [30, 46, 62, 84], w=40, gap=18, base=110, colors=[B50, '#BFD3FE', BLUE, BLUE_D]) + f'<polyline points="80,200 138,184 196,168 254,140" fill="none" stroke="{LIME}" stroke-width="4" stroke-linecap="round"/>')
+ab += f'<g transform="translate(250 150)"><rect width="240" height="200" rx="18" fill="{INK}"/>' + ''.join(f'<circle cx="34" cy="{40+i*44}" r="13" fill="{LIME}"/><path d="M28 {40+i*44}l4 4 8-8" fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round"/>' + lines(58, 34+i*44, [w], color='#2B416E', h=10) for i, w in enumerate([140, 110, 150, 120])) + '</g>'
+write('art-about.svg', svg(520, 380, ab, 'Illustration: a growth report beside a completed delivery checklist'))
+
+ct = f'<g><rect x="40" y="60" width="290" height="200" rx="18" fill="{WHITE}" stroke="{LINE}"/><path d="M40 78 a18 18 0 0 1 18 -18 h254 a18 18 0 0 1 18 18 L185 170 Z" fill="{B50}" stroke="{LINE}"/><path d="M40 78 L185 175 L330 78" fill="none" stroke="{BLUE}" stroke-width="4" stroke-linejoin="round"/></g>'
+ct += f'<g transform="translate(260 170)"><rect width="220" height="96" rx="22" fill="{INK}"/><path d="M40 96 l-10 26 34 -26z" fill="{INK}"/>' + lines(26, 28, [150, 110], color='#2B416E', h=12, gap=24) + f'<circle cx="190" cy="34" r="10" fill="{LIME}"/></g>'
+ct += f'<g transform="translate(120 250)"><rect width="150" height="70" rx="20" fill="{BLUE}"/>' + lines(22, 22, [100, 70], color='#93C5FD', h=10, gap=20) + '</g>'
+write('art-contact.svg', svg(520, 380, ct, 'Illustration: an envelope and chat messages'))
+
+qt = window(40, 30, 300, 310, inner=lines(64, 72, [150, 90], color=INK, h=10, gap=18) + ''.join(f'<rect x="64" y="{118+i*52}" width="252" height="38" rx="9" fill="{SOFT}" stroke="{LINE}"/>' + lines(78, 132+i*52, [w]) for i, w in enumerate([140, 180, 110])) + f'<rect x="64" y="276" width="140" height="40" rx="10" fill="{BLUE}"/>')
+qt += f'<g transform="translate(300 130) rotate(-8)"><rect width="190" height="120" rx="18" fill="{INK}"/><text x="24" y="70" font-family="Manrope, Arial, sans-serif" font-size="44" font-weight="800" fill="{LIME}">Quote</text>' + lines(24, 88, [120], color='#2B416E', h=9) + '</g>'
+qt += f'<circle cx="455" cy="110" r="26" fill="{LIME}"/><path d="M444 110l8 8 15-16" fill="none" stroke="{INK}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+write('art-quote.svg', svg(520, 380, qt, 'Illustration: a request form and a fixed quote'))
+
+fq = ''
+for i, (x, y, w, dark) in enumerate([(40, 50, 290, False), (190, 150, 290, True), (60, 250, 260, False)]):
+    fill = INK if dark else WHITE; ln = '#2B416E' if dark else LINE
+    fq += f'<rect x="{x}" y="{y}" width="{w}" height="84" rx="20" fill="{fill}" stroke="{ln}"/>' + f'<circle cx="{x+38}" cy="{y+42}" r="18" fill="{LIME if dark else B50}"/><text x="{x+31}" y="{y+50}" font-family="Manrope, Arial" font-size="22" font-weight="800" fill="{INK}">{"✓" if dark else "?"}</text>' + lines(x+70, y+30, [w-120, w-170], color=ln, h=10, gap=20)
+write('art-faq.svg', svg(520, 380, fq, 'Illustration: questions and answers'))
+
+sv = pkg_card(30, 120, 150, 240, '#60A5FA')
+sv += window(150, 30, 340, 230, inner=lines(174, 72, [160, 100]) + ''.join(f'<rect x="{174+(i%3)*104}" y="{108+(i//3)*68}" width="92" height="56" rx="10" fill="{c}"/>' for i, c in enumerate([B50, INK, B50, B50, B50, LIME])))
+sv += f'<g transform="translate(330 220)"><circle cx="70" cy="70" r="70" fill="{BLUE}"/><path d="M40 72l20 20 40-44" fill="none" stroke="{WHITE}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></g>'
+write('art-services.svg', svg(520, 380, sv, 'Illustration: a service menu, a package card and a completed check'))
+
+# ---------- Sample deliverables (labelled as illustrations on the page) ----------
+rl = window(10, 10, 500, 340, inner=(f'<rect x="34" y="52" width="452" height="32" rx="6" fill="{INK}"/>' + ''.join(f'<rect x="{44+i*150}" y="64" width="{w}" height="8" rx="4" fill="#2B416E"/>' for i, w in enumerate([90, 60, 70])) +
+    ''.join(f'<rect x="34" y="{92+i*40}" width="452" height="34" rx="6" fill="{SOFT if i % 2 else WHITE}" stroke="{LINE}"/>' + lines(46, 105+i*40, [110]) + f'<rect x="194" y="{105+i*40}" width="{60 + (i*17) % 50}" height="8" rx="4" fill="#BFD3FE"/>' + f'<rect x="344" y="{100+i*40}" width="62" height="18" rx="9" fill="{LIME}"/><rect x="354" y="{106+i*40}" width="42" height="6" rx="3" fill="{INK}" opacity=".6"/>' for i in range(6))))
+write('report-links.svg', svg(520, 360, rl, 'Illustration of a link report: each placement with its live URL and status'))
+ra = (f'<g transform="translate(40 40) rotate(-4)"><rect width="250" height="300" rx="14" fill="{WHITE}" stroke="{LINE}" stroke-width="2"/><rect x="20" y="22" width="120" height="14" rx="7" fill="{INK}"/>' + lines(20, 50, [200, 170]) + bars(30, 90, [40, 70, 55, 90], w=34, gap=16, base=100, colors=[B50, '#BFD3FE', BLUE, BLUE_D]) + lines(20, 214, [210, 190, 200, 150]) + '</g>' +
+      f'<g transform="translate(230 70) rotate(4)"><rect width="250" height="290" rx="14" fill="{WHITE}" stroke="{LINE}" stroke-width="2"/><rect x="20" y="22" width="100" height="14" rx="7" fill="{INK}"/>' +
+      ''.join(f'<rect x="20" y="{56+i*44}" width="210" height="34" rx="8" fill="{SOFT}"/><rect x="30" y="{65+i*44}" width="46" height="16" rx="8" fill="{c}"/>' + lines(88, 70+i*44, [w]) for i, (c, w) in enumerate([('#FCA5A5', 120), ('#FCD34D', 100), ('#FCD34D', 130), (LIME, 90), (LIME, 110)])) + '</g>')
+write('report-audit.svg', svg(520, 380, ra, 'Illustration of an audit report: charts and a prioritised issue list'))
+print('extra art written')
+
 print('art written to', os.path.abspath(OUT))

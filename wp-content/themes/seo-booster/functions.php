@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SBT_VERSION', '1.0.0' );
+define( 'SBT_VERSION', '1.1.0' );
 
 add_action(
 	'after_setup_theme',
@@ -52,6 +52,9 @@ add_action(
 	static function () {
 		if ( ! shortcode_exists( 'sb_year' ) ) {
 			add_shortcode( 'sb_year', static fn() => esc_html( wp_date( 'Y' ) ) );
+		}
+		if ( ! shortcode_exists( 'sb_currency' ) ) {
+			add_shortcode( 'sb_currency', static fn() => function_exists( 'get_woocommerce_currency' ) ? esc_html( get_woocommerce_currency() ) : 'USD' );
 		}
 		if ( ! shortcode_exists( 'sb_breadcrumbs' ) ) {
 			add_shortcode( 'sb_breadcrumbs', '__return_empty_string' );

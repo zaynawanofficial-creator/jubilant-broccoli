@@ -1,0 +1,51 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sb-main sb-shop","layout":{"type":"constrained"}} -->
+<main class="wp-block-group sb-main sb-shop"><!-- wp:group {"align":"full","className":"sb-hero sb-hero--thanks","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-hero sb-hero--thanks"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">Order received</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:woocommerce/order-confirmation-status /-->
+
+<!-- wp:html -->
+<ol class="sb-steps-bar" aria-label="Order progress"><li class="is-done"><span>1</span>Package</li><li class="is-done"><span>2</span>Project details</li><li class="is-done"><span>3</span>Checkout</li><li class="is-current" aria-current="step"><span>4</span>Kick-off</li></ol>
+<!-- /wp:html --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","className":"sb-next","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide sb-next"><!-- wp:html -->
+<ol class="sb-next__list"><li><strong>Check your email</strong>Your receipt and order number are on the way.</li><li><strong>Add files (optional)</strong>Upload logos or documents from <a href="/my-account/orders/">your account</a>. Your project details are already saved.</li><li><strong>We start work</strong>We confirm anything unclear within one working day, then deliver within the stated turnaround.</li></ol>
+<!-- /wp:html --></div>
+<!-- /wp:group -->
+
+<!-- wp:columns {"align":"wide","className":"sb-thanks-cols"} -->
+<div class="wp-block-columns alignwide sb-thanks-cols"><!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:woocommerce/order-confirmation-summary /-->
+
+<!-- wp:woocommerce/order-confirmation-totals-wrapper -->
+<!-- wp:heading {"level":2,"className":"sb-thanks-h"} -->
+<h2 class="wp-block-heading sb-thanks-h">Order details</h2>
+<!-- /wp:heading -->
+
+<!-- wp:woocommerce/order-confirmation-totals /-->
+<!-- /wp:woocommerce/order-confirmation-totals-wrapper --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:woocommerce/order-confirmation-additional-information /-->
+
+<!-- wp:woocommerce/order-confirmation-billing-wrapper -->
+<!-- wp:heading {"level":2,"className":"sb-thanks-h"} -->
+<h2 class="wp-block-heading sb-thanks-h">Billing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:woocommerce/order-confirmation-billing-address /-->
+<!-- /wp:woocommerce/order-confirmation-billing-wrapper --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

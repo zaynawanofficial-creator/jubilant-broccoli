@@ -1,5 +1,62 @@
 # PROGRESS
 
+## Design + order-flow overhaul: theme 1.1.0, plugin 0.3.0 · 3 Nov 2026 · 🟡 ready to install
+**Owner feedback (with live screenshots):**
+- cart and checkout looked default
+- inner-page heroes were misaligned
+- "How it works" steps all showed "01" and the layout looked broken
+- some groups had fewer than 4 packages
+- no pre-checkout order details
+- pages were text-heavy, with extra white space
+- the product page looked like a stock WooCommerce page
+
+**Root causes found:**
+- **Steps:** CSS counter numbering broke inside WordPress's grid layout. WP grid `auto-fill` also left empty column tracks, so the 4 cards didn't fill the row.
+- **Compact heroes:** they put children in a 760 px constrained column, so the inline-flex eyebrow and the breadcrumbs sat at different offsets.
+- **White strips:** WordPress adds a block gap between full-width sections, and between `main` and the footer.
+
+**Changes**
+- **Catalogue (63 rows):**
+  - every published group now has at least 4 packages
+  - new: Local SEO Audit, Ecommerce SEO Audit, Schema Markup Setup, 3× and 20× article batches, Logo Design
+  - SKU-keyed copy overrides
+- **Package images:** a branded 960×720 WebP for every package, made by `tools/build_package_images.js` + `.py`. The importer attaches it only when the product has no image. These show on cards, the service page, cart, checkout and order emails.
+- **Order flow:** Choose package → **Project details** (on the service page, before checkout) → Checkout → Kick-off.
+  - `SB_Order_Flow`: per-service agency-grade fields (new "fix" profile for maintenance, plus select fields), validation, cart item data shown in cart and checkout, saved to order line meta.
+  - The brief is pre-filled from these details and marked complete when every required field is answered, so the order goes straight to "Brief received" after payment.
+  - Add-to-cart from this form redirects straight to checkout.
+- **Service details page** (theme `single-product.html` + `SB_Service_Page`):
+  - dark hero with the package image, price, CTA and fact chips
+  - What's included, What we need from you, Not included, and 4-step "How your order works"
+  - Good-to-know FAQ
+  - sticky order card with a step indicator (on mobile it moves directly under the hero)
+  - "Other packages" comparison
+- **Cart / checkout / thank-you:** theme templates `page-cart`, `page-checkout` (slim secure header and footer), `order-confirmation`.
+  - order progress bar, trust row, styling for WooCommerce cart and checkout blocks
+  - next-step cards on the thank-you page
+- **Pages:**
+  - split heroes with illustrations on every inner page
+  - explicitly numbered steps with icons
+  - fixed 4/3/2-column grids
+  - illustrated service cards
+  - "proof of work" sections with sample-deliverable illustrations, labelled as illustrative, on home and every service page
+  - CTAs with art
+  - tighter section rhythm
+- **New illustrations:** services, packages, process, about, contact, quote, FAQ, a link-report sample and an audit-report sample.
+- **Currency-neutral copy:** `[sb_currency]` shows the store currency. The live store uses GBP while the earlier copy said USD.
+- **Setup screen:** opt-in "Enable Direct bank transfer" (unticked by default), so the checkout no longer says "no payment methods" during testing. Overwrite now rebuilds pages with the new design.
+
+**Verification (run here)**
+- WordPress block validator: **40 files, 2,229 blocks, 0 invalid** (patterns, parts and templates, including the new WooCommerce templates; WooCommerce block internals are not validated).
+- `php -l` clean. Importer smoke test passes.
+- Approximate static render (real block HTML, WordPress block-library CSS, theme CSS):
+  - home, services, off-page-seo, how-it-works, about and contact
+  - a mock of the service details page that mirrors the plugin's markup
+  - **no page-level horizontal overflow at 1440 or 390 px**
+  - screenshots in `docs/screens/site/`
+
+**Not verified:** the real WooCommerce cart and checkout block rendering with the new CSS, the add-to-cart → checkout redirect, the cart item data display in the block cart, and brief pre-fill. All of these need the live install and a test order (INSTALL.md step 7).
+
 ## Complete website: block theme + plugin 0.2.0 · 2 Nov 2026 · 🟡 ready to install (owner installs, see INSTALL.md)
 **Owner decision:** build the full site in one go as a block theme (theme.json / templates/index.html). WoodMart and Elementor stay installed but inactive.
 

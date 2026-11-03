@@ -134,12 +134,58 @@
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
-<p class="sb-center sb-muted">All prices in USD. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
+<p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"sb-split"} -->
+<div class="wp-block-columns are-vertically-aligned-center alignwide sb-split"><!-- wp:column {"width":"50%"} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-proof__art"} -->
+<figure class="wp-block-image size-full sb-proof__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/hero-growth.svg' ) ); ?>" alt="Illustration of a website dashboard and growth chart"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"50%"} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">Handover</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A site you can run yourself</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Your site is built in WordPress with a standard editor. At launch you get a recorded walkthrough so you can update pages without calling a developer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"sb-ticks"} -->
+<ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
+<li>Responsive pages tested on phones and desktops</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Contact form connected to your inbox</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SEO basics set: titles, descriptions, sitemap</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Recorded handover video</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"sb-muted"} -->
+<p class="sb-muted">Illustrative example. Your report shows your own URLs and data.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
 <div class="wp-block-group alignwide sb-section-head"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
 <p class="sb-eyebrow">What you get</p>
 <!-- /wp:paragraph -->
@@ -149,9 +195,13 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","className":"sb-grid","layout":{"type":"grid","minimumColumnWidth":"16rem"}} -->
-<div class="wp-block-group alignwide sb-grid"><!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d3"} -->
+<div class="wp-block-group alignwide sb-grid sb-grid--3"><!-- wp:group {"className":"sb-card"} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-webdev.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Responsive design</h3>
 <!-- /wp:heading -->
 
@@ -161,7 +211,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-scope.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Your content added</h3>
 <!-- /wp:heading -->
 
@@ -171,7 +225,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-report.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Contact form</h3>
 <!-- /wp:heading -->
 
@@ -181,7 +239,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-shield.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">SEO basics</h3>
 <!-- /wp:heading -->
 
@@ -191,7 +253,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-technical.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Speed basics</h3>
 <!-- /wp:heading -->
 
@@ -201,7 +267,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
+<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-human.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Handover video</h3>
 <!-- /wp:heading -->
 
@@ -212,8 +282,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dblue","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull sb-section sb-section--blue"><!-- wp:group {"align":"wide","className":"sb-section-head sb-center"} -->
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head sb-center"} -->
 <div class="wp-block-group alignwide sb-section-head sb-center"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
 <p class="sb-eyebrow">Process</p>
 <!-- /wp:paragraph -->
@@ -223,9 +293,19 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","className":"sb-steps","layout":{"type":"grid","minimumColumnWidth":"14rem"}} -->
-<div class="wp-block-group alignwide sb-steps"><!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d4 sb-steps"} -->
+<div class="wp-block-group alignwide sb-grid sb-grid--4 sb-steps"><!-- wp:group {"className":"sb-card sb-step"} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">01</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-scope.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Brief</h3>
 <!-- /wp:heading -->
 
@@ -235,7 +315,17 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">02</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-shield.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Design</h3>
 <!-- /wp:heading -->
 
@@ -245,7 +335,17 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">03</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-human.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Build</h3>
 <!-- /wp:heading -->
 
@@ -255,7 +355,17 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">04</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-report.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Launch</h3>
 <!-- /wp:heading -->
 
@@ -278,7 +388,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>You will fill these in on a short brief form after checkout. Never include passwords. We will ask for a user invite if access is needed.</p>
+<p>When you choose a package you add these on the order page, before checkout, so we can start straight after payment. Never include passwords. We will ask for a user invite if access is needed.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -306,8 +416,8 @@
 <!-- /wp:columns --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head sb-center"} -->
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dblue","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section sb-section--blue"><!-- wp:group {"align":"wide","className":"sb-section-head sb-center"} -->
 <div class="wp-block-group alignwide sb-section-head sb-center"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
 <p class="sb-eyebrow">FAQ</p>
 <!-- /wp:paragraph -->
@@ -361,10 +471,10 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","className":"sb-grid","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
-<div class="wp-block-group alignwide sb-grid"><!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-maintenance.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d3"} -->
+<div class="wp-block-group alignwide sb-grid sb-grid--3"><!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-maintenance.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -384,9 +494,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-content.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-content.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -406,9 +516,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-design.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-design.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -431,8 +541,10 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dtight","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull sb-section sb-section--tight"><!-- wp:group {"align":"wide","className":"sb-cta","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide sb-cta"><!-- wp:heading -->
+<section class="wp-block-group alignfull sb-section sb-section--tight"><!-- wp:group {"align":"wide","className":"sb-cta"} -->
+<div class="wp-block-group alignwide sb-cta"><!-- wp:columns {"verticalAlignment":"center","className":"sb-cta__cols"} -->
+<div class="wp-block-columns are-vertically-aligned-center sb-cta__cols"><!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:heading -->
 <h2 class="wp-block-heading">Not sure which package fits?</h2>
 <!-- /wp:heading -->
 
@@ -449,5 +561,13 @@
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/packages/">Browse packages</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"40%","className":"sb-hide-mobile"} -->
+<div class="wp-block-column sb-hide-mobile" style="flex-basis:40%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-cta__art"} -->
+<figure class="wp-block-image size-full sb-cta__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-quote.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

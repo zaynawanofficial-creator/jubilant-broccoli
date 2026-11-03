@@ -20,6 +20,8 @@ function update_term_meta( $id, $k, $v ) { $GLOBALS['term_meta'][ $id ][ $k ] = 
 function wp_update_term( $id, $tax, $a ) { foreach ( $GLOBALS['terms'][ $tax ] as $t ) { if ( $t->term_id === $id && isset( $a['parent'] ) ) { $t->parent = $a['parent']; } } }
 function wc_get_product_id_by_sku( $sku ) { foreach ( $GLOBALS['products'] as $id => $p ) { if ( $p->sku === $sku ) { return $id; } } return 0; }
 function wc_get_product( $id ) { return $GLOBALS['products'][ $id ]; }
+function get_post_thumbnail_id( $id ) { return 0; }
+function wp_upload_bits() { return array( 'error' => 'stub' ); }
 function wp_set_object_terms( $id, $t, $tax ) { $GLOBALS['obj_terms'][ $id ] = $t; }
 class SB_Packages { const TAX = 'sb_package_group'; public static bool $bypass_gate = false; }
 class WC_Product_Simple {

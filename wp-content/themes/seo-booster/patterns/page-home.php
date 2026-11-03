@@ -115,10 +115,10 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","className":"sb-grid","layout":{"type":"grid","minimumColumnWidth":"16rem"}} -->
-<div class="wp-block-group alignwide sb-grid"><!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-offpage.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d4"} -->
+<div class="wp-block-group alignwide sb-grid sb-grid--4"><!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-offpage.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -138,9 +138,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-audit.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-audit.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -160,9 +160,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-technical.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-technical.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -182,9 +182,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-webdev.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-webdev.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -204,9 +204,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-maintenance.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-maintenance.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -226,9 +226,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-content.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-content.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -248,9 +248,9 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card"} -->
-<div class="wp-block-group sb-card"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__icon"} -->
-<figure class="wp-block-image size-full sb-card__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-design.svg' ) ); ?>" alt=""/></figure>
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-design.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
@@ -286,6 +286,52 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dblue","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section sb-section--blue"><!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"sb-split"} -->
+<div class="wp-block-columns are-vertically-aligned-center alignwide sb-split"><!-- wp:column {"width":"50%"} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-proof__art"} -->
+<figure class="wp-block-image size-full sb-proof__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/report-links.svg' ) ); ?>" alt="Illustration of a delivery report listing live URLs"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"50%"} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">Proof of work</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Every order ends with something you can check</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No vague monthly summaries. You receive the actual output: live URLs, an audit PDF, a change log or your design files, with what was done and when.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"sb-ticks"} -->
+<ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
+<li>Live-URL reports for every link order</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Prioritised audit reports in plain English</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Before/after measurements for technical work</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Source files for websites and design</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"sb-muted"} -->
+<p class="sb-muted">Illustrative example. Your report shows your own URLs and data.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
@@ -325,9 +371,19 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","className":"sb-steps","layout":{"type":"grid","minimumColumnWidth":"14rem"}} -->
-<div class="wp-block-group alignwide sb-steps"><!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d4 sb-steps"} -->
+<div class="wp-block-group alignwide sb-grid sb-grid--4 sb-steps"><!-- wp:group {"className":"sb-card sb-step"} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">01</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-scope.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Choose a package</h3>
 <!-- /wp:heading -->
 
@@ -337,27 +393,57 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">02</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-shield.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Add your project details</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Right after choosing a package, a short form collects what we need: URLs, keywords and preferences. Files can follow later.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-card sb-step"} -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">03</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-human.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Pay securely</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Check out through our WooCommerce store. You get an order number and receipt by email straight away.</p>
+<p>Check out in one step. You get an order number and receipt by email straight away.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Send your brief</h3>
-<!-- /wp:heading -->
+<div class="wp-block-group sb-card sb-step"><!-- wp:group {"className":"sb-step__top","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group sb-step__top"><!-- wp:paragraph {"className":"sb-step__n"} -->
+<p class="sb-step__n">04</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>A short form in your account collects the details we need: URLs, keywords, brand files and preferences.</p>
-<!-- /wp:paragraph --></div>
+<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-step__icon"} -->
+<figure class="wp-block-image size-full sb-step__icon"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-report.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sb-card sb-step"} -->
-<div class="wp-block-group sb-card sb-step"><!-- wp:heading {"level":3} -->
+<!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Receive your delivery</h3>
 <!-- /wp:heading -->
 
@@ -389,7 +475,7 @@
 
 <!-- wp:list {"className":"sb-ticks"} -->
 <ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
-<li><strong>Fixed prices</strong> shown on every package, in USD.</li>
+<li><strong>Fixed prices</strong> shown on every package.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -513,8 +599,10 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dtight","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull sb-section sb-section--tight"><!-- wp:group {"align":"wide","className":"sb-cta","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide sb-cta"><!-- wp:heading -->
+<section class="wp-block-group alignfull sb-section sb-section--tight"><!-- wp:group {"align":"wide","className":"sb-cta"} -->
+<div class="wp-block-group alignwide sb-cta"><!-- wp:columns {"verticalAlignment":"center","className":"sb-cta__cols"} -->
+<div class="wp-block-columns are-vertically-aligned-center sb-cta__cols"><!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:heading -->
 <h2 class="wp-block-heading">Ready to boost your site?</h2>
 <!-- /wp:heading -->
 
@@ -531,5 +619,13 @@
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/packages/">Browse packages</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"40%","className":"sb-hide-mobile"} -->
+<div class="wp-block-column sb-hide-mobile" style="flex-basis:40%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-cta__art"} -->
+<figure class="wp-block-image size-full sb-cta__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-quote.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

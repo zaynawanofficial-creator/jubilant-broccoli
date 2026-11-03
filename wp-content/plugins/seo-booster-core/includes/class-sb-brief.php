@@ -37,54 +37,113 @@ class SB_Brief {
 	 * Types: url, urls (one per line), text, textarea, email.
 	 * Never add password fields: access is granted through delegated invites only.
 	 */
+	/**
+	 * Fields per brief profile. key => [label, type, required, help, options].
+	 * Types: url, urls (one per line), text, textarea, email, select (options in index 4).
+	 * Used on the service details page (before checkout) and in the post-purchase brief.
+	 * Never add password fields: access is granted through delegated invites only.
+	 */
 	public static function profiles(): array {
 		$common = array(
-			'goals' => array( __( 'Anything else we should know?', 'seo-booster-core' ), 'textarea', false, '' ),
+			'goals' => array( __( 'Anything else we should know?', 'seo-booster-core' ), 'textarea', false, __( 'Deadlines, previous work, things to avoid.', 'seo-booster-core' ) ),
 		);
+		$platforms = array( '' => __( 'Choose…', 'seo-booster-core' ), 'wordpress' => 'WordPress', 'woocommerce' => 'WooCommerce', 'shopify' => 'Shopify', 'wix' => 'Wix / Squarespace', 'custom' => __( 'Custom / other', 'seo-booster-core' ), 'none' => __( 'No website yet', 'seo-booster-core' ) );
 		return array(
 			'offpage' => array(
-				'target_urls'   => array( __( 'Target URL(s) to build links to (one per line)', 'seo-booster-core' ), 'urls', true, __( 'Usually your homepage plus up to 3 key pages.', 'seo-booster-core' ) ),
-				'keywords'      => array( __( 'Main keywords / anchor themes (one per line)', 'seo-booster-core' ), 'textarea', true, __( 'We use natural, branded and partial-match anchors. No keyword stuffing.', 'seo-booster-core' ) ),
+				'target_urls'   => array( __( 'Website / target URL(s)', 'seo-booster-core' ), 'urls', true, __( 'One per line. Usually your homepage plus up to 3 key pages.', 'seo-booster-core' ) ),
+				'keywords'      => array( __( 'Main keywords or topics', 'seo-booster-core' ), 'textarea', true, __( 'One per line. Used to choose relevant sites and natural anchor text.', 'seo-booster-core' ) ),
+				'anchors'       => array( __( 'Anchor text preference', 'seo-booster-core' ), 'select', true, '', array( 'natural' => __( 'Natural mix (recommended)', 'seo-booster-core' ), 'branded' => __( 'Mostly brand name and URL', 'seo-booster-core' ), 'custom' => __( 'I will list exact anchors below', 'seo-booster-core' ) ) ),
 				'business_name' => array( __( 'Business name (exactly as it should appear)', 'seo-booster-core' ), 'text', true, '' ),
-				'business_addr' => array( __( 'Business address (for citations; leave blank if online-only)', 'seo-booster-core' ), 'textarea', false, '' ),
+				'niche_geo'     => array( __( 'Industry and target country / city', 'seo-booster-core' ), 'text', true, __( 'e.g. "Dental clinic, Manchester UK"', 'seo-booster-core' ) ),
+				'contact_email' => array( __( 'Email for listing verification', 'seo-booster-core' ), 'email', true, __( 'An address you control. Platforms send confirmation emails here.', 'seo-booster-core' ) ),
+				'business_addr' => array( __( 'Business address (for citations)', 'seo-booster-core' ), 'textarea', false, __( 'Leave blank if you are online-only.', 'seo-booster-core' ) ),
 				'business_tel'  => array( __( 'Business phone (for citations)', 'seo-booster-core' ), 'text', false, '' ),
-				'contact_email' => array( __( 'Email to register listings with', 'seo-booster-core' ), 'email', true, __( 'Use an address you control; listing verification emails go here.', 'seo-booster-core' ) ),
-				'niche_geo'     => array( __( 'Industry and target country/city', 'seo-booster-core' ), 'text', true, '' ),
-				'description'   => array( __( 'Short business description (50–150 words)', 'seo-booster-core' ), 'textarea', true, '' ),
-				'avoid'         => array( __( 'Existing profiles or sites to avoid (one per line)', 'seo-booster-core' ), 'textarea', false, '' ),
+				'description'   => array( __( 'Short business description', 'seo-booster-core' ), 'textarea', false, __( '50–150 words. We can write it for you if you leave this blank.', 'seo-booster-core' ) ),
+				'avoid'         => array( __( 'Sites or profiles to avoid', 'seo-booster-core' ), 'textarea', false, __( 'Existing listings or competitors\' sites.', 'seo-booster-core' ) ),
 			) + $common,
 			'web'     => array(
-				'site_url'   => array( __( 'Current website (if any)', 'seo-booster-core' ), 'url', false, '' ),
-				'pages'      => array( __( 'Pages you need (one per line)', 'seo-booster-core' ), 'textarea', true, '' ),
-				'features'   => array( __( 'Features (forms, booking, shop, languages…)', 'seo-booster-core' ), 'textarea', false, '' ),
-				'references' => array( __( 'Websites you like (one per line)', 'seo-booster-core' ), 'urls', false, '' ),
-				'content'    => array( __( 'Is your text/content ready?', 'seo-booster-core' ), 'text', true, '' ),
-				'platform'   => array( __( 'Hosting / platform details', 'seo-booster-core' ), 'textarea', false, __( 'Do not send passwords. We will ask you to invite us as a user when needed.', 'seo-booster-core' ) ),
+				'business_name' => array( __( 'Business name', 'seo-booster-core' ), 'text', true, '' ),
+				'site_url'      => array( __( 'Current website (if any)', 'seo-booster-core' ), 'url', false, '' ),
+				'pages'         => array( __( 'Pages you need', 'seo-booster-core' ), 'textarea', true, __( 'One per line, e.g. Home, About, Services, Contact.', 'seo-booster-core' ) ),
+				'content'       => array( __( 'Is your text ready?', 'seo-booster-core' ), 'select', true, '', array( 'ready' => __( 'Yes, all text is ready', 'seo-booster-core' ), 'partial' => __( 'Partly ready', 'seo-booster-core' ), 'need' => __( 'No, I need copywriting', 'seo-booster-core' ) ) ),
+				'references'    => array( __( 'Websites you like', 'seo-booster-core' ), 'urls', false, __( 'One per line, and what you like about each.', 'seo-booster-core' ) ),
+				'features'      => array( __( 'Features needed', 'seo-booster-core' ), 'textarea', false, __( 'Forms, booking, newsletter, languages, shop…', 'seo-booster-core' ) ),
+				'brand'         => array( __( 'Brand colours and fonts', 'seo-booster-core' ), 'text', false, __( 'Or "use my logo colours". Upload files after checkout.', 'seo-booster-core' ) ),
+				'hosting'       => array( __( 'Domain and hosting', 'seo-booster-core' ), 'select', true, '', array( 'have' => __( 'I have hosting and a domain', 'seo-booster-core' ), 'domain' => __( 'I only have a domain', 'seo-booster-core' ), 'none' => __( 'I need help choosing both', 'seo-booster-core' ) ) ),
+			) + $common,
+			'fix'     => array(
+				'site_url' => array( __( 'Website URL', 'seo-booster-core' ), 'url', true, '' ),
+				'platform' => array( __( 'Platform', 'seo-booster-core' ), 'select', true, '', $platforms ),
+				'problem'  => array( __( 'What is wrong, or what do you need?', 'seo-booster-core' ), 'textarea', true, __( 'Steps to reproduce, error messages and when it started.', 'seo-booster-core' ) ),
+				'urgency'  => array( __( 'How urgent is it?', 'seo-booster-core' ), 'select', true, '', array( 'down' => __( 'Site is down or checkout broken', 'seo-booster-core' ), 'soon' => __( 'Needs fixing this week', 'seo-booster-core' ), 'normal' => __( 'Normal priority', 'seo-booster-core' ) ) ),
+				'host'     => array( __( 'Hosting company', 'seo-booster-core' ), 'text', false, '' ),
+				'access'   => array( __( 'Access', 'seo-booster-core' ), 'select', true, __( 'Never send passwords. We will email you our user address to invite.', 'seo-booster-core' ), array( 'invite' => __( 'I will invite you as an admin user', 'seo-booster-core' ), 'help' => __( 'I need help creating a user', 'seo-booster-core' ) ) ),
 			) + $common,
 			'content' => array(
-				'topics'   => array( __( 'Topic(s) or working titles (one per line)', 'seo-booster-core' ), 'textarea', true, '' ),
-				'audience' => array( __( 'Target audience', 'seo-booster-core' ), 'text', true, '' ),
-				'keywords' => array( __( 'Target keywords (one per line)', 'seo-booster-core' ), 'textarea', false, '' ),
-				'tone'     => array( __( 'Tone of voice and examples', 'seo-booster-core' ), 'textarea', false, '' ),
 				'site_url' => array( __( 'Website the content is for', 'seo-booster-core' ), 'url', true, '' ),
+				'topics'   => array( __( 'Topic(s) or working titles', 'seo-booster-core' ), 'textarea', true, __( 'One per line. For batches, you can leave this to us.', 'seo-booster-core' ) ),
+				'keywords' => array( __( 'Target keywords', 'seo-booster-core' ), 'textarea', false, __( 'One per line.', 'seo-booster-core' ) ),
+				'audience' => array( __( 'Who is it for?', 'seo-booster-core' ), 'text', true, __( 'e.g. "Small business owners in the UK"', 'seo-booster-core' ) ),
+				'tone'     => array( __( 'Tone of voice', 'seo-booster-core' ), 'select', true, '', array( 'professional' => __( 'Professional', 'seo-booster-core' ), 'friendly' => __( 'Friendly and conversational', 'seo-booster-core' ), 'technical' => __( 'Technical / expert', 'seo-booster-core' ), 'match' => __( 'Match my existing content', 'seo-booster-core' ) ) ),
+				'english'  => array( __( 'English variant', 'seo-booster-core' ), 'select', true, '', array( 'uk' => __( 'UK English', 'seo-booster-core' ), 'us' => __( 'US English', 'seo-booster-core' ) ) ),
+				'publish'  => array( __( 'Delivery', 'seo-booster-core' ), 'select', false, '', array( 'doc' => __( 'Google Doc / Word file', 'seo-booster-core' ), 'wp' => __( 'Publish to my WordPress (invite needed)', 'seo-booster-core' ) ) ),
 			) + $common,
 			'design'  => array(
-				'formats'    => array( __( 'Formats and sizes needed', 'seo-booster-core' ), 'textarea', true, '' ),
-				'copy'       => array( __( 'Text to include', 'seo-booster-core' ), 'textarea', false, '' ),
-				'references' => array( __( 'Reference designs (links, one per line)', 'seo-booster-core' ), 'urls', false, '' ),
-				'deadline'   => array( __( 'Any fixed deadline?', 'seo-booster-core' ), 'text', false, '' ),
+				'business_name' => array( __( 'Brand / business name', 'seo-booster-core' ), 'text', true, '' ),
+				'site_url'      => array( __( 'Website or social profile', 'seo-booster-core' ), 'url', false, '' ),
+				'formats'       => array( __( 'What do you need and where will it be used?', 'seo-booster-core' ), 'textarea', true, __( 'e.g. "5 Instagram posts, 1080×1080" or "logo for website and signage".', 'seo-booster-core' ) ),
+				'copy'          => array( __( 'Text to include', 'seo-booster-core' ), 'textarea', false, '' ),
+				'style'         => array( __( 'Style direction', 'seo-booster-core' ), 'select', true, '', array( 'minimal' => __( 'Clean and minimal', 'seo-booster-core' ), 'bold' => __( 'Bold and colourful', 'seo-booster-core' ), 'premium' => __( 'Premium / luxury', 'seo-booster-core' ), 'playful' => __( 'Playful', 'seo-booster-core' ), 'unsure' => __( 'Not sure, suggest options', 'seo-booster-core' ) ) ),
+				'references'    => array( __( 'Designs you like', 'seo-booster-core' ), 'urls', false, __( 'Links, one per line. Upload brand files after checkout.', 'seo-booster-core' ) ),
 			) + $common,
 			'seo'     => array(
 				'site_url'    => array( __( 'Website URL', 'seo-booster-core' ), 'url', true, '' ),
-				'priority'    => array( __( 'Priority pages (one per line)', 'seo-booster-core' ), 'urls', false, '' ),
-				'competitors' => array( __( 'Main competitors (one per line)', 'seo-booster-core' ), 'urls', false, '' ),
-				'access'      => array( __( 'Search Console / Analytics access', 'seo-booster-core' ), 'text', false, __( 'Invite our team email as a user. Never send passwords.', 'seo-booster-core' ) ),
+				'platform'    => array( __( 'Platform', 'seo-booster-core' ), 'select', true, '', $platforms ),
+				'market'      => array( __( 'Target market', 'seo-booster-core' ), 'text', true, __( 'Country / city, and B2B or B2C.', 'seo-booster-core' ) ),
+				'priority'    => array( __( 'Priority pages', 'seo-booster-core' ), 'urls', false, __( 'One per line.', 'seo-booster-core' ) ),
+				'competitors' => array( __( 'Main competitors', 'seo-booster-core' ), 'urls', false, __( 'One per line.', 'seo-booster-core' ) ),
+				'access'      => array( __( 'Search Console / Analytics access', 'seo-booster-core' ), 'select', false, __( 'Never send passwords.', 'seo-booster-core' ), array( 'invite' => __( 'I will invite you as a user', 'seo-booster-core' ), 'none' => __( 'I do not have them set up', 'seo-booster-core' ) ) ),
 			) + $common,
 			'generic' => array(
 				'site_url' => array( __( 'Website URL', 'seo-booster-core' ), 'url', false, '' ),
 				'details'  => array( __( 'What do you need?', 'seo-booster-core' ), 'textarea', true, '' ),
 			) + $common,
 		);
+	}
+
+	/** One form field, shared by the order form and the brief. */
+	public static function field_html( string $name, string $id, array $def, string $value ): string {
+		$req  = $def[2] ? ' required aria-required="true"' : '';
+		$desc = $def[3] ? ' aria-describedby="' . esc_attr( $id ) . '-help"' : '';
+		$html = '<p class="form-row form-row-wide sb-field sb-field--' . esc_attr( $def[1] ) . '"><label for="' . esc_attr( $id ) . '">' . esc_html( $def[0] ) . ( $def[2] ? ' <abbr class="required" title="required">*</abbr>' : '' ) . '</label>';
+		if ( in_array( $def[1], array( 'textarea', 'urls' ), true ) ) {
+			$html .= '<textarea class="input-text" rows="' . ( 'urls' === $def[1] ? 2 : 3 ) . '" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '"' . $req . $desc . '>' . esc_textarea( $value ) . '</textarea>';
+		} elseif ( 'select' === $def[1] ) {
+			$html .= '<select id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '"' . $req . $desc . '>';
+			$opts  = $def[4] ?? array();
+			if ( ! isset( $opts[''] ) ) {
+				$html .= '<option value="">' . esc_html__( 'Choose…', 'seo-booster-core' ) . '</option>';
+			}
+			foreach ( $opts as $k => $label ) {
+				$html .= '<option value="' . esc_attr( (string) $k ) . '"' . selected( $value, (string) $k, false ) . '>' . esc_html( $label ) . '</option>';
+			}
+			$html .= '</select>';
+		} else {
+			$type  = in_array( $def[1], array( 'url', 'email' ), true ) ? $def[1] : 'text';
+			$html .= '<input class="input-text" type="' . esc_attr( $type ) . '" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '"' . $req . $desc . ( 'url' === $type ? ' placeholder="https://"' : '' ) . '>';
+		}
+		if ( $def[3] ) {
+			$html .= '<span class="description sb-field__help" id="' . esc_attr( $id ) . '-help">' . esc_html( $def[3] ) . '</span>';
+		}
+		return $html . '</p>';
+	}
+
+	/** Display value for a stored field (select keys become labels). */
+	public static function display_value( array $def, string $value ): string {
+		if ( 'select' === $def[1] && isset( $def[4][ $value ] ) ) {
+			return (string) $def[4][ $value ];
+		}
+		return $value;
 	}
 
 	public static function init(): void {
@@ -163,21 +222,7 @@ class SB_Brief {
 		foreach ( self::lines( $order ) as $item_id => $line ) {
 			echo '<fieldset class="sb-brief-line"><legend>' . esc_html( $line['name'] ) . '</legend>';
 			foreach ( self::profiles()[ $line['profile'] ] as $key => $def ) {
-				$name  = 'sb_brief[' . (int) $item_id . '][' . $key . ']';
-				$id    = 'sb-brief-' . (int) $item_id . '-' . $key;
-				$value = $data[ $item_id ][ $key ] ?? '';
-				$req   = $def[2] ? ' required aria-required="true"' : '';
-				echo '<p class="form-row form-row-wide"><label for="' . esc_attr( $id ) . '">' . esc_html( $def[0] ) . ( $def[2] ? ' <abbr class="required" title="required">*</abbr>' : '' ) . '</label>';
-				if ( in_array( $def[1], array( 'textarea', 'urls' ), true ) ) {
-					echo '<textarea class="input-text" rows="4" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '"' . $req . '>' . esc_textarea( $value ) . '</textarea>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attribute string.
-				} else {
-					$type = in_array( $def[1], array( 'url', 'email' ), true ) ? $def[1] : 'text';
-					echo '<input class="input-text" type="' . esc_attr( $type ) . '" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '"' . $req . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attribute string.
-				}
-				if ( $def[3] ) {
-					echo '<span class="description">' . esc_html( $def[3] ) . '</span>';
-				}
-				echo '</p>';
+				echo self::field_html( 'sb_brief[' . (int) $item_id . '][' . $key . ']', 'sb-brief-' . (int) $item_id . '-' . $key, $def, (string) ( $data[ $item_id ][ $key ] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in field_html().
 			}
 			echo '</fieldset>';
 		}
@@ -211,7 +256,7 @@ class SB_Brief {
 		foreach ( $lines as $item_id => $line ) {
 			foreach ( $profiles[ $line['profile'] ] as $key => $def ) {
 				$raw = isset( $input[ $item_id ][ $key ] ) ? (string) $input[ $item_id ][ $key ] : '';
-				$val = self::sanitize( $raw, $def[1] );
+				$val = self::sanitize( $raw, $def );
 				if ( $def[2] && '' === $val ) {
 					++$missing;
 				}
@@ -240,8 +285,14 @@ class SB_Brief {
 		exit;
 	}
 
-	private static function sanitize( string $raw, string $type ): string {
-		switch ( $type ) {
+	/**
+	 * @param array $def Field definition (type in [1], select options in [4]).
+	 */
+	public static function sanitize( string $raw, array $def ): string {
+		switch ( $def[1] ) {
+			case 'select':
+				$raw = sanitize_key( $raw );
+				return array_key_exists( $raw, $def[4] ?? array() ) ? $raw : '';
 			case 'url':
 				return esc_url_raw( trim( $raw ), array( 'http', 'https' ) );
 			case 'urls':
@@ -409,7 +460,7 @@ class SB_Brief {
 		foreach ( $lines as $item_id => $line ) {
 			echo '<h4>' . esc_html( $line['name'] ) . '</h4><table class="widefat striped"><tbody>';
 			foreach ( self::profiles()[ $line['profile'] ] as $key => $def ) {
-				$val = $data[ $item_id ][ $key ] ?? '';
+				$val = self::display_value( $def, (string) ( $data[ $item_id ][ $key ] ?? '' ) );
 				echo '<tr><th style="width:30%">' . esc_html( $def[0] ) . '</th><td>' . ( '' === $val ? '<em>—</em>' : nl2br( esc_html( $val ) ) ) . '</td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inline.
 			}
 			echo '</tbody></table>';

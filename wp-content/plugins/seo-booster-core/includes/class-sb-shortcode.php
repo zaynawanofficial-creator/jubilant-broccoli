@@ -139,6 +139,9 @@ class SB_Shortcode {
 		if ( $featured ) {
 			echo '<span class="sb-pkcard__badge">' . esc_html__( 'Most popular', 'seo-booster-core' ) . '</span>';
 		}
+		if ( $product->get_image_id() ) {
+			echo '<a class="sb-pkcard__media" href="' . esc_url( $product->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . wp_get_attachment_image( $product->get_image_id(), 'medium_large', false, array( 'loading' => 'lazy', 'alt' => '' ) ) . '</a>';
+		}
 		echo '<h3 class="sb-pkcard__title">' . esc_html( $product->get_name() ) . '</h3>';
 		if ( $ideal ) {
 			echo '<p class="sb-pkcard__ideal">' . esc_html( $ideal ) . '</p>';
@@ -176,17 +179,10 @@ class SB_Shortcode {
 		if ( 'quote' === $model || ! $product->is_purchasable() ) {
 			echo '<a class="sb-btn sb-btn--primary" href="' . esc_url( SB_Packages::quote_url( $product ) ) . '">' . esc_html__( 'Get a quote', 'seo-booster-core' ) . '</a>';
 		} else {
-			printf(
-				'<a class="sb-btn sb-btn--primary add_to_cart_button ajax_add_to_cart" href="%1$s" data-quantity="1" data-product_id="%2$d" data-product_sku="%3$s" rel="nofollow" aria-label="%4$s">%5$s</a>',
-				esc_url( $product->add_to_cart_url() ),
-				(int) $product->get_id(),
-				esc_attr( $product->get_sku() ),
-				/* translators: %s: package name */
-				esc_attr( sprintf( __( 'Add %s to cart', 'seo-booster-core' ), $product->get_name() ) ),
-				esc_html__( 'Add to cart', 'seo-booster-core' )
-			);
+			/* translators: %s: package name */
+			echo '<a class="sb-btn sb-btn--primary" href="' . esc_url( $product->get_permalink() . '#order' ) . '" aria-label="' . esc_attr( sprintf( __( 'Choose %s', 'seo-booster-core' ), $product->get_name() ) ) . '">' . esc_html__( 'Choose package', 'seo-booster-core' ) . ' →</a>';
 		}
-		echo '<a class="sb-btn sb-btn--ghost" href="' . esc_url( $product->get_permalink() ) . '">' . esc_html__( 'View details', 'seo-booster-core' ) . '</a>';
+		echo '<a class="sb-pkcard__details" href="' . esc_url( $product->get_permalink() ) . '">' . esc_html__( 'Full package details', 'seo-booster-core' ) . '</a>';
 		echo '</div></li>';
 		return (string) ob_get_clean();
 	}

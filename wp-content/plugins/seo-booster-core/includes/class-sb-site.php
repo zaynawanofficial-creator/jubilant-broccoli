@@ -16,6 +16,7 @@ class SB_Site {
 	public static function init(): void {
 		add_shortcode( 'sb_from', array( __CLASS__, 'from_price' ) );
 		add_shortcode( 'sb_year', static fn() => esc_html( wp_date( 'Y' ) ) );
+		add_shortcode( 'sb_currency', static fn() => esc_html( get_woocommerce_currency() ) );
 		add_shortcode( 'sb_breadcrumbs', array( __CLASS__, 'breadcrumbs' ) );
 		add_action( 'save_post_product', array( __CLASS__, 'flush_prices' ) );
 		add_action( 'woocommerce_update_product', array( __CLASS__, 'flush_prices' ) );

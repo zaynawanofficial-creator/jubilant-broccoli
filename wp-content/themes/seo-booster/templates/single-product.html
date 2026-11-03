@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"sb-main sb-svc","layout":{"type":"constrained"}} -->
+<main class="wp-block-group sb-main sb-svc"><!-- wp:group {"align":"full","className":"sb-hero sb-hero--svc","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-hero sb-hero--svc"><!-- wp:shortcode -->
+[sb_service_hero]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:woocommerce/store-notices /-->
+
+<!-- wp:columns {"align":"wide","className":"sb-svc-layout"} -->
+<div class="wp-block-columns alignwide sb-svc-layout"><!-- wp:column {"width":"60%","className":"sb-svc-layout__main"} -->
+<div class="wp-block-column sb-svc-layout__main" style="flex-basis:60%"><!-- wp:shortcode -->
+[sb_service_body]
+<!-- /wp:shortcode --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"40%","className":"sb-svc-layout__side"} -->
+<div class="wp-block-column sb-svc-layout__side" style="flex-basis:40%"><!-- wp:shortcode -->
+[sb_order_form]
+<!-- /wp:shortcode --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:group {"align":"full","className":"sb-section sb-section--soft","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_service_more]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

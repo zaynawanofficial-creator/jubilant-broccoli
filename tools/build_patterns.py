@@ -40,12 +40,12 @@ SVC = {s[0]: s for s in SERVICES}
 def svc_card(slug, dark=False):
     s = SVC[slug]
     return group(
-        image(f'icon-{s[3]}.svg', '', 'sb-card__icon'),
+        image(f'art-{s[4]}.svg', '', 'sb-card__art'),
         heading(f'<a href="/services/{s[0]}/">{s[2]}</a>', 3),
         para(s[5]),
         para(f'From <strong>[sb_from service="{s[1]}"]</strong>', 'sb-price-from'),
         para('View packages →', 'sb-card__more'),
-        cls='sb-card sb-card--dark' if dark else 'sb-card', layout='flow')
+        cls='sb-card sb-card--svc sb-card--dark' if dark else 'sb-card sb-card--svc', layout='flow')
 
 
 def card(title, text, icon=None, cls='sb-card'):
@@ -62,9 +62,17 @@ def head(eb, title, sub=None, center=False):
     return group(*parts, cls='sb-section-head' + (' sb-center' if center else ''), layout='flow', align='wide')
 
 
+def grid(*children, n=4, cls=''):
+    """Fixed-column responsive grid (4/3/2 on desktop, 2 on tablet, 1 on phones). CSS: .sb-grid--N."""
+    return group(*children, align='wide', cls=f'sb-grid sb-grid--{n} {cls}'.strip(), layout='flow')
+
+
+STEP_ICONS = ['scope', 'shield', 'human', 'report']
+
+
 def steps(items):
-    return group(*[group(heading(t, 3), para(d), cls='sb-card sb-step', layout='flow') for t, d in items],
-                 align='wide', cls='sb-steps', layout=None, grid='14rem')
+    return grid(*[group(group(para(f'{i + 1:02d}', 'sb-step__n'), image(f'icon-{STEP_ICONS[i % 4]}.svg', '', 'sb-step__icon'), cls='sb-step__top', layout='flex'),
+                        heading(t, 3), para(d), cls='sb-card sb-step', layout='flow') for i, (t, d) in enumerate(items)], n=4, cls='sb-steps')
 
 
 def faq(items):
@@ -72,8 +80,24 @@ def faq(items):
 
 
 def cta(title='Not sure which package fits?', text='Tell us about your site and goals. We will recommend the right package, or send a fixed quote for anything custom.',
-        btns=(('Get a free quote', '/get-a-quote/'), ('Browse packages', '/packages/', 'outline'))):
-    return section(group(heading(title), para(text), buttons(*btns), align='wide', cls='sb-cta', layout='constrained'), cls='sb-section--tight')
+        btns=(('Get a free quote', '/get-a-quote/'), ('Browse packages', '/packages/', 'outline')), art='art-quote.svg'):
+    return section(group(columns(column(heading(title), para(text), buttons(*btns), width='60%'),
+                                 column(image(art, '', 'sb-cta__art'), width='40%', cls='sb-hide-mobile'), align='', center=True, cls='sb-cta__cols'),
+                         align='wide', cls='sb-cta', layout='flow'), cls='sb-section--tight')
+
+
+def page_hero(art, alt, *blocks):
+    """Inner-page hero: breadcrumbs + copy on the left, illustration on the right."""
+    left = column(shortcode('[sb_breadcrumbs]'), *blocks, width='58%')
+    right = column(image(art, alt, 'sb-hero__art'), width='42%')
+    return group(columns(left, right, cls='sb-hero__cols', center=True), align='full', cls='sb-hero sb-hero--page', tag='section')
+
+
+def proof(art, alt, eb, title, text, bullets, note='Illustrative example. Your report shows your own URLs and data.', cls=''):
+    """Split section: deliverable visual + what you receive."""
+    return section(columns(column(image(art, alt, 'sb-proof__art'), width='50%'),
+                           column(eyebrow(eb), heading(title), para(text), ul(bullets, 'sb-ticks'), para(note, 'sb-muted'), width='50%'),
+                           cls='sb-split', center=True), cls=cls)
 
 
 def hero(eb, title, sub, btns, checks, art, alt, crumbs=False):
@@ -82,10 +106,36 @@ def hero(eb, title, sub, btns, checks, art, alt, crumbs=False):
     return group(columns(left, right, cls='sb-hero__cols', center=True), align='full', cls='sb-hero', tag='section')
 
 
+FEATURE_ICONS = ['human', 'scope', 'report', 'shield', 'technical']
+
+DELIVER = {
+    'off-page-seo': ('report-links.svg', 'Illustration of a link report listing each live URL', 'Proof of work', 'A live-URL report for every order',
+                     'You get a spreadsheet listing every placement: the platform or publisher, the live URL and its status on delivery day, so you can check each one yourself.',
+                     ['Every live URL, ready to click and verify', 'Platform or publisher and its category', 'Domain Rating at publication for guest posts', 'Replacement terms stated on every package']),
+    'seo-audit': ('report-audit.svg', 'Illustration of an audit report with charts and a prioritised issue list', 'Your report', 'A prioritised plan, not a 90-page data dump',
+                  'Each issue is rated high, medium or low, explained in plain English and paired with the fix, so you or your developer know exactly what to do first.',
+                  ['Executive summary on one page', 'Issues grouped by impact', 'Screenshots and affected URLs', 'Clear fix for every finding']),
+    'technical-seo': ('report-audit.svg', 'Illustration of a technical change log with before and after charts', 'Your report', 'Every change logged, with before and after',
+                      'We back up first, make the fixes, then hand you a change log with the before/after measurements for each one.',
+                      ['Backup taken before any change', 'Change log you can share with your team', 'Lab speed results before and after', 'Search Console checks after fixes']),
+    'website-development': ('hero-growth.svg', 'Illustration of a website dashboard and growth chart', 'Handover', 'A site you can run yourself',
+                            'Your site is built in WordPress with a standard editor. At launch you get a recorded walkthrough so you can update pages without calling a developer.',
+                            ['Responsive pages tested on phones and desktops', 'Contact form connected to your inbox', 'SEO basics set: titles, descriptions, sitemap', 'Recorded handover video']),
+    'website-maintenance': ('art-about.svg', 'Illustration of a maintenance report and completed checklist', 'Every fix documented', 'Know exactly what was wrong and what changed',
+                            'After every fix or care month you receive a plain-English summary: the cause, what we changed and anything to watch.',
+                            ['Backup before every change', 'Root cause, not just the symptom', 'Updates and checks logged for care plans', 'Same issue back within 14 days? Fixed free']),
+    'content-writing': ('art-faq.svg', 'Illustration of a structured article with questions answered', 'Built to answer', 'Articles that answer real questions',
+                        'Every article is structured around what your readers search for, with clear headings, direct answers and natural keyword use.',
+                        ['Topic and keyword agreed before writing', 'Meta title and description included', 'Plagiarism-checked and fact-checked', 'Delivered as a Google Doc or Word file']),
+    'graphic-design': ('art-services.svg', 'Illustration of design files and a brand board', 'Ready-to-use files', 'Files that work everywhere you need them',
+                       'You receive correctly sized exports for each platform, plus vector source files for branding, organised so your team can find them.',
+                       ['Exports sized for each platform', 'Vector files for logos and brand kits', 'Colour and font references', 'Licensed assets only']),
+}
+
 HOW_STEPS = [
     ('Choose a package', 'Every package lists exactly what is included, what is not, the turnaround and the revisions. Pick one, or ask for a quote.'),
-    ('Pay securely', 'Check out through our WooCommerce store. You get an order number and receipt by email straight away.'),
-    ('Send your brief', 'A short form in your account collects the details we need: URLs, keywords, brand files and preferences.'),
+    ('Add your project details', 'Right after choosing a package, a short form collects what we need: URLs, keywords and preferences. Files can follow later.'),
+    ('Pay securely', 'Check out in one step. You get an order number and receipt by email straight away.'),
     ('Receive your delivery', 'We deliver within the stated turnaround, with a report or files you can check. Revisions are included where listed.'),
 ]
 
@@ -128,7 +178,10 @@ home = join(
                  'Start with one service or combine several. Each one has its own packages, so you only pay for what you need.'),
             group(*[svc_card(s[0]) for s in SERVICES],
                   card('Something else?', join(para('PPC, analytics, email and automation projects are quoted individually.'), para('<a href="/get-a-quote/">Request a quote →</a>', 'sb-card__more')), cls='sb-card sb-card--outline'),
-                  align='wide', layout=None, grid='16rem', cls='sb-grid')),
+                  align='wide', layout='flow', cls='sb-grid sb-grid--4')),
+    proof('report-links.svg', 'Illustration of a delivery report listing live URLs', 'Proof of work', 'Every order ends with something you can check',
+          'No vague monthly summaries. You receive the actual output: live URLs, an audit PDF, a change log or your design files, with what was done and when.',
+          ['Live-URL reports for every link order', 'Prioritised audit reports in plain English', 'Before/after measurements for technical work', 'Source files for websites and design'], cls='sb-section--blue'),
     section(head('Most popular', 'Off-page SEO packages', 'Two package groups: foundational citations and profile links, and premium guest posts by Domain Rating. Switch between them below.', center=True),
             group(shortcode('[sb_packages service="off-page-seo"]'), align='wide', layout='flow'),
             para('<a href="/services/off-page-seo/">How our link building works →</a>', 'sb-center sb-card__more'),
@@ -138,7 +191,7 @@ home = join(
     section(columns(
         column(eyebrow('Why SEO Booster'), heading('Transparent work you can check'),
                lead('Most SEO and web work is sold on promises. We sell defined deliverables instead, so you always know what you paid for and can verify it yourself.'),
-               ul(['<strong>Fixed prices</strong> shown on every package, in USD.',
+               ul(['<strong>Fixed prices</strong> shown on every package.',
                    '<strong>Written scope</strong>: what is included, what is not, and what we need from you.',
                    '<strong>Reports you can check</strong>: live link URLs, audit findings, before/after measurements.',
                    '<strong>Revisions included</strong> where listed, and replacements for links that are not live at delivery.'], 'sb-ticks'),
@@ -170,18 +223,17 @@ hub_groups = [
     ('Content &amp; creative', 'Words and visuals that explain what you do and why it matters.', ['content-writing', 'graphic-design']),
 ]
 hub = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('Services'), heading('Services with clear scope and fixed prices', 1),
+    page_hero('art-services.svg', 'Illustration of a service menu and package card', eyebrow('Services'), heading('Services with clear scope and fixed prices', 1),
           lead('Choose a service to see its packages, what is included and how we work. Not sure where to start? An <a href="/services/seo-audit/">SEO audit</a> tells you what will make the biggest difference.'),
-          buttons(('See all packages', '/packages/'), ('Get a quote', '/get-a-quote/', 'outline')),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
-    *[section(head(eb, title, sub), group(*[svc_card(s) for s in slugs], align='wide', layout=None, grid='18rem', cls='sb-grid'),
+          buttons(('See all packages', '/packages/'), ('Get a quote', '/get-a-quote/', 'outline'))),
+    *[section(head(eb, title, sub), group(*[svc_card(s) for s in slugs], align='wide', layout='flow', cls='sb-grid sb-grid--3'),
               cls='sb-section--soft' if i % 2 else '') for i, (title, sub, slugs) in enumerate(hub_groups) for eb in ['']],
     section(head('Coming soon', 'Quoted services', 'These are available as custom projects while we finalise fixed packages.'),
             group(card('PPC &amp; paid ads', 'Account audits, campaign setup and management for Google and Meta ads. Ad spend is always billed separately.'),
                   card('Analytics &amp; tracking', 'GA4 and Google Tag Manager audits, setup and conversion tracking, with consent built in.'),
                   card('Email marketing', 'Templates, automations and campaign management on your existing email platform.'),
                   card('Marketing automation', 'Workflow audits and builds that connect your forms, CRM and email.'),
-                  align='wide', layout=None, grid='14rem', cls='sb-grid'),
+                  align='wide', layout='flow', cls='sb-grid sb-grid--4'),
             buttons(('Request a quote', '/get-a-quote/')), cls='sb-section--blue'),
     cta(),
 )
@@ -199,21 +251,22 @@ def service_page(slug, eb, h1, sub, checks, for_list, not_for, pk_title, pk_sub,
         ), cls='sb-section--tight'),
         section(head('Packages', pk_title, pk_sub, center=True),
                 group(shortcode(f'[sb_packages service="{s[1]}"]'), align='wide', layout='flow'),
-                para('All prices in USD. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.', 'sb-center sb-muted'),
+                para('Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.', 'sb-center sb-muted'),
                 cls='sb-section--soft', anchor='packages'),
+        proof(*DELIVER[slug]),
         section(head('What you get', 'Included in every order', None),
-                group(*[card(t, d) for t, d in features], align='wide', layout=None, grid='16rem', cls='sb-grid')),
+                group(*[card(t, d, FEATURE_ICONS[i % len(FEATURE_ICONS)] if i else s[3]) for i, (t, d) in enumerate(features)], align='wide', layout='flow', cls='sb-grid sb-grid--3'), cls='sb-section--soft'),
         extra or '',
-        section(head('Process', 'How we deliver', None, center=True), steps(process), cls='sb-section--blue'),
+        section(head('Process', 'How we deliver', None, center=True), steps(process)),
         section(columns(
             column(eyebrow('Before we start'), heading('What we need from you'),
-                   para('You will fill these in on a short brief form after checkout. Never include passwords. We will ask for a user invite if access is needed.'),
+                   para('When you choose a package you add these on the order page, before checkout, so we can start straight after payment. Never include passwords. We will ask for a user invite if access is needed.'),
                    width='45%'),
             column(group(ul(needs, 'sb-ticks'), cls='sb-panel', layout='flow'), width='55%'),
             cls='sb-split', center=True)),
-        section(head('FAQ', f'{(title or s[2])}: questions', None, center=True), faq(faqs), cls='sb-section--soft'),
+        section(head('FAQ', f'{(title or s[2])}: questions', None, center=True), faq(faqs), cls='sb-section--blue'),
         section(head('Related', 'Often ordered together', None),
-                group(*[svc_card(r) for r in related], align='wide', layout=None, grid='18rem', cls='sb-grid')),
+                group(*[svc_card(r) for r in related], align='wide', layout='flow', cls='sb-grid sb-grid--3')),
         cta(),
     )
     page(slug, (title or s[2]).replace('&amp;', '&'), content, excerpt, parent='services', menu_order=SERVICES.index(s) + 1)
@@ -400,10 +453,9 @@ service_page('graphic-design', 'Graphic design',
 
 # ================================================================ PACKAGES
 packages = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('Packages'), heading('All packages and prices', 1),
-          lead('Every package in one place. Prices are in USD and every card shows what is included, the turnaround and the revisions.'),
-          ul([f'<a href="#{s[0]}">{s[2]}</a>' for s in SERVICES], 'sb-jump'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-packages.svg', 'Illustration of three package cards', eyebrow('Packages'), heading('All packages and prices', 1),
+          lead('Every package in one place. Prices are in [sb_currency] and every card shows what is included, the turnaround and the revisions.'),
+          ul([f'<a href="#{s[0]}">{s[2]}</a>' for s in SERVICES], 'sb-jump')),
     *[section(head('', s[2], s[5]), group(shortcode(f'[sb_packages service="{s[1]}"]'), align='wide', layout='flow'),
               para(f'<a href="/services/{s[0]}/">More about {s[2]} →</a>', 'sb-card__more'),
               cls='sb-section--soft' if i % 2 else '', anchor=s[0]) for i, s in enumerate(SERVICES)],
@@ -413,9 +465,8 @@ page('packages', 'Packages', packages, 'All SEO Booster packages and prices in o
 
 # ================================================================ HOW IT WORKS
 how = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('How it works'), heading('A simple, transparent process', 1),
-          lead('Buying a service should be as clear as buying a product. Here is exactly what happens from order to delivery.'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-process.svg', 'Illustration of four connected steps', eyebrow('How it works'), heading('A simple, transparent process', 1),
+          lead('Buying a service should be as clear as buying a product. Here is exactly what happens from order to delivery.')),
     section(steps(HOW_STEPS)),
     section(columns(
         column(eyebrow('After you pay'), heading('Your order, step by step'),
@@ -432,8 +483,8 @@ how = join(
             group(card('Turnaround', 'Shown on every package in working days. The clock starts when your brief is complete, not at payment.', 'scope'),
                   card('Revisions', 'Included where listed on the package. Revisions refine the agreed scope and do not add new deliverables.', 'human'),
                   card('Reports', 'Every order ends with proof: live URLs, an audit PDF, a change log or source files.', 'report'),
-                  card('Payments', 'Secure checkout with the payment options shown at checkout. Prices are in USD.', 'shield'),
-                  align='wide', layout=None, grid='14rem', cls='sb-grid')),
+                  card('Payments', 'Secure checkout with the payment options shown at checkout. Prices are in [sb_currency].', 'shield'),
+                  align='wide', layout='flow', cls='sb-grid sb-grid--4')),
     section(head('FAQ', 'Process questions', None, center=True), faq([
         ('Do I need an account?', 'Yes. An account is created at checkout so you can complete your brief, follow your order and download files securely.'),
         ('What if I do not complete my brief?', 'We send reminders. Work cannot start without it, and the turnaround starts when the brief is complete.'),
@@ -445,9 +496,8 @@ page('how-it-works', 'How It Works', how, 'How ordering works at SEO Booster: ch
 
 # ================================================================ ABOUT
 about = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('About'), heading('SEO and web services, sold the honest way', 1),
-          lead('SEO Booster sells clearly defined SEO, website, content and design services at fixed prices, so small businesses and agencies can buy expert help without guesswork.'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-about.svg', 'Illustration of a growth report and delivery checklist', eyebrow('About'), heading('SEO and web services, sold the honest way', 1),
+          lead('SEO Booster sells clearly defined SEO, website, content and design services at fixed prices, so small businesses and agencies can buy expert help without guesswork.')),
     section(columns(
         column(eyebrow('Why we exist'), heading('Most buyers cannot see what they are paying for'),
                para('SEO and web services are often sold as monthly retainers with vague deliverables and big promises. It is hard to know what was done, whether it was worth it, or what to ask for next.'),
@@ -460,7 +510,7 @@ about = join(
                   card('Proof of work', 'Every order ends with something you can verify: URLs, reports, files or a change log.', 'report'),
                   card('People, not bots', 'Submissions, outreach, writing and fixes are done and checked by people.', 'human'),
                   card('Safe by default', 'Search-engine-safe methods, backups before changes, and no password sharing.', 'shield'),
-                  align='wide', layout=None, grid='14rem', cls='sb-grid'), cls='sb-section--soft'),
+                  align='wide', layout='flow', cls='sb-grid sb-grid--4'), cls='sb-section--soft'),
     section(columns(
         column(eyebrow('Who we help'), heading('Built for small teams and agencies'), width='45%'),
         column(ul(['<strong>Small and local businesses</strong> that need visibility without a long contract.',
@@ -474,9 +524,8 @@ page('about', 'About', about, 'About SEO Booster: fixed-scope SEO, website, cont
 
 # ================================================================ CONTACT + QUOTE
 contact = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('Contact'), heading('Get in touch', 1),
-          lead('Questions about a package, an order or a custom project? Send a message and we will reply by email.'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-contact.svg', 'Illustration of an envelope and chat messages', eyebrow('Contact'), heading('Get in touch', 1),
+          lead('Questions about a package, an order or a custom project? Send a message and we will reply by email.')),
     section(columns(
         column(shortcode('[sb_lead_form type="contact"]'), width='60%'),
         column(group(heading('Other ways to reach us', 3),
@@ -491,9 +540,8 @@ contact = join(
 page('contact', 'Contact', contact, 'Contact SEO Booster about packages, orders or custom SEO, website, content and design projects.', menu_order=6)
 
 quote = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('Free quote'), heading('Get a fixed quote', 1),
-          lead('Tell us what you need. We will reply with a clear scope, turnaround and price, and you decide whether to go ahead. No obligation.'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-quote.svg', 'Illustration of a request form and a quote', eyebrow('Free quote'), heading('Get a fixed quote', 1),
+          lead('Tell us what you need. We will reply with a clear scope, turnaround and price, and you decide whether to go ahead. No obligation.')),
     section(columns(
         column(shortcode('[sb_lead_form type="quote"]'), width='60%'),
         column(group(heading('What happens next', 3),
@@ -507,11 +555,10 @@ page('get-a-quote', 'Get a Quote', quote, 'Request a free, fixed quote for SEO, 
 
 # ================================================================ FAQ
 faq_page = join(
-    group(shortcode('[sb_breadcrumbs]'), eyebrow('FAQ'), heading('Frequently asked questions', 1),
-          lead('Answers about ordering, payments, delivery and our methods. Cannot find yours? <a href="/contact/">Ask us</a>.'),
-          align='full', cls='sb-hero sb-hero--compact', tag='section'),
+    page_hero('art-faq.svg', 'Illustration of questions and answers', eyebrow('FAQ'), heading('Frequently asked questions', 1),
+          lead('Answers about ordering, payments, delivery and our methods. Cannot find yours? <a href="/contact/">Ask us</a>.')),
     section(heading('Ordering &amp; payment'), faq([
-        ('Which currency are prices in?', 'All prices are in US dollars (USD). Your bank or payment provider may convert the amount to your currency.'),
+        ('Which currency are prices in?', 'Prices are shown in [sb_currency]. Your bank or payment provider may convert the amount to your own currency.'),
         ('How do I pay?', 'At checkout, using the payment options shown there. We never see or store your card details.'),
         ('Do I get an invoice?', 'Yes. Your order confirmation email works as a receipt, and you can view all orders in your account.'),
         ('Can I order several packages at once?', 'Yes. Add them to your cart and check out once. You complete one brief per order.')]),
@@ -543,7 +590,7 @@ def legal(slug, title, blocks, excerpt):
 legal('terms', 'Terms of Service', [
     para('These terms apply when you buy services from SEO Booster ("we", "us") through seobooster.uk. By placing an order you agree to them.'),
     heading('1. Services and scope'), para('Each package describes its deliverables, exclusions, turnaround and revisions. Anything not listed is not included. Custom work is defined in a written quote.'),
-    heading('2. Orders and payment'), para('Prices are in USD and payable in full at checkout unless agreed otherwise in writing. An order is accepted when payment is confirmed.'),
+    heading('2. Orders and payment'), para('Prices are shown in [sb_currency] and payable in full at checkout unless agreed otherwise in writing. An order is accepted when payment is confirmed.'),
     heading('3. Your brief and access'), para('You must provide accurate information and any materials needed. Turnaround starts when your brief is complete. You are responsible for the content and materials you supply and for having the rights to use them. Never send us passwords. Grant access through user invitations.'),
     heading('4. Delivery and revisions'), para('We deliver within the stated turnaround in working days. Revisions refine the agreed deliverables and do not extend the scope.'),
     heading('5. No guarantee of search results'), para('Search rankings and traffic depend on factors outside our control, including search engine algorithms and competitors. We do not guarantee rankings, traffic, indexing or link attributes (such as "dofollow"). We guarantee the deliverables described in your package.'),

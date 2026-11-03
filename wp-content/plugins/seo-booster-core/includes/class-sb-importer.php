@@ -102,6 +102,32 @@ class SB_Importer {
 		return $html . '</div>';
 	}
 
+	/**
+	 * Attach data/images/{sku}.webp as the product image, unless the product already has one.
+	 */
+	public static function attach_image( int $product_id, string $sku, string $title ): void {
+		if ( ! function_exists( 'wp_upload_bits' ) || get_post_thumbnail_id( $product_id ) ) {
+			return;
+		}
+		$src = SB_CORE_DIR . 'data/images/' . $sku . '.webp';
+		if ( ! is_readable( $src ) ) {
+			return;
+		}
+		$up = wp_upload_bits( 'sb-' . $sku . '.webp', null, (string) file_get_contents( $src ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		if ( ! empty( $up['error'] ) ) {
+			return;
+		}
+		$att = wp_insert_attachment( array( 'post_title' => $title, 'post_mime_type' => 'image/webp', 'post_status' => 'inherit' ), $up['file'], $product_id );
+		if ( ! $att || is_wp_error( $att ) ) {
+			return;
+		}
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		wp_update_attachment_metadata( $att, wp_generate_attachment_metadata( $att, $up['file'] ) );
+		update_post_meta( $att, '_wp_attachment_image_alt', $title );
+		update_post_meta( $att, '_sb_pkg_image', $sku );
+		set_post_thumbnail( $product_id, $att );
+	}
+
 	/** @return array<int,array<string,string>> */
 	public static function read_csv( string $file ): array {
 		$rows = array();
@@ -204,10 +230,22 @@ class SB_Importer {
 					$meta[ '_sb_' . $k ] = $gc[ $k ];
 				}
 			}
+			$by_sku = $gc['by_sku'][ $sku ] ?? array();
+			if ( isset( $by_sku['deliverables'] ) ) {
+				$meta['_sb_deliverables'] = $by_sku['deliverables'];
+			}
+			if ( isset( $by_sku['ideal_for'] ) ) {
+				$meta['_sb_ideal_for'] = $by_sku['ideal_for'];
+			}
+			if ( ! empty( $by_sku['featured'] ) ) {
+				$meta['_sb_featured'] = '1';
+			}
 			if ( isset( $gc['deliverables_by_index'][ $idx ] ) ) {
 				$meta['_sb_deliverables'] = $gc['deliverables_by_index'][ $idx ];
 			}
-			if ( isset( $gc['ideal_for'][ $qty ] ) ) {
+			if ( isset( $by_sku['ideal_for'] ) ) {
+				$meta['_sb_ideal_for'] = $by_sku['ideal_for'];
+			} elseif ( isset( $gc['ideal_for'][ $qty ] ) ) {
 				$meta['_sb_ideal_for'] = $gc['ideal_for'][ $qty ];
 			} elseif ( isset( $gc['ideal_for_index'][ $idx ] ) ) {
 				$meta['_sb_ideal_for'] = $gc['ideal_for_index'][ $idx ];
@@ -219,6 +257,7 @@ class SB_Importer {
 			SB_Packages::$bypass_gate = true;
 			$id                       = $product->save();
 			SB_Packages::$bypass_gate = false;
+			self::attach_image( (int) $id, $sku, $row['package_title'] );
 			wp_set_object_terms( $id, array( $group_id ), SB_Packages::TAX );
 		}
 		$log[] = $dry ? 'Dry run — nothing saved.' : 'Done.';

@@ -1,5 +1,26 @@
 # INSTALL — put the SEO Booster site live on seobooster.uk
 
+## Updating to theme 1.1.0 + plugin 0.3.0 (3 Nov 2026)
+1. **Backup** in Hostinger.
+2. **Plugin:** Plugins → Add New → Upload → `seo-booster-core.zip` → **Replace current with uploaded**.
+3. **Import:** Tools → **SEO Booster catalog** → untick Dry run → **Run import**. This:
+   - adds the new packages, so every group now has at least 4
+   - attaches a package image to every product that doesn't have one yet
+   - switches maintenance packages to the new "Fix" project-details form
+4. **Theme:** Appearance → Themes → Add New → Upload → `seo-booster-theme.zip` → **Replace current with uploaded**.
+5. **Rebuild the pages with the new design:** Appearance → **SEO Booster Setup**:
+   - tick **Overwrite**
+   - if you want test orders to work right away, also tick **Enable Direct bank transfer**
+   - click **Build the site**
+6. **Clear the cache:** LiteSpeed Cache → **Purge All**.
+7. **Test the new flow in a private window:**
+   - [ ] Services → Off-Page SEO → **Choose package**. The service details page opens with the project-details form.
+   - [ ] Fill in the form → **Continue to checkout**. The branded checkout opens with your details listed under the package.
+   - [ ] Place the order with bank transfer → the thank-you page shows the next steps.
+   - [ ] In wp-admin, open the order: the **Project brief** box is already filled in.
+
+Earlier first-time install steps follow.
+
 These steps install two files: the **theme** (design and pages) and the **plugin** (packages, checkout workflow, forms and SEO). Allow about 10 minutes.
 
 ## 0. Backup

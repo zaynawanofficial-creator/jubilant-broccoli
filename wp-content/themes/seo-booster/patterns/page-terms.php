@@ -31,7 +31,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Prices are in USD and payable in full at checkout unless agreed otherwise in writing. An order is accepted when payment is confirmed.</p>
+<p>Prices are shown in [sb_currency] and payable in full at checkout unless agreed otherwise in writing. An order is accepted when payment is confirmed.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
