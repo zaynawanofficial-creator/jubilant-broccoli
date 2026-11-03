@@ -98,6 +98,14 @@
   }
   var err = document.getElementById('form-error');
   if (err && window.URLSearchParams && new URLSearchParams(window.location.search).get('sent') === '0') err.hidden = false;
+  // Order page: switch package select navigates
+  Array.prototype.forEach.call(document.querySelectorAll('select[data-nav]'), function (sel) {
+    sel.addEventListener('change', function () { if (sel.value) window.location.href = sel.value; });
+  });
+  // Close mobile menu when a link inside it is tapped
+  Array.prototype.forEach.call(document.querySelectorAll('#nav-links a'), function (a) {
+    a.addEventListener('click', function () { document.body.classList.remove('nav-open'); if (toggle) toggle.setAttribute('aria-expanded', 'false'); });
+  });
   // Time-trap value for the spam filter (bots submit instantly)
   var ts = document.getElementById('f-ts');
   if (ts) ts.value = String(Math.floor(Date.now() / 1000));

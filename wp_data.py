@@ -80,7 +80,7 @@ def pricing_wp(key, svc):
     pk = svc["packages"]
     return f"""<section class="section" id="pricing" aria-labelledby="pricing-h"><div class="container">
 <div class="section-head center"><span class="eyebrow">Pricing</span><h2 id="pricing-h">{html.escape(pk['heading'])}</h2>
-<p class="lead">Clear, fixed prices with every deliverable listed. Click any package for full details, then check out securely.</p></div>
+<p class="lead">Fixed prices, every deliverable listed. Hit <strong>Order now</strong>, share a 2-minute brief and check out securely — or <a href="/contact-us/?package={key}#enquiry">get a free recommendation</a>.</p></div>
 [rrm_pricing service="{key}"]
 </div></section>"""
 
@@ -100,6 +100,34 @@ def price_phrase(p, unit):
     if p is None:
         return "custom-priced"
     return f"{B.money(p)} {'per month' if unit == '/month' else 'one-off'}"
+
+
+SUFFIX = {"seo": "", "link-building": " Link Building", "website-development": " Website", "content-writing": " Content Writing",
+          "ppc": "", "social-media-marketing": " Social Media"}
+
+
+def product_title(key, p, unit):
+    base = p["name"] + ("" if SUFFIX[key].strip().split(" ")[0].lower() in p["name"].lower() else SUFFIX[key])
+    if p["price"] is None:
+        return f"{base} Package – Custom Quote | RankRight Media"
+    price = B.money(p["price"]) + ("/mo" if unit == "/month" else "")
+    for tail in (" | Order Online", " | RankRight", ""):
+        t = f"{base} Package – {price}{tail}"
+        if len(t) <= 60:
+            return t
+    return t
+
+
+def product_desc(p, unit):
+    price = ("Custom pricing" if p["price"] is None else
+             f"Just {B.money(p['price'])}{'/month' if unit == '/month' else ''}")
+    end = (" Request your quote today." if p["price"] is None else " 2-minute brief, secure checkout — start today.")
+    feats = [("up to" + f[5:]) if f.startswith("Up to") else f for f in p["features"] if not f.lower().startswith("delivery")]
+    for n in (3, 2, 1):
+        d = f"{p['tagline']}: {', '.join(feats[:n])}. {price}.{end}"
+        if len(d) <= 158:
+            return d
+    return d[:157] + "…"
 
 
 def products():
@@ -137,8 +165,8 @@ def products():
                 "audience": audience, "short_desc": short, "description": desc, "image": f"products/{p['id']}.webp",
                 "cat_slug": svc["slug"].replace("-services", "") + "-packages", "cat_name": f"{LABEL[key]} Packages",
                 "cat_desc": svc["description"], "cat_image": f"services/{key}.webp",
-                "rm_title": f"{rm_title} | RankRight Media"[:70],
-                "rm_desc": f"{name}: {', '.join(feats[:3])}. {pp[0].upper() + pp[1:]}. Secure checkout and clear reporting."[:160],
+                "rm_title": product_title(key, p, unit),
+                "rm_desc": product_desc(p, unit),
                 "rm_focus": f"{p['name'].lower()} {LABEL[key].lower()} package" if LABEL[key].split()[0].lower() not in p["name"].lower() else f"{p['name'].lower()} package",
             })
     return out
@@ -272,6 +300,51 @@ def main():
     for slug, (title, desc, body) in LEGAL_PAGES.items():
         pages.append({"slug": slug, "title": title, "content": body.strip(), "raw": False, "rm_title": f"{title} | RankRight Media", "rm_desc": desc,
                       "hero": {"eyebrow": "Legal", "sub": "RankRight Media Ltd · 68 Trelawney Road, Ilford, England, IG6 2NJ"}})
+
+    # CTR-focused titles & descriptions (titles <= 60 chars, descriptions <= 158)
+    META = {
+        "home": ("SEO, Web Design & PPC Agency | RankRight Media (UK)",
+                 "Grow faster with fixed-price SEO from $299/mo, websites from $199 and content from $49. 1K+ projects, 500+ clients. Get your free quote today."),
+        "search-engine-optimization": ("SEO Services That Drive Leads | Plans from $299/mo",
+                 "Rank higher with white-hat SEO: keyword research, technical fixes, content and links. 6 fixed-price plans from $299/month with monthly reports."),
+        "link-building-services": ("Link Building Services | Manual Backlinks from $3.49",
+                 "Niche-relevant dofollow backlinks via 100% manual outreach on DA 10–50+ sites. Live-URL reports, delivery in 3–12 days. Order in 2 minutes."),
+        "website-development": ("Website Development Services | Sites from $199",
+                 "Fast, mobile-first websites and online stores on WordPress, WooCommerce or Shopify that rank and convert. Fixed prices from $199. Live in days."),
+        "content-writing": ("SEO Content Writing Services | Pages from $49",
+                 "Human-written, SEO-optimised web pages, blogs and product descriptions that rank and convert. Packages from $49, delivered in 3–7 days."),
+        "ppc-pay-per-click": ("PPC Management Services | Google & Meta Ads from $249",
+                 "Profitable Google, Meta and TikTok ad campaigns with proper conversion tracking. Management from $249/month or a $99 PPC audit to cut wasted spend."),
+        "social-media-marketing": ("Social Media Marketing Services | Plans from $199/mo",
+                 "Done-for-you social media: posts, campaigns, targeting and community management on Instagram, Facebook, LinkedIn and TikTok. From $199/month."),
+        "about-us": ("About RankRight Media | Founder-Led Digital Agency",
+                 "Meet the founder-led team behind RankRight Media: 10+ years in SEO, web and eCommerce, 1K+ projects and 500+ happy clients across the UK and beyond."),
+        "contact-us": ("Contact RankRight Media | Free Quote in 1 Working Day",
+                 "Talk to us about SEO, websites, content, PPC or social media. Call +44 7446 254421 or send a message — we reply within one working day."),
+        "faq": ("Digital Marketing FAQs: Prices, Timelines & Process",
+                "Straight answers on SEO, link building, web design, content, PPC and social media: what it costs, how long it takes and how ordering works."),
+        "blog": ("Digital Marketing Blog: SEO, PPC & Web Design Guides",
+                 "Practical, no-fluff guides on SEO costs, local SEO, link building, website pricing, content, Google Ads and AI search from the RankRight team."),
+        "privacy-policy": ("Privacy Policy | RankRight Media Ltd", "How RankRight Media Ltd collects, uses and protects your personal data under the UK GDPR, and how to exercise your data protection rights."),
+        "refund-returns": ("Refund Policy | RankRight Media Ltd", "When refunds apply to RankRight Media services, which services are non-refundable, and how to request a refund within 14 days of delivery."),
+        "terms-and-conditions": ("Terms & Conditions | RankRight Media Ltd", "The terms that govern use of the RankRight Media website and the SEO, web, content, PPC and social media services provided by RankRight Media Ltd."),
+    }
+    for p in pages:
+        if p["slug"] in META:
+            p["rm_title"], p["rm_desc"] = META[p["slug"]]
+        if p["slug"] == "home":
+            feat = """<section class="section spot" id="packages" aria-labelledby="pk-h"><div class="container rel">
+<div class="section-head center"><span class="eyebrow">Popular packages</span><h2 id="pk-h">Start Today With a Fixed-Price Package</h2>
+<p class="lead">No proposals, no waiting. Pick a package, share a 2-minute brief and our team starts work. <a href="/shop/">Compare all 36 packages →</a></p></div>
+[rrm_featured_packages]</div></section>
+"""
+            marker = '<section class="section-tight"><div class="container"><div class="magic'
+            assert marker in p["content"]
+            p["content"] = p["content"].replace(marker, feat + marker, 1)
+    pages.append({"slug": "order", "title": "Order", "raw": True, "noindex": True, "content": "<!-- wp:shortcode -->\n[rrm_order_form]\n<!-- /wp:shortcode -->",
+                  "rm_title": "Complete Your Order | RankRight Media", "rm_desc": "Share a quick project brief and continue to secure checkout."})
+    for p in pages:
+        assert len(p["rm_title"]) <= 65, (p["slug"], len(p["rm_title"]))
 
     # Service data used by product pages, header/footer, llms.txt
     services = {}

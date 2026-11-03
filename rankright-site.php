@@ -40,6 +40,7 @@ require_once RRM_WP . '/inc/importer.php';
 require_once RRM_WP . '/inc/shortcodes.php';
 require_once RRM_WP . '/inc/contact.php';
 require_once RRM_WP . '/inc/seo.php';
+require_once RRM_WP . '/inc/order.php';
 
 register_activation_hook( __FILE__, 'rrm_activate' );
 function rrm_activate() {

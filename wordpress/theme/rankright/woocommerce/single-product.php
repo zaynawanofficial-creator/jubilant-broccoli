@@ -53,15 +53,13 @@ while ( have_posts() ) :
 				<?php if ( $quote || ! $product->is_purchasable() ) : ?>
 					<a class="btn btn-primary btn-block" href="<?php echo esc_url( $contact ); ?>">Request a quote <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></a>
 				<?php else : ?>
-					<form class="cart" action="<?php echo esc_url( $product->get_permalink() ); ?>" method="post" enctype="multipart/form-data">
-						<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-primary btn-block single_add_to_cart_button"><?php echo esc_html( $product->single_add_to_cart_text() ); ?> <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></button>
-					</form>
+					<a class="btn btn-primary btn-block btn-lg" href="<?php echo esc_url( rrm_order_url( $product ) ); ?>">Order now — 2-minute brief <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></a>
 					<a class="btn btn-ghost btn-block" href="<?php echo esc_url( $contact ); ?>">Ask a question first</a>
 				<?php endif; ?>
 				<?php if ( '/month' === $unit ) : ?><p class="fine">Monthly plan — price shown is per month.</p><?php endif; ?>
 				<ul class="assure">
 					<li><?php echo rrm_icon( 'i-shield' ); // phpcs:ignore ?>Secure checkout</li>
-					<li><?php echo rrm_icon( 'i-message' ); // phpcs:ignore ?>Brief form after payment</li>
+					<li><?php echo rrm_icon( 'i-message' ); // phpcs:ignore ?>Short project brief, then checkout</li>
 					<li><?php echo rrm_icon( 'i-phone' ); // phpcs:ignore ?>UK support team</li>
 				</ul>
 			</aside>

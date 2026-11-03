@@ -2,37 +2,60 @@
 /** Dynamic blocks used inside imported page content. */
 defined( 'ABSPATH' ) || exit;
 
-/** One package card (used by pricing tables, the shop page and "other packages" on product pages). */
-function rrm_package_card( $product, $current_id = 0, $i = 0 ) {
+/** Compact package card: price, top features, Order now (→ brief form) + View details (→ package page). */
+function rrm_package_card( $product, $current_id = 0, $i = 0, $show_service = false ) {
 	$featured = (int) rrm_pkg_meta( $product, 'featured', 0 );
 	$price    = $product->get_regular_price();
 	$unit     = rrm_pkg_meta( $product, 'unit', '' );
 	$is_cur   = ( $current_id && $current_id === $product->get_id() );
-	$classes  = 'price reveal d' . ( $i % 3 ) . ( $featured ? ' featured' : '' ) . ( $is_cur ? ' current' : '' );
-	$ribbon   = $is_cur ? '<span class="ribbon">You\'re viewing</span>' : ( $featured ? '<span class="ribbon">Recommended</span>' : '' );
-	$img      = $product->get_image_id() ? wp_get_attachment_image( $product->get_image_id(), 'rrm-card', false, array( 'class' => 'price-img', 'loading' => 'lazy' ) ) : '';
-	$amount   = '' === $price
-		? '<b>' . esc_html__( 'Custom', 'rankright' ) . '</b><span>quote</span>'
-		: '<b>' . esc_html( rrm_money( $price ) ) . '</b><span>' . esc_html( $unit ) . '</span>';
-	$lis      = '';
-	foreach ( rrm_pkg_features( $product ) as $f ) {
-		$lis .= '<li>' . rrm_icon( 'i-check' ) . esc_html( $f ) . '</li>';
-	}
-	$url = get_permalink( $product->get_id() );
+	$features = rrm_pkg_features( $product );
+	$show     = array_slice( $features, 0, 4 );
+	$more     = count( $features ) - count( $show );
+	$detail   = get_permalink( $product->get_id() );
+	$quote    = ( '' === $price );
+	$svc      = $show_service ? rrm_service( rrm_pkg_meta( $product, 'service' ) ) : null;
+	$classes  = 'pk reveal d' . ( $i % 3 ) . ( $featured ? ' pk-hot' : '' ) . ( $is_cur ? ' pk-current' : '' );
 	ob_start();
 	?>
 	<article class="<?php echo esc_attr( $classes ); ?>">
-		<?php echo $ribbon; // phpcs:ignore ?>
-		<a class="price-media" href="<?php echo esc_url( $url ); ?>" tabindex="-1" aria-hidden="true"><?php echo $img; // phpcs:ignore ?></a>
-		<h3><a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( rrm_pkg_meta( $product, 'short', $product->get_name() ) ); ?></a></h3>
-		<p class="tagline"><?php echo esc_html( rrm_pkg_meta( $product, 'tagline' ) ); ?></p>
-		<p class="amount"><?php echo $amount; // phpcs:ignore ?></p>
-		<ul><?php echo $lis; // phpcs:ignore ?></ul>
-		<a class="btn <?php echo $featured ? 'btn-primary' : 'btn-ghost'; ?> btn-block" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( '' === $price ? __( 'View & request a quote', 'rankright' ) : __( 'View package', 'rankright' ) ); ?> <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></a>
+		<?php if ( $is_cur ) : ?><span class="pk-badge pk-badge-cur">You're viewing</span><?php elseif ( $featured ) : ?><span class="pk-badge">Recommended</span><?php endif; ?>
+		<?php if ( $svc ) : ?><span class="pk-svc"><?php echo rrm_icon( $svc['icon'] ); // phpcs:ignore ?><?php echo esc_html( $svc['short_name'] ); ?></span><?php endif; ?>
+		<h3 class="pk-name"><a href="<?php echo esc_url( $detail ); ?>"><?php echo esc_html( rrm_pkg_meta( $product, 'short', $product->get_name() ) ); ?></a></h3>
+		<p class="pk-tag"><?php echo esc_html( rrm_pkg_meta( $product, 'tagline' ) ); ?></p>
+		<p class="pk-price"><?php if ( $quote ) : ?><b>Custom</b><span>tailored quote</span><?php else : ?><b><?php echo esc_html( rrm_money( $price ) ); ?></b><span><?php echo esc_html( '/month' === $unit ? '/month' : 'one-off' ); ?></span><?php endif; ?></p>
+		<ul class="pk-list">
+			<?php foreach ( $show as $f ) : ?><li><?php echo rrm_icon( 'i-check' ); // phpcs:ignore ?><span><?php echo esc_html( $f ); ?></span></li><?php endforeach; ?>
+		</ul>
+		<?php if ( $more > 0 ) : ?><a class="pk-more" href="<?php echo esc_url( $detail ); ?>">+ <?php echo (int) $more; ?> more included</a><?php endif; ?>
+		<div class="pk-cta">
+			<a class="btn <?php echo ( $featured || $is_cur ) ? 'btn-primary' : 'btn-soft'; ?> btn-block" href="<?php echo esc_url( rrm_order_url( $product ) ); ?>"><?php echo $quote ? 'Get a quote' : 'Order now'; ?> <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></a>
+			<a class="pk-link" href="<?php echo esc_url( $detail ); ?>">View details</a>
+		</div>
 	</article>
 	<?php
 	return ob_get_clean();
 }
+
+/** Featured ("Most popular") package from each service — used on the home page. */
+add_shortcode(
+	'rrm_featured_packages',
+	function () {
+		if ( ! function_exists( 'wc_get_products' ) ) {
+			return '';
+		}
+		$cards = '';
+		$i     = 0;
+		foreach ( array( 'seo', 'website-development', 'link-building' ) as $key ) {
+			foreach ( rrm_packages( $key ) as $p ) {
+				if ( rrm_pkg_meta( $p, 'featured', 0 ) ) {
+					$cards .= rrm_package_card( $p, 0, $i++, true );
+					break;
+				}
+			}
+		}
+		return '<div class="pricing">' . $cards . '</div><p class="swipe-hint">Swipe to compare →</p>';
+	}
+);
 
 add_shortcode(
 	'rrm_pricing',
@@ -50,7 +73,7 @@ add_shortcode(
 			$price  = $p->get_regular_price();
 			$rows  .= '<tr><th scope="row"><a href="' . esc_url( get_permalink( $p->get_id() ) ) . '">' . esc_html( rrm_pkg_meta( $p, 'short', $p->get_name() ) ) . '</a></th><td>' . esc_html( rrm_money( $price ) . ( '' === $price ? '' : ' ' . rrm_pkg_meta( $p, 'unit' ) ) ) . '</td><td>' . esc_html( implode( '; ', rrm_pkg_features( $p ) ) ) . '</td></tr>';
 		}
-		$out  = '<div class="pricing">' . $cards . '</div>';
+		$out  = '<div class="pricing">' . $cards . '</div><p class="swipe-hint">Swipe to compare all ' . count( $packages ) . ' packages →</p>';
 		$out .= '<p class="price-note">' . esc_html( $svc['note'] ) . ' ' . esc_html__( 'Prices in USD. Secure checkout.', 'rankright' ) . '</p>';
 		$out .= '<details class="compare"><summary>' . esc_html( sprintf( __( 'Compare all %s packages side by side', 'rankright' ), $svc['short_name'] ) ) . rrm_icon( 'i-chevron' ) . '</summary><div class="table-wrap"><table><caption class="sr-only">' . esc_html( $svc['heading'] ) . '</caption><thead><tr><th scope="col">Package</th><th scope="col">Price</th><th scope="col">What\'s included</th></tr></thead><tbody>' . $rows . '</tbody></table></div></details>';
 		return $out;

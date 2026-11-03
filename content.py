@@ -261,7 +261,7 @@ SERVICES["website-development"] = {
 """,
     "checklist": ["Custom, Mobile-First Design", "SEO-Ready Page Structure", "Fast Load Times & Core Web Vitals", "Conversion-Focused Layouts", "WordPress & Shopify Builds", "E-commerce Stores", "Secure Hosting Setup & SSL", "Google Analytics & Search Console", "Accessibility Best Practice", "Training & Handover"],
     "features": [("i-monitor", "Custom Web Design", "#includes"), ("i-cart", "E-commerce Websites", "#includes"), ("i-zap", "Speed & Core Web Vitals", "#includes"), ("i-search", "SEO-Ready Builds", "#includes"), ("i-wrench", "Maintenance & Support", "#includes")],
-    "facts": [("Service", "Website design & development"), ("Platforms", "WordPress, Shopify, custom HTML/CSS/JS"), ("Included", "Mobile-first design, on-page SEO, analytics setup"), ("Pricing", "Fixed quote after a free discovery call"), ("Area served", "United Kingdom")],
+    "facts": [("Service", "Website design & development"), ("Packages", "6 fixed-price plans, from $199"), ("Platforms", "WordPress, WooCommerce, Shopify, custom code"), ("Included", "Mobile-first design, SEO-ready structure, post-launch support"), ("Delivery", "From 3–5 working days"), ("Clients", "UK and worldwide")],
     "packages": {
         "heading": "Our Website Development Packages", "unit": "one-off",
         "note": "One-off project prices. Hosting and domain are not included unless stated.",
@@ -330,7 +330,7 @@ SERVICES["content-writing"] = {
 """,
     "checklist": ["Keyword & Topic Research", "SEO Blog Posts & Guides", "Website & Landing Page Copy", "Product & Category Descriptions", "Brand Tone of Voice Matching", "Meta Titles & Descriptions", "Internal Linking Suggestions", "Plagiarism-Checked Originals", "Social Media Captions", "Proofread & Publish-Ready"],
     "features": [("i-pen", "Blog Posts & Articles", "#includes"), ("i-monitor", "Website Copy", "#includes"), ("i-cart", "Product Descriptions", "#includes"), ("i-search", "Keyword-Led Briefs", "#includes"), ("i-message", "Social Captions", "#includes")],
-    "facts": [("Service", "SEO content writing"), ("Formats", "Blogs, web pages, product descriptions, social captions"), ("Included", "Keyword research, meta data, internal link suggestions"), ("Quality", "Human-written, edited and plagiarism-checked"), ("Pricing", "Per piece or monthly content plans — quoted on request")],
+    "facts": [("Service", "SEO content writing"), ("Packages", "6 plans, from $49"), ("Formats", "Web pages, blogs, product descriptions"), ("Included", "Keyword integration, meta titles & descriptions, revisions"), ("Delivery", "From 3 days")],
     "packages": {
         "heading": "Our Content Writing Packages", "unit": "one-off",
         "note": "One-off prices per order. Need content every month? Ask about the Custom Plan.",
@@ -399,7 +399,7 @@ SERVICES["ppc"] = {
 """,
     "checklist": ["Google Ads Search & Shopping", "Performance Max Campaigns", "Facebook & Instagram Ads", "TikTok Ads", "Keyword & Audience Research", "Ad Copy & Creative Testing", "Conversion Tracking (GA4 & Pixels)", "Landing Page Optimisation", "Negative Keywords & Waste Control", "Clear Monthly Reporting"],
     "features": [("i-search", "Google Ads", "#includes"), ("i-users", "Meta & TikTok Ads", "#includes"), ("i-target", "Conversion Tracking", "#includes"), ("i-trend", "Bid & Budget Management", "#includes"), ("i-clipboard", "PPC Audits", "#includes")],
-    "facts": [("Service", "PPC / paid ads management"), ("Platforms", "Google Ads, Meta, TikTok, Microsoft Ads"), ("Included", "Setup, tracking, ad copy, bid & budget management, reporting"), ("Ad spend", "Paid directly to the platform — you keep account ownership"), ("Pricing", "Monthly management fee — quoted on request")],
+    "facts": [("Service", "PPC / paid ads management"), ("Packages", "$99 audit, management from $249/month"), ("Platforms", "Google Ads, Meta, TikTok, Microsoft Ads"), ("Included", "Setup, tracking, ad copy, optimisation, reporting"), ("Ad spend", "Paid directly to the ad platform")],
     "packages": {
         "heading": "Our PPC Management Packages", "unit": "/month",
         "note": "Management fees per month. Ad spend is paid directly to Google, Meta or TikTok and is not included. The PPC Audit is a one-off fee.",
@@ -468,7 +468,7 @@ SERVICES["social-media-marketing"] = {
 """,
     "checklist": ["Social Media Strategy", "Content Calendars", "Graphics & Short-Form Video", "Captions & Hashtag Research", "Scheduling & Posting", "Community Management", "Facebook & Instagram Ads", "LinkedIn for B2B", "TikTok Content", "Monthly Analytics Reports"],
     "features": [("i-clipboard", "Strategy & Calendars", "#includes"), ("i-pen", "Content Creation", "#includes"), ("i-message", "Community Management", "#includes"), ("i-mega", "Paid Social Ads", "#includes"), ("i-chart", "Analytics & Reporting", "#includes")],
-    "facts": [("Service", "Social media marketing & management"), ("Platforms", "Instagram, Facebook, LinkedIn, TikTok"), ("Included", "Strategy, content creation, posting, community management"), ("Add-on", "Paid social campaigns"), ("Pricing", "Monthly plans — quoted on request")],
+    "facts": [("Service", "Social media marketing & management"), ("Packages", "6 monthly plans, from $199/month"), ("Platforms", "Facebook, Instagram, LinkedIn, X, TikTok, YouTube"), ("Included", "Posts, campaigns, targeting, community management"), ("Reporting", "Monthly overview to daily custom reports")],
     "packages": {
         "heading": "Our Social Media Monthly Packages", "unit": "/month",
         "note": "Prices are per month. Ad spend for paid campaigns is paid directly to the platform.",

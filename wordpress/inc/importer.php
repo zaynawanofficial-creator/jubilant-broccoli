@@ -141,6 +141,11 @@ function rrm_step_settings( &$state, $deadline ) {
 			'woocommerce_manage_stock'               => 'no',
 			'woocommerce_allow_tracking'             => 'no',
 			'woocommerce_show_marketplace_suggestions' => 'no',
+			'woocommerce_checkout_company_field'     => 'optional',
+			'woocommerce_checkout_address_2_field'   => 'hidden',
+			'woocommerce_checkout_phone_field'       => 'optional',
+			'woocommerce_enable_signup_and_login_from_checkout' => 'yes',
+			'woocommerce_registration_generate_password' => 'yes',
 		);
 		foreach ( $wc as $k => $v ) {
 			update_option( $k, $v );
@@ -410,8 +415,8 @@ function rrm_step_products( &$state, $deadline ) {
 	$shop = wc_get_page_id( 'shop' );
 	if ( $shop > 0 ) {
 		wp_update_post( array( 'ID' => $shop, 'post_title' => 'All Packages' ) );
-		update_post_meta( $shop, 'rank_math_title', 'Digital Marketing Packages & Prices | RankRight Media' );
-		update_post_meta( $shop, 'rank_math_description', 'Compare every RankRight Media package: SEO, link building, website development, content writing, PPC and social media, with clear prices and deliverables.' );
+		update_post_meta( $shop, 'rank_math_title', 'Digital Marketing Packages & Prices | From $3.49' );
+		update_post_meta( $shop, 'rank_math_description', 'Compare 36 fixed-price packages for SEO, link building, websites, content, PPC and social media. Every deliverable listed, secure checkout, start today.' );
 	}
 	$items = (array) rrm_data( 'products' );
 	if ( 0 === $state['cursor'] ) {

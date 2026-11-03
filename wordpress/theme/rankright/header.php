@@ -41,6 +41,7 @@ if ( function_exists( 'is_shop' ) && ( is_singular( 'product' ) || is_shop() || 
 				<li><a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"<?php echo $is( '/about-us/' ); // phpcs:ignore ?>>About Us</a></li>
 				<li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"<?php echo ( is_home() || is_singular( 'post' ) || is_category() ) ? ' aria-current="page"' : ''; ?>>Blog</a></li>
 				<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"<?php echo $is( '/contact-us/' ); // phpcs:ignore ?>>Contact Us</a></li>
+				<li class="mobile-only"><a class="btn btn-primary btn-block" href="<?php echo esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' ) ); ?>">See packages &amp; prices <?php echo rrm_icon( 'i-arrow' ); // phpcs:ignore ?></a><a class="btn btn-ghost btn-block" href="tel:<?php echo esc_attr( $s['phone_e164'] ); ?>"><?php echo rrm_icon( 'i-phone' ); // phpcs:ignore ?>Call <?php echo esc_html( $s['phone_display'] ); ?></a></li>
 			</ul>
 		</nav>
 		<div class="nav-cta">
