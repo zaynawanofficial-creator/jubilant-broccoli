@@ -1,5 +1,14 @@
 # INSTALL — put the SEO Booster site live on seobooster.uk
 
+## Updating to theme 1.2.0 + plugin 0.4.0 (3 Nov 2026)
+1. **Backup** in Hostinger.
+2. **Plugin:** upload `seo-booster-core.zip` → **Replace current with uploaded**. Brings the compact package picker and SEO title tags.
+3. **Theme:** upload `seo-booster-theme.zip` → **Replace current with uploaded**. Brings the new footer, mobile header, legal pages, blog hero and illustrations.
+4. Appearance → **SEO Booster Setup** → tick **Overwrite** → **Build the site**. This rebuilds the pages with the new copy and legal layout, adds cover images to the 3 articles and drafts the "Hello world!" post.
+5. **If the header or footer doesn't change:** they were probably edited in the Site Editor, and a saved copy overrides the theme file. Go to Appearance → Editor → Patterns → Template parts → Header/Footer → ⋮ → **Reset**.
+6. LiteSpeed Cache → **Purge All**, then check on a phone: logo, cart and menu icon only; the menu starts with Home.
+
+
 ## Updating to theme 1.1.0 + plugin 0.3.0 (3 Nov 2026)
 1. **Backup** in Hostinger.
 2. **Plugin:** Plugins → Add New → Upload → `seo-booster-core.zip` → **Replace current with uploaded**.

@@ -115,13 +115,110 @@ class SB_Shortcode {
 			if ( $g['term']->description ) {
 				echo '<p class="sb-pkpanel__intro">' . esc_html( $g['term']->description ) . '</p>';
 			}
-			echo '<ul class="sb-pkgrid" role="list">';
-			foreach ( $g['products'] as $product ) {
-				echo self::card( $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in card().
-			}
-			echo '</ul></section>';
+			echo self::selector( $g['products'], $pid ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in selector().
+			echo '</section>';
 		}
 		echo '</div>';
+		return (string) ob_get_clean();
+	}
+
+	/** "£0.85 per link" style unit price, when the package has a countable quantity. */
+	public static function unit_price( WC_Product $p ): string {
+		$qty  = (int) $p->get_meta( '_sb_quantity' );
+		$unit = (string) $p->get_meta( '_sb_unit' );
+		$map  = array( 'links' => __( 'per link', 'seo-booster-core' ), 'articles' => __( 'per article', 'seo-booster-core' ), 'graphics' => __( 'per graphic', 'seo-booster-core' ), 'pages' => __( 'per page', 'seo-booster-core' ), 'words' => __( 'per 100 words', 'seo-booster-core' ) );
+		if ( $qty < 2 || ! isset( $map[ $unit ] ) || 'quote' === $p->get_meta( '_sb_pricing_model' ) || ! (float) $p->get_price() ) {
+			return '';
+		}
+		$each = (float) $p->get_price() / $qty * ( 'words' === $unit ? 100 : 1 );
+		return wp_strip_all_tags( wc_price( $each ) ) . ' ' . $map[ $unit ];
+	}
+
+	private static function short_price( WC_Product $p ): string {
+		if ( 'quote' === $p->get_meta( '_sb_pricing_model' ) || ! $p->is_purchasable() ) {
+			return esc_html__( 'Quote', 'seo-booster-core' );
+		}
+		$v = (float) $p->get_price();
+		return esc_html( wp_strip_all_tags( wc_price( $v, array( 'decimals' => floor( $v ) == $v ? 0 : 2 ) ) ) ); // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+	}
+
+	/**
+	 * Compact package picker: tier list (left) + one detail panel (right).
+	 *
+	 * @param WC_Product[] $products Group products, sorted.
+	 */
+	public static function selector( array $products, string $uid ): string {
+		$default = 0;
+		foreach ( $products as $i => $p ) {
+			if ( '1' === $p->get_meta( '_sb_featured' ) ) {
+				$default = $i;
+				break;
+			}
+		}
+		ob_start();
+		echo '<div class="sb-pk" data-sb-pk>';
+		echo '<div class="sb-pk__tiers" role="radiogroup" aria-label="' . esc_attr__( 'Choose a package', 'seo-booster-core' ) . '">';
+		foreach ( $products as $i => $p ) {
+			$on    = $i === $default;
+			$ideal = (string) $p->get_meta( '_sb_ideal_for' );
+			printf(
+				'<button type="button" role="radio" class="sb-pk__tier%1$s" aria-checked="%2$s" tabindex="%3$s" aria-controls="%4$s" data-panel="%4$s"><span class="sb-pk__radio" aria-hidden="true"></span><span class="sb-pk__name">%5$s%6$s</span>%7$s<span class="sb-pk__tprice">%8$s</span></button>',
+				'1' === $p->get_meta( '_sb_featured' ) ? ' is-featured' : '',
+				$on ? 'true' : 'false',
+				$on ? '0' : '-1',
+				esc_attr( $uid . '-p' . $i ),
+				esc_html( $p->get_name() ),
+				$ideal ? '<small>' . esc_html( $ideal ) . '</small>' : '',
+				'1' === $p->get_meta( '_sb_featured' ) ? '<span class="sb-pk__pop">' . esc_html__( 'Popular', 'seo-booster-core' ) . '</span>' : '',
+				self::short_price( $p ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in short_price().
+			);
+		}
+		echo '</div><div class="sb-pk__panels">';
+		foreach ( $products as $i => $p ) {
+			$quote = 'quote' === $p->get_meta( '_sb_pricing_model' ) || ! $p->is_purchasable();
+			$items = SB_Packages::lines( $p, '_sb_deliverables' );
+			$excl  = SB_Packages::lines( $p, '_sb_exclusions' );
+			$unit  = self::unit_price( $p );
+			$facts = array_filter(
+				array(
+					__( 'Delivery', 'seo-booster-core' )  => (string) $p->get_meta( '_sb_turnaround' ),
+					__( 'Revisions', 'seo-booster-core' ) => (string) $p->get_meta( '_sb_revisions' ),
+				)
+			);
+			echo '<div class="sb-pk__panel" id="' . esc_attr( $uid . '-p' . $i ) . '" role="region" aria-label="' . esc_attr( $p->get_name() ) . '"' . ( $i === $default ? '' : ' hidden' ) . '>';
+			echo '<div class="sb-pk__head"><div><h3 class="sb-pk__title">' . esc_html( $p->get_name() ) . '</h3>';
+			if ( $p->get_meta( '_sb_ideal_for' ) ) {
+				echo '<p class="sb-pk__ideal">' . esc_html__( 'Ideal for:', 'seo-booster-core' ) . ' ' . esc_html( (string) $p->get_meta( '_sb_ideal_for' ) ) . '</p>';
+			}
+			echo '</div><div class="sb-pk__price">' . ( $quote ? esc_html__( 'Custom quote', 'seo-booster-core' ) : wp_kses_post( $p->get_price_html() ) );
+			if ( $unit ) {
+				echo '<span>' . esc_html( $unit ) . '</span>';
+			}
+			echo '</div></div>';
+			if ( $facts ) {
+				echo '<ul class="sb-pk__facts">';
+				foreach ( $facts as $k => $v ) {
+					echo '<li><span>' . esc_html( $k ) . '</span>' . esc_html( $v ) . '</li>';
+				}
+				echo '</ul>';
+			}
+			if ( $items ) {
+				echo '<ul class="sb-pk__list">' . implode( '', array_map( static fn( $x ) => '<li>' . esc_html( $x ) . '</li>', $items ) ) . '</ul>';
+			}
+			echo '<div class="sb-pk__cta">';
+			if ( $quote ) {
+				echo '<a class="sb-btn sb-btn--primary" href="' . esc_url( SB_Packages::quote_url( $p ) ) . '">' . esc_html__( 'Get a quote', 'seo-booster-core' ) . '</a>';
+			} else {
+				/* translators: %s: package name */
+				echo '<a class="sb-btn sb-btn--primary" href="' . esc_url( $p->get_permalink() . '#order' ) . '" aria-label="' . esc_attr( sprintf( __( 'Choose %s', 'seo-booster-core' ), $p->get_name() ) ) . '">' . esc_html__( 'Choose this package', 'seo-booster-core' ) . ' →</a>';
+			}
+			echo '<a class="sb-pk__more" href="' . esc_url( $p->get_permalink() ) . '">' . esc_html__( 'Full details', 'seo-booster-core' ) . '</a></div>';
+			if ( $excl ) {
+				echo '<details class="sb-pk__excl"><summary>' . esc_html__( 'Not included', 'seo-booster-core' ) . '</summary><ul>' . implode( '', array_map( static fn( $x ) => '<li>' . esc_html( $x ) . '</li>', $excl ) ) . '</ul></details>';
+			}
+			echo '</div>';
+		}
+		echo '</div></div>';
 		return (string) ob_get_clean();
 	}
 

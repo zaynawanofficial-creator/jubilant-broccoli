@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">A fast, professional WordPress website without the agency price tag</h1>
+<h1 class="wp-block-heading">WordPress website design for small businesses, at a fixed price</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -136,6 +136,30 @@
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
 <p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"align":"wide","className":"sb-split sb-whatis"} -->
+<div class="wp-block-columns alignwide sb-split sb-whatis"><!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">The basics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What does a small business website need?</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph -->
+<p>A good small business website does three jobs: it explains what you do in the first few seconds, it convinces visitors you are trustworthy, and it makes it easy to get in touch or buy. Everything else, from colours to animations, should support those three jobs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We build on WordPress because it is fast to edit, widely supported and yours to keep. Every site is mobile-friendly, set up with SEO basics from day one, and handed over with a video so you can update pages without paying a developer each time.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->

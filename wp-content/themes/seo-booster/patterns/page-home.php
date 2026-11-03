@@ -16,11 +16,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Fixed-price SEO and web services that show you <span class="sb-hl">exactly</span> what you get</h1>
+<h1 class="wp-block-heading">SEO services, link building and websites at <span class="sb-hl">fixed prices</span></h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
-<p class="sb-lead">Pick a package, pay securely and send your brief. Every order has a clear scope, a stated turnaround and a report or files you can check, without retainers or vague promises.</p>
+<p class="sb-lead">Choose a package, tell us about your site and pay securely. You get a written scope, a delivery date and proof of the work: live links, audit reports or ready-to-use files. No retainers, no lock-in, no vague monthly summaries.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -534,7 +534,9 @@
 <!-- wp:query {"queryId":2,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","className":"sb-posts sb-posts--home"} -->
 <div class="wp-block-query alignwide sb-posts sb-posts--home"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
 <!-- wp:group {"className":"sb-post-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group sb-post-card"><!-- wp:post-terms {"term":"category","className":"sb-post-card__cat"} /-->
+<div class="wp-block-group sb-post-card"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->
+
+<!-- wp:post-terms {"term":"category","className":"sb-post-card__cat"} /-->
 
 <!-- wp:post-title {"level":3,"isLink":true} /-->
 

@@ -1,5 +1,43 @@
 # PROGRESS
 
+## Polish round: theme 1.2.0, plugin 0.4.0 · 3 Nov 2026 · 🟡 ready to install
+**Owner feedback:** the legal pages were plain; footer columns were uneven and there were no payment methods; on mobile the CTA covered the header and there was no Home link; pricing lists were long and messy; the blog hero was off; illustrations looked like empty mockups; the copy needed an SEO pass.
+
+**Root causes**
+- **Mobile CTA:** WordPress's `.wp-block-buttons.is-layout-flex{display:flex}` out-ranked the theme's hide rule. Fixed with a higher-specificity rule.
+- **Blog hero:** the eyebrow label was `inline-flex`, so it ignored the auto margins of the constrained layout. Changed to `display:flex; width:fit-content` site-wide. The blog hero is now a theme pattern (`hero-insights`) with art.
+
+**Changes**
+- **Package picker** (`SB_Shortcode::selector`): replaces the long card grids.
+  - tier list (radiogroup, keyboard arrows) on the left, one detail panel on the right
+  - per-unit pricing ("£1.00 per link") and a Popular default
+  - full details link
+  - stacks on phones
+- **Header:** Home is the first menu item. On phones only the logo, cart and menu show.
+- **Footer:**
+  - brand + 3 equal columns (5 links each) + a Get a quote button
+  - payments bar (generic marks: Visa, Mastercard, Amex, PayPal, Apple Pay, Google Pay, bank transfer) with a secure-checkout note
+  - the slim checkout footer shows the marks too
+- **Legal pages** (Terms, Refunds, Privacy, Cookies, Accessibility):
+  - hero with last-updated date, an At-a-glance box, sticky table of contents (heading anchors), numbered sections and a contact card
+  - rewritten fuller content: UK consumer 14-day cancellation right, UK GDPR rights and ICO, a cookie table with real WooCommerce and WordPress cookie names, a retention schedule
+  - still marked as a draft for legal review; governing law is left to be confirmed
+- **Illustrations v2** (`tools/build_art_v2.py`): all 17 hero, service and report illustrations rebuilt with real labels: order steps and live-link statuses, prioritised audit issues, a technical change log and Core Web Vitals, a website wireframe with page sections, a care-plan checklist, an article outline with checks, a brand kit with hex values, link-type network, tiers, process steps and a real Q&A. All illustrative, with no client data.
+- **Insights:** cover images for the 3 articles; featured images on cards and posts; the "Hello world!" post is drafted by setup.
+- **SEO copy:**
+  - keyword-led H1s on home and all service pages
+  - a "What is…" explainer (2 paragraphs) on every service page
+  - a dedicated `<title>` per page (`_sb_seo_title`, output only when no SEO plugin is active)
+
+**Verification:**
+- Block validator: **41 files, 2,547 blocks, 0 invalid**.
+- `php -l` is clean and the importer smoke test passes.
+- Approximate render of home, off-page-seo, terms, insights hero and services: no page-level overflow at 1440 or 390 px.
+
+**Not verified:** real WordPress rendering, and whether Site Editor overrides exist for the header and footer on the live site (INSTALL step 5).
+
+**Owner to confirm:** the payment marks assume Stripe (cards, Apple Pay, Google Pay) and PayPal will be connected. Remove any that won't be offered.
+
 ## Design + order-flow overhaul: theme 1.1.0, plugin 0.3.0 · 3 Nov 2026 · 🟡 ready to install
 **Owner feedback (with live screenshots):**
 - cart and checkout looked default

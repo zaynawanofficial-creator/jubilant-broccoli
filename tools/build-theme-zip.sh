@@ -4,6 +4,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 python3 tools/build_art.py >/dev/null
+python3 tools/build_art_v2.py >/dev/null
 (cd tools && python3 build_patterns.py >/dev/null)
 for f in $(find wp-content/themes/seo-booster -name '*.php'); do php -l "$f" >/dev/null; done
 python3 -c "import json;json.load(open('wp-content/themes/seo-booster/theme.json'))"

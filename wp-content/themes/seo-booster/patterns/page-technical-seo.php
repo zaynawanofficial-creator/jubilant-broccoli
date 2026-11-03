@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Technical fixes that help search engines crawl, understand and rank your pages</h1>
+<h1 class="wp-block-heading">Technical SEO services that fix what search engines trip over</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -136,6 +136,30 @@
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
 <p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"align":"wide","className":"sb-split sb-whatis"} -->
+<div class="wp-block-columns alignwide sb-split sb-whatis"><!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">The basics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What is technical SEO?</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph -->
+<p>Technical SEO is the foundation under your content: making sure search engines can crawl, render and understand your pages, and that visitors get a fast, stable experience. It covers redirects, canonical tags, sitemaps, structured data, duplicate pages and Core Web Vitals.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When the foundation is broken, great content and links underperform. A single misplaced noindex tag or a chain of redirects can hide pages from Google entirely. We find and fix these issues safely, after a full backup, and show you the before and after.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->

@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">WordPress fixes and care, handled by a developer</h1>
+<h1 class="wp-block-heading">WordPress maintenance and fixes, handled by a real developer</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -136,6 +136,30 @@
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
 <p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"align":"wide","className":"sb-split sb-whatis"} -->
+<div class="wp-block-columns alignwide sb-split sb-whatis"><!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">The basics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why does a WordPress site need maintenance?</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph -->
+<p>WordPress, your theme and your plugins all release updates for security fixes and compatibility. Skip them and the risk of a hack or a broken page grows every month. Install them carelessly and a plugin conflict can take the site down.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Maintenance means doing updates safely: a backup first, updates in the right order, checks afterwards, and someone watching uptime. When something does break, you want a developer who finds the real cause, not a quick patch that fails again next week.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->

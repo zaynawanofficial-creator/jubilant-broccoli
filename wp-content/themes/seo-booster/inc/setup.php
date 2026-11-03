@@ -116,7 +116,7 @@ final class SBT_Setup {
 
 		if ( ! empty( $o['pages'] ) ) {
 			$pages   = $m['pages'];
-			$pages[] = array( 'slug' => 'insights', 'title' => 'Insights', 'parent' => '', 'template' => '', 'excerpt' => 'Practical guides on SEO, link building, websites and content.', 'pattern' => '', 'order' => 9 );
+			$pages[] = array( 'slug' => 'insights', 'title' => 'Insights', 'parent' => '', 'template' => '', 'excerpt' => 'Practical SEO, link building, WordPress and content guides: what moves rankings, what wastes budget and how to choose the right service.', 'pattern' => '', 'order' => 9, 'seo_title' => 'SEO & Website Guides | SEO Booster Insights' );
 			// Parents first.
 			usort( $pages, static fn( $a, $b ) => ( '' === $a['parent'] ? 0 : 1 ) <=> ( '' === $b['parent'] ? 0 : 1 ) );
 			foreach ( $pages as $p ) {
@@ -157,6 +157,9 @@ final class SBT_Setup {
 				}
 				update_post_meta( $id, self::META, SBT_VERSION );
 				update_post_meta( $id, '_wp_page_template', $p['template'] ? $p['template'] : 'default' );
+				if ( ! empty( $p['seo_title'] ) ) {
+					update_post_meta( $id, '_sb_seo_title', $p['seo_title'] );
+				}
 				$ids[ $p['slug'] ] = $id;
 				$log[]             = ( $existing ? 'UPDATE ' : 'CREATE ' ) . wp_make_link_relative( get_permalink( $id ) );
 			}
@@ -186,6 +189,23 @@ final class SBT_Setup {
 					update_post_meta( $id, self::META, SBT_VERSION );
 					$log[] = 'CREATE article ' . wp_make_link_relative( get_permalink( $id ) );
 				}
+			}
+			// Cover images for the starter articles (existing or new).
+			foreach ( $m['posts'] as $p ) {
+				$post = get_page_by_path( $p['slug'], OBJECT, 'post' );
+				if ( $post && ! has_post_thumbnail( $post ) ) {
+					$img = self::attach( 'covers/' . $p['slug'] . '.webp', $p['title'] );
+					if ( $img ) {
+						set_post_thumbnail( $post, $img );
+						$log[] = 'SET   cover image for ' . $p['slug'];
+					}
+				}
+			}
+			// The default "Hello world!" post makes the blog look unfinished.
+			$hello = get_page_by_path( 'hello-world', OBJECT, 'post' );
+			if ( $hello && 'publish' === $hello->post_status ) {
+				wp_update_post( array( 'ID' => $hello->ID, 'post_status' => 'draft' ) );
+				$log[] = 'DRAFT default "Hello world!" post';
 			}
 		}
 
@@ -298,14 +318,14 @@ final class SBT_Setup {
 		if ( ! is_readable( $src ) ) {
 			return 0;
 		}
-		$up = wp_upload_bits( 'seo-booster-' . $file, null, (string) file_get_contents( $src ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$up = wp_upload_bits( 'seo-booster-' . basename( $file ), null, (string) file_get_contents( $src ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		if ( ! empty( $up['error'] ) ) {
 			return 0;
 		}
 		$id = wp_insert_attachment(
 			array(
 				'post_title'     => $title,
-				'post_mime_type' => 'image/png',
+				'post_mime_type' => str_ends_with( $file, '.webp' ) ? 'image/webp' : 'image/png',
 				'post_status'    => 'inherit',
 			),
 			$up['file']

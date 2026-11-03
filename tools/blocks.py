@@ -66,13 +66,16 @@ def group(*children, cls='', align='', tag='div', layout='constrained', anchor='
     return wrap('group', a, f'<{tag}{idattr} class="{classes}">', join(*children), f'</{tag}>')
 
 
-def heading(text, level=2, cls=''):
+def heading(text, level=2, cls='', anchor=''):
     a = {}
     if level != 2:
         a['level'] = level
+    if anchor:
+        a['anchor'] = anchor
     if cls:
         a['className'] = cls
-    return wrap('heading', a, f'<h{level} class="{_cls("wp-block-heading", cls)}">', text, f'</h{level}>')
+    idattr = f' id="{anchor}"' if anchor else ''
+    return wrap('heading', a, f'<h{level} class="{_cls("wp-block-heading", cls)}"{idattr}>', text, f'</h{level}>')
 
 
 def para(text, cls=''):
@@ -161,6 +164,6 @@ def query_posts(n=3):
     return ('<!-- wp:query {"queryId":2,"query":{"perPage":%d,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","className":"sb-posts sb-posts--home"} -->\n'
             '<div class="wp-block-query alignwide sb-posts sb-posts--home"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->\n'
             '<!-- wp:group {"className":"sb-post-card","layout":{"type":"constrained"}} -->\n'
-            '<div class="wp-block-group sb-post-card"><!-- wp:post-terms {"term":"category","className":"sb-post-card__cat"} /-->\n\n'
+            '<div class="wp-block-group sb-post-card"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->\n\n<!-- wp:post-terms {"term":"category","className":"sb-post-card__cat"} /-->\n\n'
             '<!-- wp:post-title {"level":3,"isLink":true} /-->\n\n<!-- wp:post-excerpt {"excerptLength":22} /-->\n\n'
             '<!-- wp:post-date {"className":"sb-post-card__date"} /--></div>\n<!-- /wp:group -->\n<!-- /wp:post-template --></div>\n<!-- /wp:query -->') % n

@@ -21,6 +21,7 @@ class SB_Site {
 		add_action( 'save_post_product', array( __CLASS__, 'flush_prices' ) );
 		add_action( 'woocommerce_update_product', array( __CLASS__, 'flush_prices' ) );
 		add_filter( 'wp_robots', array( __CLASS__, 'robots' ) );
+		add_filter( 'pre_get_document_title', array( __CLASS__, 'seo_title' ), 20 );
 		add_action( 'wp_head', array( __CLASS__, 'head' ), 2 );
 		add_filter( 'render_block_woocommerce/add-to-cart-form', array( __CLASS__, 'quote_button_block' ), 10, 2 );
 		add_filter( 'render_block_woocommerce/add-to-cart-with-options', array( __CLASS__, 'quote_button_block' ), 10, 2 );
@@ -135,6 +136,23 @@ class SB_Site {
 
 	public static function seo_plugin_active(): bool {
 		return defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || class_exists( 'SEOPress' ) || defined( 'THE_SEO_FRAMEWORK_VERSION' );
+	}
+
+	/** Custom <title> from the page's _sb_seo_title meta (only when no SEO plugin manages titles). */
+	public static function seo_title( $title ) {
+		if ( self::seo_plugin_active() ) {
+			return $title;
+		}
+		$id = 0;
+		if ( is_front_page() && get_option( 'page_on_front' ) ) {
+			$id = (int) get_option( 'page_on_front' );
+		} elseif ( is_home() && get_option( 'page_for_posts' ) ) {
+			$id = (int) get_option( 'page_for_posts' );
+		} elseif ( is_singular() ) {
+			$id = get_queried_object_id();
+		}
+		$custom = $id ? (string) get_post_meta( $id, '_sb_seo_title', true ) : '';
+		return '' !== $custom ? esc_html( $custom ) : $title;
 	}
 
 	/** Keep transactional and thin pages out of the index. */

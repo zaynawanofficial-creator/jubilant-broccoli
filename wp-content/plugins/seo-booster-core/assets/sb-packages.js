@@ -48,3 +48,40 @@
 		}
 	} );
 } )();
+
+/* Package picker: tier list (radiogroup) switches the detail panel. Arrow keys move the selection. */
+( function () {
+	'use strict';
+	document.querySelectorAll( '[data-sb-pk]' ).forEach( function ( box ) {
+		var tiers = Array.prototype.slice.call( box.querySelectorAll( '[role="radio"]' ) );
+		function pick( t, focus ) {
+			tiers.forEach( function ( x ) {
+				var on = x === t;
+				x.setAttribute( 'aria-checked', on ? 'true' : 'false' );
+				x.tabIndex = on ? 0 : -1;
+				var panel = document.getElementById( x.getAttribute( 'data-panel' ) );
+				if ( panel ) {
+					panel.hidden = ! on;
+				}
+			} );
+			if ( focus ) {
+				t.focus();
+			}
+			if ( window.matchMedia && window.matchMedia( '(max-width: 781px)' ).matches ) {
+				var p = document.getElementById( t.getAttribute( 'data-panel' ) );
+				if ( p && p.getBoundingClientRect().top > window.innerHeight * 0.75 ) {
+					p.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+				}
+			}
+		}
+		tiers.forEach( function ( t, i ) {
+			t.addEventListener( 'click', function () { pick( t, false ); } );
+			t.addEventListener( 'keydown', function ( e ) {
+				var n = null;
+				if ( e.key === 'ArrowDown' || e.key === 'ArrowRight' ) { n = tiers[ ( i + 1 ) % tiers.length ]; }
+				if ( e.key === 'ArrowUp' || e.key === 'ArrowLeft' ) { n = tiers[ ( i - 1 + tiers.length ) % tiers.length ]; }
+				if ( n ) { e.preventDefault(); pick( n, true ); }
+			} );
+		} );
+	} );
+} )();

@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Link building and citations, done by hand and reported with live URLs</h1>
+<h1 class="wp-block-heading">Off-page SEO and link building, done by hand and proven with live URLs</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -140,6 +140,30 @@
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
 <p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"align":"wide","className":"sb-split sb-whatis"} -->
+<div class="wp-block-columns alignwide sb-split sb-whatis"><!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">The basics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What is off-page SEO?</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph -->
+<p>Off-page SEO is everything that happens away from your own website to show search engines your business is real, relevant and trusted. The biggest part is links: other websites pointing to yours. Business listings and citations (your name, address and phone number on trusted directories) matter most for local searches.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Not all links are equal. A handful of relevant, editorial links usually beats hundreds of spammy ones, and Google ignores or penalises links that exist only to manipulate rankings. That is why we build links by hand on real platforms, keep sponsored labels where publishers require them, and give you every URL so you can check the work yourself.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->

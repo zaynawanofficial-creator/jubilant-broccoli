@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Original articles written for people first, structured for search</h1>
+<h1 class="wp-block-heading">SEO content writing that people actually want to read</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -136,6 +136,30 @@
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
 <p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull sb-section"><!-- wp:columns {"align":"wide","className":"sb-split sb-whatis"} -->
+<div class="wp-block-columns alignwide sb-split sb-whatis"><!-- wp:column {"width":"40%"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">The basics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What makes content rank and convert?</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph -->
+<p>Content ranks when it answers the question behind a search better than the pages already there: clearer, more specific, more useful. It converts when it speaks to a real reader, shows expertise and makes the next step obvious.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Word count alone does neither. We plan every article around search intent, structure it with clear headings and direct answers, check the facts, and write it for people first. The SEO details, such as keywords, meta descriptions and internal links, are built in without making it read like it was written for a robot.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->

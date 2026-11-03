@@ -106,6 +106,30 @@ def hero(eb, title, sub, btns, checks, art, alt, crumbs=False):
     return group(columns(left, right, cls='sb-hero__cols', center=True), align='full', cls='sb-hero', tag='section')
 
 
+WHATIS = {
+    'off-page-seo': ('What is off-page SEO?', [
+        'Off-page SEO is everything that happens away from your own website to show search engines your business is real, relevant and trusted. The biggest part is links: other websites pointing to yours. Business listings and citations (your name, address and phone number on trusted directories) matter most for local searches.',
+        'Not all links are equal. A handful of relevant, editorial links usually beats hundreds of spammy ones, and Google ignores or penalises links that exist only to manipulate rankings. That is why we build links by hand on real platforms, keep sponsored labels where publishers require them, and give you every URL so you can check the work yourself.']),
+    'seo-audit': ('What is an SEO audit?', [
+        'An SEO audit is a health check of your website from a search engine\'s point of view. It looks at whether Google can crawl and index your pages, how fast they load, whether titles and content match what people search for, and what your link profile looks like compared with competitors.',
+        'A good audit is not a 90-page export from a tool. It tells you which problems actually cost you traffic, in what order to fix them, and how. Ours does exactly that, in plain English, so you can spend your budget on the fixes that matter.']),
+    'technical-seo': ('What is technical SEO?', [
+        'Technical SEO is the foundation under your content: making sure search engines can crawl, render and understand your pages, and that visitors get a fast, stable experience. It covers redirects, canonical tags, sitemaps, structured data, duplicate pages and Core Web Vitals.',
+        'When the foundation is broken, great content and links underperform. A single misplaced noindex tag or a chain of redirects can hide pages from Google entirely. We find and fix these issues safely, after a full backup, and show you the before and after.']),
+    'website-development': ('What does a small business website need?', [
+        'A good small business website does three jobs: it explains what you do in the first few seconds, it convinces visitors you are trustworthy, and it makes it easy to get in touch or buy. Everything else, from colours to animations, should support those three jobs.',
+        'We build on WordPress because it is fast to edit, widely supported and yours to keep. Every site is mobile-friendly, set up with SEO basics from day one, and handed over with a video so you can update pages without paying a developer each time.']),
+    'website-maintenance': ('Why does a WordPress site need maintenance?', [
+        'WordPress, your theme and your plugins all release updates for security fixes and compatibility. Skip them and the risk of a hack or a broken page grows every month. Install them carelessly and a plugin conflict can take the site down.',
+        'Maintenance means doing updates safely: a backup first, updates in the right order, checks afterwards, and someone watching uptime. When something does break, you want a developer who finds the real cause, not a quick patch that fails again next week.']),
+    'content-writing': ('What makes content rank and convert?', [
+        'Content ranks when it answers the question behind a search better than the pages already there: clearer, more specific, more useful. It converts when it speaks to a real reader, shows expertise and makes the next step obvious.',
+        'Word count alone does neither. We plan every article around search intent, structure it with clear headings and direct answers, check the facts, and write it for people first. The SEO details, such as keywords, meta descriptions and internal links, are built in without making it read like it was written for a robot.']),
+    'graphic-design': ('Why does consistent branding matter?', [
+        'People decide whether to trust a business in seconds, and design is a big part of that first impression. A consistent logo, colours and typography across your website, social media and adverts makes you look established and makes you easier to remember.',
+        'You do not need an expensive agency to get there. A clear brand kit and a steady supply of on-brand graphics give most small businesses everything they need to look professional everywhere they show up.']),
+}
+
 FEATURE_ICONS = ['human', 'scope', 'report', 'shield', 'technical']
 
 DELIVER = {
@@ -143,8 +167,27 @@ PAGES = []   # dicts for the manifest
 POSTS = []
 
 
+SEO_TITLES = {
+    'home': 'Fixed-Price SEO Services, Link Building & Websites | SEO Booster',
+    'services': 'SEO, Web Design & Content Services with Fixed Prices | SEO Booster',
+    'off-page-seo': 'Off-Page SEO & Link Building Services | Citations & Guest Posts',
+    'seo-audit': 'SEO Audit Service | Prioritised, Plain-English Fix List',
+    'technical-seo': 'Technical SEO Services | Core Web Vitals, Schema & Fixes',
+    'website-development': 'WordPress Website Design for Small Businesses | Fixed Price',
+    'website-maintenance': 'WordPress Maintenance & Fixes | Care Plans from a Developer',
+    'content-writing': 'SEO Content Writing Services | Articles from 500 to 3,000 Words',
+    'graphic-design': 'Graphic Design & Branding Packages | Logos, Brand Kits, Social',
+    'packages': 'SEO & Website Packages and Prices | SEO Booster',
+    'how-it-works': 'How Ordering Works | Scope, Payment, Delivery | SEO Booster',
+    'about': 'About SEO Booster | Transparent SEO & Web Services',
+    'contact': 'Contact SEO Booster | Questions, Orders & Custom Projects',
+    'get-a-quote': 'Get a Free Fixed Quote for SEO or Web Work | SEO Booster',
+    'faq': 'FAQ | Ordering, Payments, Delivery & Link Building | SEO Booster',
+}
+
+
 def page(slug, title, content, excerpt, parent='', template='landing', menu_order=0):
-    PAGES.append(dict(slug=slug, title=title, parent=parent, template=template, excerpt=excerpt, pattern=f'seo-booster/page-{slug}', order=menu_order))
+    PAGES.append(dict(slug=slug, title=title, parent=parent, template=template, excerpt=excerpt, pattern=f'seo-booster/page-{slug}', order=menu_order, seo_title=SEO_TITLES.get(slug, '')))
     write_pattern(f'page-{slug}', f'Page: {title}', content)
 
 
@@ -163,8 +206,8 @@ def write_pattern(name, title, content, cat='seo-booster-pages', post_types='pag
 # ================================================================ HOME
 home = join(
     hero('SEO · Websites · Content · Design',
-         'Fixed-price SEO and web services that show you <span class="sb-hl">exactly</span> what you get',
-         'Pick a package, pay securely and send your brief. Every order has a clear scope, a stated turnaround and a report or files you can check, without retainers or vague promises.',
+         'SEO services, link building and websites at <span class="sb-hl">fixed prices</span>',
+         'Choose a package, tell us about your site and pay securely. You get a written scope, a delivery date and proof of the work: live links, audit reports or ready-to-use files. No retainers, no lock-in, no vague monthly summaries.',
          [('Explore packages', '/packages/'), ('Get a free quote', '/get-a-quote/', 'outline')],
          ['Packages from [sb_from]', 'Scope agreed before you pay', 'Live-URL and before/after reports'],
          'hero-growth.svg', 'Illustration of a growth chart, a network of links and a completed checklist'),
@@ -253,6 +296,8 @@ def service_page(slug, eb, h1, sub, checks, for_list, not_for, pk_title, pk_sub,
                 group(shortcode(f'[sb_packages service="{s[1]}"]'), align='wide', layout='flow'),
                 para('Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.', 'sb-center sb-muted'),
                 cls='sb-section--soft', anchor='packages'),
+        section(columns(column(eyebrow('The basics'), heading(WHATIS[slug][0]), width='40%'),
+                        column(*[para(x) for x in WHATIS[slug][1]], width='60%'), cls='sb-split sb-whatis')),
         proof(*DELIVER[slug]),
         section(head('What you get', 'Included in every order', None),
                 group(*[card(t, d, FEATURE_ICONS[i % len(FEATURE_ICONS)] if i else s[3]) for i, (t, d) in enumerate(features)], align='wide', layout='flow', cls='sb-grid sb-grid--3'), cls='sb-section--soft'),
@@ -273,7 +318,7 @@ def service_page(slug, eb, h1, sub, checks, for_list, not_for, pk_title, pk_sub,
 
 
 service_page('off-page-seo', 'Off-page SEO',
-    'Link building and citations, done by hand and reported with live URLs',
+    'Off-page SEO and link building, done by hand and proven with live URLs',
     'Build the authority signals search engines and customers look for: consistent business listings, quality profile links, and guest posts on real websites grouped by Domain Rating.',
     ['From [sb_from service="off-page-seo"]', 'Manual submissions, no bots', 'Spreadsheet report of every live URL'],
     ['New websites that need a foundation of trusted links and listings', 'Local businesses that need consistent name, address and phone data', 'Established sites ready for editorial links on stronger domains', 'Agencies that need reliable white-label fulfilment'],
@@ -307,7 +352,7 @@ service_page('off-page-seo', 'Off-page SEO',
     title='Off-Page SEO', excerpt='Manual link building: business citations, profile backlinks, guest posts by Domain Rating and press releases, with a live-URL report.')
 
 service_page('seo-audit', 'SEO audit',
-    'Find out exactly what is holding your website back',
+    'SEO audit service: find out exactly what is holding your site back',
     'A clear, prioritised audit of your site\'s technical health, on-page SEO and content, written in plain English with the fix for every issue, so you or your developer can act on it.',
     ['From [sb_from service="seo-audit"]', 'Prioritised by impact', 'Plain-English PDF report'],
     ['Site owners who are not sure why traffic is flat or falling', 'Businesses about to invest in content or links', 'Anyone redesigning or migrating a website', 'Agencies needing a second opinion'],
@@ -331,7 +376,7 @@ service_page('seo-audit', 'SEO audit',
     excerpt='Prioritised SEO audits in plain English: technical health, indexing, speed, on-page SEO and a fix for every issue.')
 
 service_page('technical-seo', 'Technical SEO',
-    'Technical fixes that help search engines crawl, understand and rank your pages',
+    'Technical SEO services that fix what search engines trip over',
     'We fix the issues that quietly hold sites back, including broken links, redirect chains, indexing errors, missing structured data and slow pages, and show you the before and after.',
     ['From [sb_from service="technical-seo"]', 'Backup before every change', 'Before/after report'],
     ['Sites with an audit and a list of fixes to implement', 'WordPress, WooCommerce and Shopify sites that load slowly', 'Sites with indexing or duplicate-content problems', 'Owners who want ongoing technical upkeep'],
@@ -355,7 +400,7 @@ service_page('technical-seo', 'Technical SEO',
     excerpt='Technical SEO fixes for indexing, redirects, structured data and Core Web Vitals, with backups and a before/after report.')
 
 service_page('website-development', 'Website development',
-    'A fast, professional WordPress website without the agency price tag',
+    'WordPress website design for small businesses, at a fixed price',
     'From a single landing page to a 10-page business site, built on WordPress so you can edit it yourself, with your content added and SEO basics set up from day one.',
     ['From [sb_from service="website-development"]', 'Mobile-friendly and fast', 'Edit it yourself after handover'],
     ['New businesses that need a credible website quickly', 'Owners replacing an outdated or slow site', 'Campaigns that need a focused landing page', 'Service businesses with 2 to 10 core pages'],
@@ -380,7 +425,7 @@ service_page('website-development', 'Website development',
     excerpt='WordPress website design and development packages: 1, 2, 5 and 10 pages with responsive design, SEO basics and handover.')
 
 service_page('website-maintenance', 'Website maintenance',
-    'WordPress fixes and care, handled by a developer',
+    'WordPress maintenance and fixes, handled by a real developer',
     'Something broken? Get a one-off fix. Want it to stay working? Choose a month of care with updates, backups, monitoring and small changes included.',
     ['From [sb_from service="website-maintenance"]', 'Backup before every fix', 'Written summary of what changed'],
     ['WordPress sites showing errors, white screens or broken layouts', 'Owners who do not have time for updates and backups', 'Sites that need small content or design changes regularly', 'Anyone worried about plugin conflicts after updates'],
@@ -404,7 +449,7 @@ service_page('website-maintenance', 'Website maintenance',
     excerpt='WordPress fixes and monthly website care: diagnosis, single and multi-fix bundles, updates, backups and monitoring.')
 
 service_page('content-writing', 'Content writing',
-    'Original articles written for people first, structured for search',
+    'SEO content writing that people actually want to read',
     'Researched blog posts and guides from 500 to 3,000 words, or a batch of articles planned as a topic cluster that supports your main service pages.',
     ['From [sb_from service="content-writing"]', 'Plagiarism-checked', 'Meta title and description included'],
     ['Businesses that need regular blog content', 'Sites building topical authority around their services', 'Agencies that need dependable writers', 'Owners who know their subject but lack time to write'],
@@ -428,7 +473,7 @@ service_page('content-writing', 'Content writing',
     excerpt='SEO content writing: original, researched 500 to 3,000-word articles and topic-cluster batches with meta data included.')
 
 service_page('graphic-design', 'Graphic design',
-    'On-brand graphics and brand kits, ready to use',
+    'Graphic design and branding packages, ready to use',
     'Social media graphics and ad creatives sized for each platform, plus mini brand kits and full identities with the files and guidelines you need to stay consistent.',
     ['From [sb_from service="graphic-design"]', 'Your colours and fonts', 'Source files available'],
     ['Businesses posting on social media every week', 'New brands that need a logo and visual identity', 'Brands with a dated logo that needs a refresh', 'Advertisers that need fresh ad creatives'],
@@ -579,64 +624,127 @@ faq_page = join(
 )
 page('faq', 'FAQ', faq_page, 'Answers about ordering, payments, delivery, revisions, refunds and link building safety at SEO Booster.', menu_order=8)
 
-# ================================================================ LEGAL (drafts)
-DRAFT = group(para('<strong>Draft under review.</strong> This policy is being reviewed before launch, and company registration details will be added. Questions? Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>.'), cls='sb-notice', layout='flow')
+# ================================================================ LEGAL (drafts for owner / legal review)
+UPDATED = '3 November 2026'
 
 
-def legal(slug, title, blocks, excerpt):
-    page(slug, title, join(DRAFT, *blocks), excerpt, template='', menu_order=20)
+def legal(slug, title, summary, glance, sections, excerpt, art='art-faq.svg'):
+    """Legal page: hero, at-a-glance box, sticky contents, numbered sections, contact card."""
+    toc = ul([f'<a href="#{a}">{i + 1}. {h}</a>' for i, (a, h, _) in enumerate(sections)], 'sb-toc')
+    body = []
+    for i, (a, h, blocks) in enumerate(sections):
+        body.append(heading(f'<span>{i + 1:02d}</span> {h}', 2, 'sb-legal__h', anchor=a))
+        body.extend(blocks)
+    content = join(
+        page_hero(art, '', eyebrow('Legal'), heading(title, 1), lead(summary),
+                  ul([f'Last updated: {UPDATED}', 'Applies to orders on seobooster.uk', 'Plain-English summary first'], 'sb-checks')),
+        section(columns(
+            column(group(heading('On this page', 3), toc, cls='sb-legal__toc', layout='flow'), width='30%', cls='sb-legal__aside'),
+            column(group(para('<strong>Draft under review.</strong> This document is being checked by a legal adviser before launch, and our company registration details will be added. If anything is unclear, email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>.'), cls='sb-notice', layout='flow'),
+                   group(heading('At a glance', 3), ul(glance, 'sb-ticks'), cls='sb-panel sb-legal__glance', layout='flow'),
+                   group(*body, cls='sb-legal__body', layout='flow'),
+                   group(heading('Questions about this policy?', 3), para('Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> with your question and, if it is about an order, your order number. A real person will reply.'),
+                         buttons(('Contact us', '/contact/'), ('Read our FAQ', '/faq/', 'outline')), cls='sb-card sb-legal__contact', layout='flow'),
+                   width='70%'),
+            cls='sb-legal')),
+    )
+    page(slug, title, content, excerpt, template='landing', menu_order=20)
 
 
-legal('terms', 'Terms of Service', [
-    para('These terms apply when you buy services from SEO Booster ("we", "us") through seobooster.uk. By placing an order you agree to them.'),
-    heading('1. Services and scope'), para('Each package describes its deliverables, exclusions, turnaround and revisions. Anything not listed is not included. Custom work is defined in a written quote.'),
-    heading('2. Orders and payment'), para('Prices are shown in [sb_currency] and payable in full at checkout unless agreed otherwise in writing. An order is accepted when payment is confirmed.'),
-    heading('3. Your brief and access'), para('You must provide accurate information and any materials needed. Turnaround starts when your brief is complete. You are responsible for the content and materials you supply and for having the rights to use them. Never send us passwords. Grant access through user invitations.'),
-    heading('4. Delivery and revisions'), para('We deliver within the stated turnaround in working days. Revisions refine the agreed deliverables and do not extend the scope.'),
-    heading('5. No guarantee of search results'), para('Search rankings and traffic depend on factors outside our control, including search engine algorithms and competitors. We do not guarantee rankings, traffic, indexing or link attributes (such as "dofollow"). We guarantee the deliverables described in your package.'),
-    heading('6. Third-party platforms'), para('Listings, profiles and publications are hosted by third parties who may edit or remove content. Replacement terms are stated on each package.'),
-    heading('7. Ownership'), para('When your order is paid in full, you own the final deliverables we create for you, except third-party assets (such as licensed stock images or fonts), which remain under their own licences.'),
-    heading('8. Refunds and cancellation'), para('See our <a href="/refund-policy/">Refund Policy</a>.'),
-    heading('9. Liability'), para('Our total liability for any order is limited to the amount you paid for that order, to the extent permitted by law. Nothing in these terms limits liability that cannot be limited by law.'),
-    heading('10. Changes and contact'), para('We may update these terms. The version published when you order applies to that order. Contact: <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>.'),
-], 'Terms of service for buying SEO, website, content and design services from SEO Booster.')
+legal('terms', 'Terms of Service',
+      'The agreement between you and SEO Booster when you buy one of our services. We have kept it as short and plain as we can.',
+      ['You buy a fixed package with a written scope. Anything not listed is not included.',
+       'Delivery times start once we have your project details.',
+       'We never guarantee rankings, traffic or "dofollow" links. We do guarantee the listed deliverables.',
+       'You can cancel for a full refund before work starts.',
+       'You own the final work once it is paid for.'],
+      [('about', 'About these terms', [para('These terms apply when you order a service from SEO Booster ("we", "us", "our") through seobooster.uk or by accepting a written quote from us. By placing an order you confirm that you have read and accepted them. If you buy for a business, you confirm you are authorised to accept them on its behalf.')]),
+       ('services', 'Our services and scope', [para('Each package page lists its deliverables, what is not included, the turnaround and the revisions. That description is the scope of your order. Custom work is defined in a written quote. If you need something outside the scope, we will tell you and quote it before doing any extra work.')]),
+       ('ordering', 'Placing an order', [para('When you choose a package you add your project details, then pay at checkout. Your order is accepted when payment is confirmed and you receive an order confirmation email. We may decline or refund an order if the request is unlawful, breaches search engine guidelines, or falls outside what we can deliver, for example restricted niches for link building.')]),
+       ('payment', 'Prices and payment', [para('Prices are shown in [sb_currency] and include any taxes shown at checkout. Payment is taken in full when you order, unless we agree otherwise in writing. Payments are processed by our payment providers, and we never see or store your full card details. For bank transfers, work begins once the funds have arrived.')]),
+       ('details', 'Your project details and access', [para('You agree to give us accurate information and anything we reasonably need to do the work. The turnaround starts when your project details are complete. Where we need access to your website or tools, you grant it by inviting us as a user. Please never send passwords by email or form. You can remove our access at any time once the work is finished.')]),
+       ('delivery', 'Delivery and communication', [para('Turnaround times are in working days (Monday to Friday, excluding UK bank holidays). We will tell you promptly if something outside our control, such as a publisher delay, affects the timeline. We deliver by email and through your account, with the report, files or live URLs described in your package.')]),
+       ('revisions', 'Revisions and approval', [para('Revisions are included where listed on the package. They refine the agreed work and do not add new deliverables. Please request revisions within 14 days of delivery. After that, or once you have approved the work, the order is treated as complete.')]),
+       ('platforms', 'Third-party platforms and link placements', [para('Business listings, profiles, guest posts and press releases are hosted by independent third parties. They control their own sites and may edit, re-label, de-index or remove content. We choose reputable platforms and follow their rules, including sponsored labels where a publisher requires them. Replacement terms for links that disappear are stated on each package.')]),
+       ('results', 'No guarantee of search results', [para('Search rankings, traffic and indexing depend on search engine algorithms, your website and your competitors, none of which we control. We do not guarantee rankings, traffic, revenue, indexing or link attributes such as "dofollow". We guarantee that we will deliver what your package describes, with reasonable skill and care.')]),
+       ('content', 'Your content and responsibilities', [para('You are responsible for the information and materials you send us, and confirm you have the right to use them. You must not ask us to publish anything unlawful, misleading, defamatory or that infringes another person\'s rights. We may pause work on content that we reasonably believe breaks these rules.')]),
+       ('ip', 'Ownership of the work', [para('Once your order is paid in full, you own the final deliverables we create for you, such as articles, designs and reports. Third-party elements, for example licensed fonts, stock images or plugins, remain under their own licences. We may show non-confidential work in our portfolio only with your permission.')]),
+       ('cancel', 'Cancellations and refunds', [para('If you are a consumer in the UK, you normally have 14 days to cancel a service contract. If you ask us to start within that period, you agree to pay for the work done up to the point you cancel. Full details, including business orders, are in our <a href="/refund-policy/">Refund Policy</a>.')]),
+       ('confidential', 'Confidentiality', [para('We keep your project details, data and unpublished material confidential and use them only to deliver your order. Our <a href="/privacy-policy/">Privacy Policy</a> explains how we handle personal data.')]),
+       ('liability', 'Our liability', [para('We are responsible for losses that are a foreseeable result of us breaking these terms or failing to use reasonable care. For business customers, our total liability for any order is limited to the amount paid for that order, and we are not liable for loss of profit, revenue or business opportunity. Nothing in these terms limits liability that cannot be limited by law, or your statutory rights as a consumer.')]),
+       ('changes', 'Changes, law and contact', [para('We may update these terms from time to time. The version published when you place an order applies to that order. The governing law and our registered company details will be added here before launch. Questions? Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>.')])],
+      'SEO Booster terms of service: scope, ordering, payment, delivery, revisions, link placements, ownership and liability, explained in plain English.', art='art-quote.svg')
 
-legal('refund-policy', 'Refund Policy', [
-    para('We want you to be happy with what you buy. This policy explains when refunds apply.'),
-    heading('Before work starts'), para('If you cancel before we start work, which is usually before your brief is complete, you receive a full refund.'),
-    heading('After work starts'), para('If you cancel after work has started, we refund the value of the work not yet done. Where deliverables are partly complete (for example, some links already placed), you receive those deliverables and a refund for the remainder.'),
-    heading('After delivery'), para('Delivered work is not refundable, except where we did not deliver what the package describes. In that case we will first fix or complete the delivery, and refund if we cannot.'),
-    heading('Replacements'), para('Profile and citation links not live at delivery are replaced. Guest posts removed within 90 days of publication are replaced free of charge.'),
-    heading('Search results'), para('Refunds are not available because rankings or traffic did not change, as these are not guaranteed (see our <a href="/terms/">Terms</a>).'),
-    heading('How to request a refund'), para('Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> with your order number. Approved refunds go back to the original payment method.'),
-], 'When and how refunds apply to SEO Booster orders.')
+legal('refund-policy', 'Refund Policy',
+      'When you can cancel, what you get back, and how to ask. Fair to you, and fair to the people doing the work.',
+      ['Cancel before work starts: full refund.',
+       'Cancel after work starts: refund for the work not yet done.',
+       'Missing or wrong deliverables are fixed first, then refunded if we cannot fix them.',
+       'Profile links not live at delivery, and guest posts removed within 90 days, are replaced free.',
+       'Refunds go back to your original payment method.'],
+      [('before', 'Before work starts', [para('If you cancel before we have started, you receive a full refund. Work usually starts once your project details are complete and we have confirmed the plan with you.')]),
+       ('consumer', 'Your 14-day cancellation right (UK consumers)', [para('If you buy as a consumer, you can cancel within 14 days of your order. If you asked us to begin during those 14 days, we will refund the price minus the value of the work already done. If the service has been fully delivered within the 14 days at your request, the right to cancel no longer applies.')]),
+       ('after-start', 'After work has started', [para('We refund the value of the work not yet done. Where deliverables are partly complete, for example 10 of 20 links placed, you keep what has been delivered and receive a refund for the rest.')]),
+       ('after-delivery', 'After delivery', [para('Delivered work is not refundable simply because you changed your mind. If what we delivered does not match the package description, tell us within 14 days. We will fix or complete it first. If we cannot, we will refund the affected part.')]),
+       ('replacements', 'Link replacements', [para('Profile and citation links that are not live on the day we deliver your report are replaced. Guest posts that are removed within 90 days of publication are replaced with a placement of the same tier or better. Replacements are the remedy for removed links, rather than refunds.')]),
+       ('results', 'Rankings and traffic', [para('We do not guarantee rankings or traffic (see our <a href="/terms/">Terms</a>), so refunds are not available because search results did not change.')]),
+       ('how', 'How to request a refund', [para('Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> with your order number and a short reason. We reply within two working days. Approved refunds are sent to your original payment method within 5 working days. Your bank may take a few more days to show it.')]),
+       ('disputes', 'Before opening a dispute', [para('Please contact us first. Most problems are solved quickly by email, and a bank chargeback can take weeks for both sides.')])],
+      'SEO Booster refund policy: full refund before work starts, pro-rata after, free link replacements and the UK 14-day cancellation right.', art='art-quote.svg')
 
-legal('privacy-policy', 'Privacy Policy', [
-    para('This policy explains how SEO Booster collects and uses personal data when you use seobooster.uk or buy our services.'),
-    heading('What we collect'), ul(['<strong>Account and order data</strong>: name, email, billing address, order history.',
-                                     '<strong>Project brief data</strong>: website URLs, business details and files you upload to deliver your order.',
-                                     '<strong>Messages</strong>: what you send through our contact and quote forms.',
-                                     '<strong>Technical data</strong>: IP address and browser data in server logs, and the cookies described in our <a href="/cookie-policy/">Cookie Policy</a>.']),
-    heading('How we use it'), para('To process payments, deliver and support your orders, answer enquiries, keep the site secure and meet legal obligations. We do not sell your data.'),
-    heading('Payment data'), para('Payments are handled by our payment providers. We never receive or store your full card details.'),
-    heading('Who we share it with'), para('Only service providers that help us run the site and deliver orders, such as hosting, payment and email providers. Where a service requires it, we share brief details with third-party platforms (for example, your business details for citations).'),
-    heading('How long we keep it'), para('Order records are kept as long as required for accounting and tax. Brief files are deleted or archived after the order is completed, unless you ask us to keep them for future work.'),
-    heading('Your rights'), para('You can ask to access, correct, delete or export your personal data, or object to its use, by emailing <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>. You may also complain to your data protection authority.'),
-], 'How SEO Booster collects, uses and protects personal data.')
+legal('privacy-policy', 'Privacy Policy',
+      'What personal data we collect, why, who sees it and how long we keep it, plus how to use your rights.',
+      ['We only collect what we need to deliver your order and reply to you.',
+       'We never sell your data or use it for third-party advertising.',
+       'Card details are handled by the payment provider, not by us.',
+       'You can ask to see, correct or delete your data at any time.',
+       'We do not use analytics or advertising cookies at the moment.'],
+      [('who', 'Who we are', [para('SEO Booster ("we") runs seobooster.uk and is the controller of the personal data described here. Our registered company details will be added before launch. Contact: <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a>.')]),
+       ('collect', 'What we collect', [ul(['<strong>Account and order data:</strong> name, email address, billing address, order history and payment status.',
+                                          '<strong>Project details:</strong> website URLs, business name and contact details for listings, keywords, briefs and any files you upload.',
+                                          '<strong>Messages:</strong> what you send through our contact and quote forms, or by email.',
+                                          '<strong>Technical data:</strong> IP address and browser information in server logs, kept for security.'])]),
+       ('use', 'How and why we use it', [para('We use your data to take payment and deliver your order (to perform our contract with you), to answer enquiries and keep records (our legitimate interests), to meet tax and accounting rules (legal obligation), and, only if you agree, to send occasional updates.')]),
+       ('share', 'Who we share it with', [para('We share data only with the services that help us run the site and deliver your order: our payment providers, our hosting provider and our email provider. Where a service requires it, we submit your business details to third-party platforms, for example your name, address and phone number to business directories for a citations order. These are the details you asked us to publish.')]),
+       ('transfers', 'International transfers', [para('Some of our providers may process data outside the UK. When they do, we rely on safeguards recognised under UK data protection law, such as adequacy regulations or standard contractual clauses.')]),
+       ('retention', 'How long we keep it', [para('We keep order and invoice records for six years to meet UK tax rules. Project files and briefs are deleted or archived within 12 months of order completion, unless you ask us to keep them for future work. Contact-form messages that do not lead to an order are deleted after 24 months.')]),
+       ('security', 'How we protect it', [para('The site uses HTTPS, access to customer data is limited to the people who need it, uploaded files are stored in a protected folder that cannot be opened directly from the web, and we never ask for your passwords.')]),
+       ('rights', 'Your rights', [para('Under UK data protection law you can ask to access, correct, delete or receive a copy of your data, and to restrict or object to how we use it. Email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> and we will reply within one month. If you are unhappy with our answer, you can complain to the Information Commissioner\'s Office (ICO) at ico.org.uk.')]),
+       ('cookies', 'Cookies', [para('See our <a href="/cookie-policy/">Cookie Policy</a> for the cookies this site uses.')]),
+       ('changes', 'Changes to this policy', [para('We will update this page when our practices change and show the date at the top. Significant changes will also be emailed to customers with active orders.')])],
+      'SEO Booster privacy policy: what personal data we collect, why, who it is shared with, how long it is kept and your UK GDPR rights.', art='art-about.svg')
 
-legal('cookie-policy', 'Cookie Policy', [
-    para('Cookies are small files stored by your browser. This page explains the cookies seobooster.uk uses.'),
-    heading('Essential cookies'), para('Our store uses essential cookies to keep your cart, log you in and protect checkout. The site cannot work without them, so they do not require consent.'),
-    heading('Analytics and marketing'), para('We do not currently use analytics or advertising cookies. If we add them, we will ask for your consent first and update this page.'),
-    heading('Managing cookies'), para('You can block or delete cookies in your browser settings. Blocking essential cookies will stop the cart and account from working.'),
-], 'The cookies used on seobooster.uk and how to control them.')
+legal('cookie-policy', 'Cookie Policy',
+      'The small files this website stores in your browser, what each one does, and how to control them.',
+      ['We only use cookies the website needs to work, such as your cart and login.',
+       'There are no analytics, advertising or tracking cookies at the moment.',
+       'If we add any, we will ask for your consent first.',
+       'You can delete cookies in your browser at any time.'],
+      [('what', 'What cookies are', [para('Cookies are small text files that a website stores in your browser. They let the site remember things between pages, such as what is in your cart or that you are logged in.')]),
+       ('essential', 'Cookies we use', [para('These are strictly necessary for the shop and your account to work, so they do not need consent:'),
+                                          table(['Cookie', 'Purpose', 'Duration'], [
+                                              ['woocommerce_cart_hash', 'Remembers changes to your cart', 'Session'],
+                                              ['woocommerce_items_in_cart', 'Tells the site your cart has items', 'Session'],
+                                              ['wp_woocommerce_session_*', 'Keeps your cart and checkout details', 'Up to 2 days'],
+                                              ['wordpress_logged_in_*', 'Keeps you logged in to your account', 'Session or 14 days if you choose "remember me"'],
+                                              ['wordpress_sec_*', 'Secures your login', 'Session or 14 days'],
+                                              ['wordpress_test_cookie', 'Checks that your browser accepts cookies', 'Session']])]),
+       ('analytics', 'Analytics and advertising', [para('We do not currently use analytics, advertising or social media tracking cookies. If we add them, we will show a consent banner first, they will stay off until you accept, and this page will be updated.')]),
+       ('control', 'How to control cookies', [para('You can view and delete cookies in your browser settings. Blocking the cookies listed above will stop the cart, checkout and account from working.')])],
+      'The cookies used on seobooster.uk: only essential cookies for the cart, checkout and login. No analytics or advertising tracking.', art='art-faq.svg')
 
-legal('accessibility', 'Accessibility', [
-    para('We want seobooster.uk to be usable by everyone. We aim to meet WCAG 2.2 level AA.'),
-    heading('What we do'), ul(['Text and interface colours are checked against WCAG contrast ratios.', 'All functions work with a keyboard, with visible focus outlines.', 'Images that carry meaning have text alternatives.', 'Pages use proper headings and landmarks for screen readers.', 'Motion is reduced when your device asks for it.']),
-    heading('Known limitations'), para('Some third-party components, such as payment forms, are provided by external services and may not fully meet the same standard.'),
-    heading('Feedback'), para('If something is hard to use, email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> and tell us the page and the problem. We will fix it or provide the information another way.'),
-], 'Accessibility statement for seobooster.uk.')
+legal('accessibility', 'Accessibility Statement',
+      'We want everyone to be able to find a service, place an order and get help on this website.',
+      ['We aim to meet WCAG 2.2 level AA.',
+       'The site works with a keyboard and screen readers.',
+       'Colours meet WCAG contrast ratios.',
+       'Tell us about any barrier and we will fix it or help another way.'],
+      [('commitment', 'Our commitment', [para('We design and build this website to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA, and we check new pages against them before they go live.')]),
+       ('measures', 'What we have done', [ul(['Text and interface colours meet WCAG contrast ratios.', 'Every function works with a keyboard, with visible focus outlines.', 'Images that carry meaning have text alternatives. Decorative images are hidden from screen readers.', 'Pages use proper headings, landmarks and labelled form fields.', 'Animation is reduced when your device asks for reduced motion.', 'Text can be zoomed to 200% without losing content.'])]),
+       ('limits', 'Known limitations', [para('Some parts of the site are provided by third parties, such as payment forms. We choose providers that take accessibility seriously, but we cannot fully control their components.')]),
+       ('feedback', 'Feedback and help', [para('If something is hard to use, email <a href="mailto:hello@seobooster.uk">hello@seobooster.uk</a> with the page address and the problem. We reply within two working days and will either fix the issue or give you the information or service in another way.')]),
+       ('review', 'Review', [para(f'This statement was last reviewed on {UPDATED}.')])],
+      'Accessibility statement for seobooster.uk: WCAG 2.2 AA approach, measures taken, known limitations and how to get help.', art='art-contact.svg')
 
 # ================================================================ INSIGHTS (articles)
 post('citations-vs-profile-backlinks', 'Business citations vs profile backlinks: what is the difference and which do you need?', join(
@@ -709,6 +817,13 @@ post('wordpress-speed-checklist', 'Is your WordPress site slow? A 12-point speed
     para('PageSpeed lab scores are useful for testing, but Google uses data from real visitors (the Chrome UX Report) where available. A perfect lab score is not required. Aim for real users to experience "good" vitals.'),
     para('Need help? Our <a href="/services/technical-seo/">Core Web Vitals optimisation</a> includes a backup, the fixes and an honest before/after report, and our <a href="/services/website-maintenance/">maintenance plans</a> keep a site fast after updates.'),
 ), 'Twelve practical checks to speed up a WordPress site, including images, caching, plugins and fonts, and how to read Core Web Vitals properly.', 'Websites')
+
+# ================================================================ template heroes
+write_pattern('hero-insights', 'Hero: Insights', page_hero('art-content.svg', 'Illustration of a structured article with an outline',
+              eyebrow('Insights'), heading('SEO, link building and website guides that save you money', 1),
+              lead('Straight answers from the work we do every day: what moves rankings, what wastes budget, and how to choose the right service for your site.'),
+              ul(['Practical checklists', 'No jargon', 'Written by the people doing the work'], 'sb-checks')),
+              cat='seo-booster-sections', post_types='', inserter='no')
 
 # ================================================================ manifest
 def php_str(s):
