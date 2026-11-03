@@ -19,6 +19,21 @@ define( 'RRM_WP', __DIR__ . '/wordpress' );
 // The theme ships inside this plugin so one Git deploy updates both.
 register_theme_directory( RRM_WP . '/theme' );
 
+// Keep the stored theme root pointing at this plugin's real location (it changes if the plugin folder is moved/renamed).
+add_action(
+	'plugins_loaded',
+	function () {
+		$root = str_replace( wp_normalize_path( WP_CONTENT_DIR ), '', wp_normalize_path( RRM_WP . '/theme' ) );
+		foreach ( array( 'stylesheet', 'template' ) as $k ) {
+			if ( 'rankright' === get_option( $k ) && get_option( $k . '_root' ) !== $root ) {
+				update_option( $k . '_root', $root );
+				delete_site_transient( 'theme_roots' );
+			}
+		}
+	},
+	0
+);
+
 require_once RRM_WP . '/inc/helpers.php';
 require_once RRM_WP . '/inc/security.php';
 require_once RRM_WP . '/inc/importer.php';
