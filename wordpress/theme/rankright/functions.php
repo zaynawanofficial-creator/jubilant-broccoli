@@ -119,7 +119,7 @@ function rrm_post_card( $post_id, $i = 0 ) {
 	$cat = get_the_category( $post_id );
 	?>
 	<article class="post-card reveal d<?php echo (int) ( $i % 3 ); ?>">
-		<a class="post-card-media" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" tabindex="-1" aria-hidden="true"><?php echo get_the_post_thumbnail( $post_id, 'rrm-card', array( 'loading' => 'lazy' ) ); ?></a>
+		<a class="post-card-media" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" tabindex="-1" aria-hidden="true"><?php echo get_the_post_thumbnail( $post_id, 'rrm-wide', array( 'loading' => 'lazy' ) ); ?></a>
 		<div class="post-card-body">
 			<?php if ( $cat ) : ?><a class="tag" href="<?php echo esc_url( get_category_link( $cat[0] ) ); ?>"><?php echo esc_html( $cat[0]->name ); ?></a><?php endif; ?>
 			<h3><a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>"><?php echo esc_html( get_the_title( $post_id ) ); ?></a></h3>
