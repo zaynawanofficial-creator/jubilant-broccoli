@@ -1,0 +1,44 @@
+# RankRight Media — Apache / LiteSpeed (Hostinger) configuration
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# One canonical origin: https + non-www
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://rankrightmedia.uk%{REQUEST_URI} [L,R=301]
+# Old WordPress endpoints: stop bot noise
+RewriteRule ^(xmlrpc\.php|wp-login\.php|wp-admin/?.*)$ - [G,L]
+# --- 301s from old WordPress URLs (fill in from the live sitemap before launch) ---
+# RewriteRule ^old-slug/?$ /new-slug/ [R=301,L]
+RewriteRule ^about/?$ /about-us/ [R=301,L]
+RewriteRule ^contact/?$ /contact-us/ [R=301,L]
+RewriteRule ^faq/?$ /faqs/ [R=301,L]
+RewriteRule ^terms/?$ /terms-and-conditions/ [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "DENY"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+Header always set Cross-Origin-Opener-Policy "same-origin"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+Header unset X-Powered-By
+<FilesMatch "\.(css|js|woff2|webp|png|svg|ico)$">
+Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+<FilesMatch "\.(html|xml|txt|webmanifest)$">
+Header set Cache-Control "public, max-age=300, must-revalidate"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript text/plain application/xml image/svg+xml application/manifest+json
+</IfModule>
+AddType application/manifest+json .webmanifest
+AddType text/plain .txt
+AddDefaultCharset UTF-8
