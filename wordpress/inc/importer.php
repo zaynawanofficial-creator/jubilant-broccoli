@@ -216,6 +216,13 @@ function rrm_configure_rank_math( $s ) {
 
 /* ---------------------------------------------------------------- cleanup */
 function rrm_step_cleanup( &$state, $deadline ) {
+	// Remove leftover copies created by Hostinger's plugin deploy (rankright-site-old-*, rrm-src).
+	foreach ( (array) glob( WP_PLUGIN_DIR . '/{rankright-site-old-*,rrm-src}', GLOB_BRACE | GLOB_ONLYDIR ) as $dir ) {
+		if ( $dir && realpath( $dir ) !== realpath( RRM_DIR ) ) {
+			rrm_rmdir( $dir );
+			rrm_log( 'Removed stale copy ' . basename( $dir ) );
+		}
+	}
 	foreach ( array( 'hello-world' ) as $slug ) {
 		$p = get_page_by_path( $slug, OBJECT, 'post' );
 		if ( $p ) {
@@ -481,4 +488,12 @@ function rrm_step_finalize( &$state, $deadline ) {
 		wc_delete_product_transients();
 	}
 	return true;
+}
+
+function rrm_rmdir( $dir ) {
+	$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+	foreach ( $it as $f ) {
+		$f->isDir() ? @rmdir( $f->getPathname() ) : @unlink( $f->getPathname() ); // phpcs:ignore
+	}
+	@rmdir( $dir ); // phpcs:ignore
 }
