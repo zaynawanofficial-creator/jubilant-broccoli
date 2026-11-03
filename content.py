@@ -10,36 +10,39 @@ Copy marked NEW is added for on-page SEO / AI-overview coverage.
 # --------------------------------------------------------------------------------------------
 SITE = {
     "name": "RankRight Media",
-    "legal_name": "RankRight Media",          # TODO: registered company name (e.g. "RankRight Media Ltd")
+    "legal_name": "RankRight Media Ltd",
     "domain": "https://rankrightmedia.uk",
     "tagline": "UK digital marketing agency for SEO, link building, websites, content, PPC and social media.",
     "phone_display": "+44 7446 254421",       # SOURCE: WP (Premium Support card)
     "phone_e164": "+447446254421",
-    "email": "",                              # TODO: add the real inbox, e.g. hello@rankrightmedia.uk (hidden while empty)
-    "address": None,                          # TODO: {"street": "...", "locality": "...", "postcode": "...", "region": "..."}
+    "email": "support@rankrightmedia.uk",
+    "address": {"street": "68 Trelawney Road", "locality": "Ilford", "postcode": "IG6 2NJ", "region": "England"},
     "company_number": "",                     # TODO: Companies House number (strong trust/E-E-A-T signal)
     "founded": "",                            # TODO: year founded
     "same_as": [],                            # TODO: Google Business Profile, LinkedIn, Facebook, Instagram, Trustpilot URLs
-    "currency_code": "EUR",                   # SOURCE: WP shows prices in EUR. Switch to "GBP" here when prices are re-set.
-    "currency_symbol": "€",
-    "area_served": ["United Kingdom"],
-    "rating_display": "4.7",                  # SOURCE: WP "4.7+ Client Ratings". Shown as text only — no review schema.
+    "currency_code": "USD",
+    "currency_symbol": "$",
+    "area_served": ["United Kingdom", "Worldwide"],
+    "rating_display": "",
     "founded_text": "",
 }
 
 # One consistent set of numbers (the WP site showed three conflicting sets — see AUDIT.md).
 STATS = [
-    {"value": 8, "suffix": "K+", "label": "Projects delivered"},
-    {"value": 5, "suffix": "K+", "label": "Happy clients"},
-    {"value": 4.7, "suffix": "", "label": "Average client rating"},
+    {"value": 1, "suffix": "K+", "label": "Projects delivered"},
+    {"value": 500, "suffix": "+", "label": "Happy clients"},
     {"value": 5, "suffix": "+", "label": "Industry awards"},
 ]
 
 # Founders / team — SOURCE: WP About page (not reachable from the build environment).
 # Add each person, drop their photo in src/assets/img/team/ and the section + Person schema appear automatically.
 TEAM = [
-    # {"name": "Full Name", "role": "Founder & SEO Lead", "photo": "team/full-name.webp",
-    #  "bio": "One or two lines.", "linkedin": "https://www.linkedin.com/in/..."},
+    {"name": "Zain Ul Abdeen", "role": "Founder — SEO, Web & eCommerce Expert", "photo": "team/zain-ul-abdeen.webp",
+     "bio": "Founder of SEO Booster UK with 10+ years of experience in SEO, website development and eCommerce strategy. Helping businesses grow online with data-driven, results-focused solutions."},
+    {"name": "Wajid Maqsood", "role": "eCommerce Solutions Specialist", "photo": "team/wajid-maqsood.webp",
+     "bio": "eCommerce specialist focused on store setup, product listing optimisation and conversion-focused solutions across WooCommerce, Shopify and marketplace platforms."},
+    {"name": "Rizwan Hussain", "role": "Visual Marketing Specialist", "photo": "team/rizwan-hussain.webp",
+     "bio": "Creative graphic designer specialising in brand identity, product visuals, social media creatives and marketing assets that make brands stand out online and in the marketplace."},
 ]
 
 # --------------------------------------------------------------------------------------------
@@ -92,8 +95,8 @@ SERVICES["seo"] = {
     "card": "We help you rank higher on Google, attract the right audience, and stay ahead of your competition.",
     "card_points": ["Keyword research & strategy", "On-page & technical SEO", "Local SEO for UK businesses"],
     "service_type": "Search engine optimisation",
-    "title": "SEO Services UK | Monthly SEO Packages from €299",
-    "description": "UK SEO services that turn rankings into revenue: keyword research, on-page, technical and local SEO plus link building. Monthly plans from €299.",
+    "title": "SEO Services UK | Monthly SEO Packages from $299",
+    "description": "UK SEO services that turn rankings into revenue: keyword research, on-page, technical and local SEO plus link building. Monthly plans from $299.",
     "eyebrow": "Search engine optimization",
     "h1": "Boost Your Google Ranking with Proven SEO Strategies",
     "lead": "Get seen by the right people at the right time. At RankRight Media, we use smart SEO techniques to help your website climb search results and attract more traffic. From keyword research to technical fixes — we handle it all, so you stay ahead of the competition.",
@@ -109,7 +112,7 @@ SERVICES["seo"] = {
 """,
     "checklist": ["In-Depth Keyword Research", "Local SEO (for UK Businesses)", "On-Page Optimization", "Competitor Analysis", "Technical SEO Fixes", "Content Optimization & Blog Strategy", "High-Quality Backlink Building", "SEO Audit & Roadmap", "Monthly Progress Reports", "Conversion-Focused SEO"],
     "features": [("i-layers", "Website Audit", "#includes"), ("i-target", "On-Page SEO", "#includes"), ("i-shield", "Off-Page SEO", "#includes"), ("i-monitor", "Technical SEO", "#includes"), ("i-award", "Keyword Strategy", "#includes")],
-    "facts": [("Service", "Search engine optimisation (SEO)"), ("Packages", "6 monthly plans, from €299/month"), ("Includes", "Keyword research, on-page, technical, local SEO, link building"), ("Reporting", "Monthly performance report (weekly on E-commerce SEO)"), ("Typical timeline", "First movements in 4–8 weeks; strongest gains at 3–6 months"), ("Area served", "United Kingdom")],
+    "facts": [("Service", "Search engine optimisation (SEO)"), ("Packages", "6 monthly plans, from $299/month"), ("Includes", "Keyword research, on-page, technical, local SEO, link building"), ("Reporting", "Monthly performance report (weekly on E-commerce SEO)"), ("Typical timeline", "First movements in 4–8 weeks; strongest gains at 3–6 months"), ("Area served", "United Kingdom")],
     "packages": {
         "heading": "Our SEO Monthly Packages", "unit": "/month",
         "note": "Prices are per month. Every plan includes a written monthly performance report.",
@@ -144,7 +147,7 @@ SERVICES["seo"] = {
     "includes_cta": "Get started",
     "testimonials": ["daniel-reid", "mason-blake", "harper-lane"],
     "faqs": [
-        ("How much do SEO services cost in the UK?", "<p>Our monthly SEO packages start at <strong>€299 per month</strong> (Basic SEO, up to 5 keywords) and go up to <strong>€1,899 per month</strong> for E-commerce SEO covering 70+ product pages. Standard SEO at €499/month adds a technical audit, 20 backlinks and a content strategy. Larger or international projects are quoted on our Custom SEO plan.</p>"),
+        ("How much do SEO services cost in the UK?", "<p>Our monthly SEO packages start at <strong>$299 per month</strong> (Basic SEO, up to 5 keywords) and go up to <strong>$1,899 per month</strong> for E-commerce SEO covering 70+ product pages. Standard SEO at $499/month adds a technical audit, 20 backlinks and a content strategy. Larger or international projects are quoted on our Custom SEO plan.</p>"),
         ("How long does SEO take to work?", "<p>Most websites see first ranking movements within <strong>4–8 weeks</strong> of on-page and technical fixes going live. Meaningful traffic and lead growth typically builds over <strong>3–6 months</strong>, depending on your competition, your site’s history and how many keywords you target.</p>"),
         ("What is included in an SEO package?", "<p>Every plan includes keyword research, on-page optimisation of your key pages, meta title and description optimisation and a monthly performance report. Higher plans add technical SEO audits and fixes, link building, local SEO, content strategy and written articles.</p>"),
         ("Do you offer local SEO for UK businesses?", "<p>Yes. Local SEO is included from our Premium plan and available on request. We optimise your Google Business Profile, build consistent local citations and create location-relevant content so you show up in the map pack and “near me” searches.</p>"),
@@ -163,8 +166,8 @@ SERVICES["link-building"] = {
     "card": "Boost your website’s authority with high-quality, niche-relevant backlinks. Our manual outreach ensures safe and effective SEO growth.",
     "card_points": ["100% manual outreach", "DA 10+ to DA 50+ sites", "Dofollow, contextual placements"],
     "service_type": "Link building",
-    "title": "Link Building Services UK | Manual Outreach Backlinks from €3.49",
-    "description": "White-hat link building: manual outreach, guest posts and contextual dofollow backlinks on niche-relevant DA 10–50+ sites. From €3.49 with reports.",
+    "title": "Link Building Services UK | Manual Outreach Backlinks from $3.49",
+    "description": "White-hat link building: manual outreach, guest posts and contextual dofollow backlinks on niche-relevant DA 10–50+ sites. From $3.49 with reports.",
     "eyebrow": "Link building",
     "h1": "Build Powerful Backlinks That Boost Your Rankings",
     "lead": "Rank higher and gain authority with our proven link building strategies. We create high-quality backlinks that drive traffic and grow your business.",
@@ -180,7 +183,7 @@ SERVICES["link-building"] = {
 """,
     "checklist": ["Manual Outreach Only", "Contextual Link Placement", "High Domain Authority (DA) Sites", "Custom Strategy for Every Client", "Niche-Relevant Backlinks", "In-Depth Competitor Analysis", "High-Quality Backlink Building", "Dofollow Backlinks", "White-Hat Techniques", "Content Creation Included"],
     "features": [("i-layers", "100% Manual Link Building", "#includes"), ("i-target", "White-Hat & Google-Safe Techniques", "#why"), ("i-shield", "Niche-Relevant High-Quality Sites", "#why"), ("i-monitor", "Transparent Reporting", "#pricing"), ("i-award", "Proven Track Record of Results", "#reviews")],
-    "facts": [("Service", "Manual outreach link building"), ("Packages", "6 one-off plans, from €3.49"), ("Site quality", "DA 10+ up to DA 50+, niche-relevant"), ("Link type", "Dofollow, contextual placements"), ("Delivery", "3 to 12 days depending on plan"), ("Reporting", "Placement report with live URLs")],
+    "facts": [("Service", "Manual outreach link building"), ("Packages", "6 one-off plans, from $3.49"), ("Site quality", "DA 10+ up to DA 50+, niche-relevant"), ("Link type", "Dofollow, contextual placements"), ("Delivery", "3 to 12 days depending on plan"), ("Reporting", "Placement report with live URLs")],
     "packages": {
         "heading": "Our Link Building Packages", "unit": "one-off",
         "note": "One-off packages. Each order includes a placement report listing every live URL.",
@@ -223,7 +226,7 @@ SERVICES["link-building"] = {
     "includes_cta": "Contact us",
     "testimonials": ["nathan-clarke", "olivia-mason", "amelia-hart"],
     "faqs": [
-        ("How much does link building cost?", "<p>Our link building packages start at <strong>€3.49</strong> for 2 dofollow backlinks on a DA 10+ site and go up to <strong>€64.49</strong> for 10 editorial backlinks from DA 50+ websites with 1,000-word content. Every package is a one-off price with a placement report.</p>"),
+        ("How much does link building cost?", "<p>Our link building packages start at <strong>$3.49</strong> for 2 dofollow backlinks on a DA 10+ site and go up to <strong>$64.49</strong> for 10 editorial backlinks from DA 50+ websites with 1,000-word content. Every package is a one-off price with a placement report.</p>"),
         ("Are your backlinks dofollow?", "<p>Yes. Our packages deliver dofollow backlinks placed contextually within relevant content. Profile backlinks in the Standard Boost plan diversify your link profile alongside guest posts.</p>"),
         ("Is link building safe for my website?", "<p>Yes, when it is done the way we do it: manual outreach to real, niche-relevant websites with genuine content. We never use private blog networks or automated link spam, which are what trigger Google penalties.</p>"),
         ("How long until backlinks improve my rankings?", "<p>Links are usually indexed within a few weeks of going live. Ranking improvements typically follow over <strong>4–12 weeks</strong>, depending on your competition and how relevant the linking sites are to your niche.</p>"),
@@ -245,8 +248,8 @@ SERVICES["website-development"] = {
     "title": "Website Development Services UK | Fast, SEO-Ready Sites",
     "description": "Website design and development for UK businesses: fast, mobile-first, SEO-ready sites on WordPress, Shopify or custom code, built to convert.",
     "eyebrow": "Website development",
-    "h1": "Websites That Look Brilliant and Turn Visitors into Customers",
-    "lead": "Beautiful, fast, and mobile-friendly websites built to impress and convert. Whether you need a new business site, an online store or a redesign, we build it SEO-ready from day one.",
+    "h1": "We Don’t Just Build Sites — We Build Your Online Identity",
+    "lead": "Your website is more than just pages — it’s the face of your business. We create custom websites that reflect your brand, connect with your audience, and drive real results. Whether you’re starting fresh or need a revamp, we’re here to build a site that truly represents you.",
     "visual": {"kind": "bars", "label": "Site quality checks", "chip": "Core Web Vitals",
                "bars": [("Performance", "w-95"), ("Accessibility", "w-90"), ("Best practices", "w-95"), ("SEO", "w-95")]},
     "intro": """
@@ -259,7 +262,18 @@ SERVICES["website-development"] = {
     "checklist": ["Custom, Mobile-First Design", "SEO-Ready Page Structure", "Fast Load Times & Core Web Vitals", "Conversion-Focused Layouts", "WordPress & Shopify Builds", "E-commerce Stores", "Secure Hosting Setup & SSL", "Google Analytics & Search Console", "Accessibility Best Practice", "Training & Handover"],
     "features": [("i-monitor", "Custom Web Design", "#includes"), ("i-cart", "E-commerce Websites", "#includes"), ("i-zap", "Speed & Core Web Vitals", "#includes"), ("i-search", "SEO-Ready Builds", "#includes"), ("i-wrench", "Maintenance & Support", "#includes")],
     "facts": [("Service", "Website design & development"), ("Platforms", "WordPress, Shopify, custom HTML/CSS/JS"), ("Included", "Mobile-first design, on-page SEO, analytics setup"), ("Pricing", "Fixed quote after a free discovery call"), ("Area served", "United Kingdom")],
-    "packages": None,
+    "packages": {
+        "heading": "Our Website Development Packages", "unit": "one-off",
+        "note": "One-off project prices. Hosting and domain are not included unless stated.",
+        "items": [
+            {"id": "web-starter", "name": "Starter Site", "price": 199, "tagline": "A professional presence, fast", "features": ["Up to 3 pages", "Mobile responsive design", "WordPress CMS setup", "Basic contact form", "Delivery: 3–5 working days", "7-day post-launch support"]},
+            {"id": "web-business", "name": "Business Site", "price": 399, "featured": True, "tagline": "For growing service businesses", "features": ["5–7 pages", "Custom design layout", "Mobile + tablet responsive", "WordPress CMS", "SEO-ready structure", "2 revisions", "14-day post-launch support"]},
+            {"id": "web-pro", "name": "Pro Site", "price": 699, "tagline": "Fully custom, built to rank", "features": ["Up to 10 pages", "Fully custom design", "Advanced contact forms", "Blog integration", "On-page SEO setup", "3 design revisions", "Delivery: 7–10 working days", "30-day post-launch support"]},
+            {"id": "web-ecom-basic", "name": "E-Commerce Basic", "price": 799, "tagline": "Start selling online", "features": ["Up to 8 product pages", "Shopify or WooCommerce setup", "Cart + Checkout system", "Payment gateway integration", "Responsive design", "30-day support"]},
+            {"id": "web-ecom-pro", "name": "E-Commerce Pro", "price": 1199, "tagline": "A fully custom online store", "features": ["Up to 20 product pages", "Fully custom store", "Product filters, categories", "Secure payments setup", "SEO-friendly product pages", "Delivery: 10–14 working days"]},
+            {"id": "web-custom", "name": "Custom Plan", "price": None, "tagline": "Complex builds and integrations", "features": ["Unlimited pages", "Any platform (WordPress, Shopify, custom)", "Advanced features & integrations", "Priority support", "Custom design + backend functionality"]},
+        ],
+    },
     "process_heading": "Our Website Development Process",
     "process": [
         ("i-message", "Discovery", "We learn about your business, customers and goals, then agree a sitemap, features and a fixed quote."),
@@ -317,7 +331,18 @@ SERVICES["content-writing"] = {
     "checklist": ["Keyword & Topic Research", "SEO Blog Posts & Guides", "Website & Landing Page Copy", "Product & Category Descriptions", "Brand Tone of Voice Matching", "Meta Titles & Descriptions", "Internal Linking Suggestions", "Plagiarism-Checked Originals", "Social Media Captions", "Proofread & Publish-Ready"],
     "features": [("i-pen", "Blog Posts & Articles", "#includes"), ("i-monitor", "Website Copy", "#includes"), ("i-cart", "Product Descriptions", "#includes"), ("i-search", "Keyword-Led Briefs", "#includes"), ("i-message", "Social Captions", "#includes")],
     "facts": [("Service", "SEO content writing"), ("Formats", "Blogs, web pages, product descriptions, social captions"), ("Included", "Keyword research, meta data, internal link suggestions"), ("Quality", "Human-written, edited and plagiarism-checked"), ("Pricing", "Per piece or monthly content plans — quoted on request")],
-    "packages": None,
+    "packages": {
+        "heading": "Our Content Writing Packages", "unit": "one-off",
+        "note": "One-off prices per order. Need content every month? Ask about the Custom Plan.",
+        "items": [
+            {"id": "cw-starter", "name": "Starter Pack", "price": 49, "tagline": "One page, done properly", "features": ["Up to 500 words", "1 Page (Website, Blog, or Product)", "SEO Optimization", "1 Revision", "Delivery in 3 Days"]},
+            {"id": "cw-basic", "name": "Basic Boost", "price": 89, "tagline": "Two pages with keyword targeting", "features": ["Up to 1,000 words", "2 Pages", "Keyword Integration", "Meta Titles & Descriptions", "2 Revisions", "Delivery in 3–4 Days"]},
+            {"id": "cw-standard", "name": "Standard Plan", "price": 149, "featured": True, "tagline": "Core website pages rewritten", "features": ["Up to 2,000 words", "3–4 Pages (Home, About, Services, etc.)", "SEO Optimization + Internal Linking", "Meta Tags & CTA Included", "3 Revisions", "Delivery in 5 Days"]},
+            {"id": "cw-business", "name": "Business Pro", "price": 229, "tagline": "A full site of persuasive copy", "features": ["Up to 3,500 words", "5–7 Pages", "Advanced SEO + Competitor Research", "Content Strategy Advice", "Unlimited Revisions", "Delivery in 7 Days"]},
+            {"id": "cw-ecommerce", "name": "Ecommerce Pack", "price": 399, "tagline": "Product copy that converts", "features": ["10 Product Descriptions", "Homepage + Category Page", "SEO-Friendly Copywriting", "Bullet Point Features", "Brand-Tone Matching", "Delivery in 7 Days"]},
+            {"id": "cw-custom", "name": "Custom Plan", "price": 649, "tagline": "Ongoing content marketing", "features": ["Content strategy consultation", "Unlimited pages or blog posts", "Full content marketing plan", "Flexible word count & delivery time", "Ideal for long-term or ongoing work"]},
+        ],
+    },
     "process_heading": "Our Content Writing Process",
     "process": [
         ("i-search", "Research", "We research your keywords, audience questions and the pages already ranking for them."),
@@ -375,7 +400,18 @@ SERVICES["ppc"] = {
     "checklist": ["Google Ads Search & Shopping", "Performance Max Campaigns", "Facebook & Instagram Ads", "TikTok Ads", "Keyword & Audience Research", "Ad Copy & Creative Testing", "Conversion Tracking (GA4 & Pixels)", "Landing Page Optimisation", "Negative Keywords & Waste Control", "Clear Monthly Reporting"],
     "features": [("i-search", "Google Ads", "#includes"), ("i-users", "Meta & TikTok Ads", "#includes"), ("i-target", "Conversion Tracking", "#includes"), ("i-trend", "Bid & Budget Management", "#includes"), ("i-clipboard", "PPC Audits", "#includes")],
     "facts": [("Service", "PPC / paid ads management"), ("Platforms", "Google Ads, Meta, TikTok, Microsoft Ads"), ("Included", "Setup, tracking, ad copy, bid & budget management, reporting"), ("Ad spend", "Paid directly to the platform — you keep account ownership"), ("Pricing", "Monthly management fee — quoted on request")],
-    "packages": None,
+    "packages": {
+        "heading": "Our PPC Management Packages", "unit": "/month",
+        "note": "Management fees per month. Ad spend is paid directly to Google, Meta or TikTok and is not included. The PPC Audit is a one-off fee.",
+        "items": [
+            {"id": "ppc-audit", "name": "PPC Audit", "price": 99, "unit": "one-off", "tagline": "Find wasted spend in your account", "features": ["Full Google or Meta Ads account audit", "Wasted spend & search term review", "Conversion tracking check", "Prioritised action plan", "30-minute walkthrough call", "Delivery in 3–5 days"]},
+            {"id": "ppc-starter", "name": "Starter PPC", "price": 249, "tagline": "Launch your first profitable campaign", "features": ["1 platform (Google Ads)", "Ad spend up to $2,000/month", "Up to 2 campaigns", "Keyword research & ad copy", "Conversion tracking setup", "Monthly performance report"]},
+            {"id": "ppc-growth", "name": "Growth PPC", "price": 449, "featured": True, "tagline": "Search + social working together", "features": ["2 platforms (Google + Meta)", "Ad spend up to $5,000/month", "Up to 4 campaigns", "A/B ad copy & creative testing", "Landing page recommendations", "Bi-weekly optimisation", "Monthly performance report"]},
+            {"id": "ppc-advanced", "name": "Advanced PPC", "price": 799, "tagline": "Multi-channel with retargeting", "features": ["3 platforms (Google, Meta, TikTok or Microsoft)", "Ad spend up to $10,000/month", "Up to 8 campaigns", "Remarketing & audience building", "Performance Max campaigns", "Weekly optimisation", "GA4 + pixel conversion tracking"]},
+            {"id": "ppc-ecommerce", "name": "E-commerce PPC", "price": 1199, "tagline": "Shopping and ROAS-focused growth", "features": ["Google Shopping & Performance Max", "Product feed optimisation", "Dynamic remarketing", "Ad spend up to $20,000/month", "ROAS & revenue tracking", "Weekly performance report"]},
+            {"id": "ppc-custom", "name": "Custom PPC", "price": None, "tagline": "High spend, multiple markets", "features": ["Unlimited ad spend & campaigns", "Multi-market & multi-language", "Dedicated PPC strategist", "Custom reporting dashboard", "Creative production support"]},
+        ],
+    },
     "process_heading": "Our PPC Process",
     "process": [
         ("i-clipboard", "Audit & Tracking", "We audit any existing accounts and set up accurate conversion tracking before spending a penny."),
@@ -433,7 +469,18 @@ SERVICES["social-media-marketing"] = {
     "checklist": ["Social Media Strategy", "Content Calendars", "Graphics & Short-Form Video", "Captions & Hashtag Research", "Scheduling & Posting", "Community Management", "Facebook & Instagram Ads", "LinkedIn for B2B", "TikTok Content", "Monthly Analytics Reports"],
     "features": [("i-clipboard", "Strategy & Calendars", "#includes"), ("i-pen", "Content Creation", "#includes"), ("i-message", "Community Management", "#includes"), ("i-mega", "Paid Social Ads", "#includes"), ("i-chart", "Analytics & Reporting", "#includes")],
     "facts": [("Service", "Social media marketing & management"), ("Platforms", "Instagram, Facebook, LinkedIn, TikTok"), ("Included", "Strategy, content creation, posting, community management"), ("Add-on", "Paid social campaigns"), ("Pricing", "Monthly plans — quoted on request")],
-    "packages": None,
+    "packages": {
+        "heading": "Our Social Media Monthly Packages", "unit": "/month",
+        "note": "Prices are per month. Ad spend for paid campaigns is paid directly to the platform.",
+        "items": [
+            {"id": "smm-basic", "name": "Basic", "price": 199, "tagline": "One platform, consistently", "features": ["1 Platform (e.g., Facebook or Instagram)", "8 Posts/Month", "1 Campaign/Month", "Basic targeting", "Basic community management", "Monthly Overview", "Email Support"]},
+            {"id": "smm-standard", "name": "Standard", "price": 399, "featured": True, "tagline": "Two platforms working together", "features": ["2 Platforms (e.g., Facebook and Instagram)", "16 Posts/Month", "2 Campaigns/Month", "Advanced targeting", "Intermediate community management", "Email & Chat Support"]},
+            {"id": "smm-advanced", "name": "Advanced", "price": 599, "tagline": "Add LinkedIn and retargeting", "features": ["3 Platforms (e.g., Facebook, Instagram, LinkedIn)", "24 Posts/Month", "3 Campaigns/Month", "Advanced + Retargeting", "Advanced community management", "Email, Chat & Phone Support"]},
+            {"id": "smm-pro", "name": "Pro", "price": 799, "tagline": "Four platforms, proactive growth", "features": ["4 Platforms (e.g., Facebook, Instagram, LinkedIn, X)", "30 Posts/Month", "5 Campaigns/Month", "Premium + Retargeting", "Advanced + Proactive Community Management", "Dedicated Account Rep"]},
+            {"id": "smm-premium", "name": "Premium", "price": 1199, "tagline": "Five platforms incl. TikTok", "features": ["5 Platforms (e.g., Facebook, Instagram, LinkedIn, X, TikTok)", "40 Posts/Month", "7 Campaigns/Month", "Full Targeting Options", "Full Community Management", "Dedicated Account Rep"]},
+            {"id": "smm-enterprise", "name": "Enterprise", "price": 1699, "tagline": "Every major platform, always on", "features": ["6+ Platforms (all major incl. YouTube and Pinterest)", "60+ Posts/Month", "10+ Campaigns/Month", "Full Targeting + AI", "Full 24/7 Engagement Management", "Daily + Custom Reports", "24/7 Dedicated Support"]},
+        ],
+    },
     "process_heading": "Our Social Media Process",
     "process": [
         ("i-search", "Audit & Strategy", "We review your channels and competitors and set goals, platforms and content pillars."),
@@ -472,9 +519,20 @@ SERVICE_ORDER = ["website-development", "content-writing", "ppc", "link-building
 # --------------------------------------------------------------------------------------------
 HOME_FAQS = [
     ("What does RankRight Media do?", "<p>RankRight Media is a UK-based digital marketing agency offering <a href=\"/search-engine-optimization/\">SEO</a>, <a href=\"/link-building-services/\">link building</a>, <a href=\"/website-development/\">website development</a>, <a href=\"/content-writing/\">content writing</a>, <a href=\"/ppc-pay-per-click/\">PPC advertising</a> and <a href=\"/social-media-marketing/\">social media marketing</a> — all under one roof, with clear packages and monthly reporting.</p>"),
-    ("How much does SEO cost with RankRight Media?", "<p>Monthly SEO packages start at <strong>€299/month</strong> (Basic SEO) and run to <strong>€1,899/month</strong> (E-commerce SEO), with a Custom SEO plan for larger projects. Link building packages start from <strong>€3.49</strong>.</p>"),
+    ("How much does SEO cost with RankRight Media?", "<p>Monthly SEO packages start at <strong>$299/month</strong> (Basic SEO) and run to <strong>$1,899/month</strong> (E-commerce SEO), with a Custom SEO plan for larger projects. Link building packages start from <strong>$3.49</strong>.</p>"),
     ("How do I get started?", "<p>Choose a package, check out securely, then complete a short form about your business, goals and preferences. Our team starts work straight away and keeps you updated at every step. Prefer to talk first? Call <a href=\"tel:+447446254421\">+44 7446 254421</a>.</p>"),
     ("Do you work with small businesses?", "<p>Yes. We work with everyone from local shops and start-ups to national brands. Our packages are designed so small businesses can start affordably and scale up as results come in.</p>"),
     ("Are your SEO and link building methods safe?", "<p>Yes. We use white-hat methods that follow Google’s guidelines: manual outreach, real niche-relevant websites and genuinely useful content. No link farms, no automated spam.</p>"),
     ("Will I get reports on progress?", "<p>Yes. Every SEO client receives a clear monthly report on rankings, traffic and what we did; E-commerce SEO clients get weekly reports with ROI tracking. Link building orders include a placement report with live URLs.</p>"),
+]
+
+
+# General FAQs — SOURCE: WP /faq/ page (questions verbatim; answers expanded)
+GENERAL_FAQS = [
+    ("What digital marketing services do you offer?", "<p>We offer a full range of services including SEO, PPC (pay-per-click), social media marketing, link building, website development and content writing — all customised to suit your business goals, in the UK and internationally.</p>"),
+    ("Are your services suitable for small businesses in the UK?", "<p>Yes. Our packages start small — content from $49, link building from $3.49 and SEO from $299/month — so start-ups and local businesses can begin affordably and scale as results come in.</p>"),
+    ("How long does it take to see SEO results?", "<p>Most websites see first ranking movements within 4–8 weeks of on-page and technical fixes. Meaningful traffic and lead growth usually builds over 3–6 months, depending on competition and how many keywords you target.</p>"),
+    ("What makes your PPC services different?", "<p>We set up accurate conversion tracking before spending a penny, build tightly themed campaigns around high-intent keywords and audiences, and report on cost per lead and return — not just clicks. You keep ownership of your ad accounts.</p>"),
+    ("Can I choose only one service, like Social Media Marketing?", "<p>Absolutely. Every service has its own packages, so you can buy just social media marketing, just SEO or just content. Many clients start with one service and add others later.</p>"),
+    ("Do you work with clients outside the UK?", "<p>Yes. We’re based in Ilford, England and work with businesses worldwide. Prices are shown in US dollars and all communication and reporting happens online.</p>"),
 ]

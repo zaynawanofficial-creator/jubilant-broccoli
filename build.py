@@ -502,7 +502,7 @@ def page_home():
     <p class="lead">Looking for a trusted team to grow your business online? At RankRight Media, we turn your digital dreams into real results. Whether you’re just starting out or want to take your business to the next level, our UK-based experts are here to help.</p>
     <div class="btn-row"><a class="btn btn-primary" href="/contact-us/">Get started {icon('i-arrow')}</a><a class="btn btn-ghost" href="/search-engine-optimization/#pricing">View SEO packages</a></div>
     <ul class="trust-row">
-      <li>{stars()}<span><strong>{esc(S['rating_display'])}/5</strong> client rating</span></li>
+      <li>{icon('i-award')}<span><strong>{C.STATS[0]['value']}{esc(C.STATS[0]['suffix'])}</strong> projects delivered</span></li>
       <li>{icon('i-shield')}White-hat, Google-safe</li>
       <li>{icon('i-pin')}UK-based support</li>
     </ul>
@@ -578,7 +578,7 @@ def page_home():
     <div class="b b-support reveal d2"><span class="ring">{icon('i-phone')}</span><h3>Premium Support</h3><a class="phone" href="tel:{S['phone_e164']}">{esc(S['phone_display'])}</a>
       <p>Get fast, priority assistance from our expert team whenever you need it. We’re here to solve your queries quickly and keep your projects running smoothly.</p>
       <a class="btn btn-dark btn-sm" href="tel:{S['phone_e164']}">Call now</a></div>
-    <div class="b b-rating reveal"><div class="score"><b>{esc(S['rating_display'])}+</b>{stars()}</div><div><h3>Client Ratings</h3><p>With a {esc(S['rating_display'])}+ rating, our clients consistently applaud our reliability, creativity, and transparent approach.</p><a class="text-link" href="#reviews">Read client reviews {icon('i-arrow')}</a></div></div>
+    <div class="b b-rating reveal"><div class="score"><b>10+</b><span class="yrs">years</span></div><div><h3>Founder-Led Expertise</h3><p>Every project is overseen by our founder, Zain Ul Abdeen — 10+ years in SEO, website development and eCommerce strategy.</p><a class="text-link" href="/about-us/#team">Meet the team {icon('i-arrow')}</a></div></div>
     <div class="b b-grow reveal d1"><h3>Designed to Grow With You</h3><p>Whether you’re just starting or scaling fast, our web solutions are responsive, flexible, and future-ready.</p>
       <a class="btn btn-dark btn-sm" href="/website-development/">Learn more {icon('i-arrow')}</a></div>
   </div>
@@ -624,7 +624,7 @@ def page_about():
                                 **({"image": abs_url("/assets/img/" + m["photo"])} if m.get("photo") else {}),
                                 **({"sameAs": [m["linkedin"]]} if m.get("linkedin") else {})})
         team_html = f"""<section class="section" id="team" aria-labelledby="team-h"><div class="container">
-<div class="section-head center"><span class="eyebrow">Meet the team</span><h2 id="team-h">The People Behind RankRight Media</h2></div>
+<div class="section-head center"><span class="eyebrow">Meet the team</span><h2 id="team-h">Meet the Experts Behind Your Success</h2><p class="lead">We’re a small, dedicated team of digital specialists — each focused on what we do best, working together to deliver real results for our clients.</p></div>
 <div class="team">{''.join(cards)}</div></div></section>"""
     else:
         WARNINGS.append("/about-us/: TEAM is empty in content.py — founders/team section (and Person schema) is hidden until added")
@@ -643,6 +643,22 @@ def page_about():
 </div></section>
 
 {team_html}
+
+<section class="section-tight"><div class="container vvm">
+  <div class="value-card reveal"><span class="eyebrow">Our value</span><h2>What Makes Us Different</h2>
+    <ul class="value-list">
+      <li>{icon('i-message')}<span><strong>We Listen First:</strong> Every business is unique. We take the time to understand your goals before we offer a plan.</span></li>
+      <li>{icon('i-users')}<span><strong>Real People, Real Support:</strong> No bots or long waits. Just friendly support whenever you need it.</span></li>
+      <li>{icon('i-target')}<span><strong>Custom Strategies:</strong> No one-size-fits-all packages. We create custom solutions that actually work.</span></li>
+      <li>{icon('i-trend')}<span><strong>Results That Matter:</strong> We don’t just chase likes or clicks — we focus on traffic, leads, and growth.</span></li>
+    </ul><a class="btn btn-primary" href="/contact-us/">Learn more {icon('i-arrow')}</a></div>
+  <div class="vvm-stack">
+    <div class="tone tone-violet reveal d1"><span class="eyebrow">Our story</span><h3>Making digital marketing accessible to everyone.</h3>
+      <p>RankRight Media started with one goal in mind: to make powerful digital marketing accessible to everyone. We saw too many businesses struggling with overcomplicated strategies and overpriced services, so we decided to do things differently — with transparency, real results, and a personal touch. Today, we’re proud to support businesses across the UK and beyond with services that truly make a difference.</p></div>
+    <div class="tone tone-pink reveal d2"><span class="eyebrow">Let’s work together</span><h3>Let’s Build Something Great Together</h3>
+      <p>We’re not just here to deliver services — we’re here to build long-term relationships. Your success is our top priority, and we treat your business like our own. Want to work with a team that truly cares? Get started today and let RankRight Media help your business reach its full potential.</p></div>
+  </div>
+</div></section>
 
 <section class="section-tight"><div class="container grid-2">
   <div class="tone tone-violet reveal"><span class="eyebrow">Our vision</span><h2 class="h3">Elevate Your Digital Presence with RankRight Media Expertise.</h2>

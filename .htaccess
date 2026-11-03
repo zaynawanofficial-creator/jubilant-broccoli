@@ -1,0 +1,8 @@
+# This repository is deployed into wp-content/plugins/rankright-site/.
+# Only theme assets and imported media need to be web-accessible; block everything else.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(public|src|\.git)(/|$) - [F,L]
+RewriteRule \.(py|md|json|php|txt|sh|yml|yaml|lock)$ - [F,L]
+</IfModule>
+Options -Indexes
