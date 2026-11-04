@@ -167,8 +167,24 @@ final class SBT_Setup {
 
 		if ( ! empty( $o['posts'] ) ) {
 			foreach ( $m['posts'] as $p ) {
-				if ( get_page_by_path( $p['slug'], OBJECT, 'post' ) ) {
-					$log[] = "KEEP  article {$p['slug']} exists";
+				$existing_post = get_page_by_path( $p['slug'], OBJECT, 'post' );
+				if ( $existing_post ) {
+					if ( ! empty( $o['overwrite'] ) && get_post_meta( $existing_post->ID, self::META, true ) ) {
+						wp_update_post(
+							array(
+								'ID'           => $existing_post->ID,
+								'post_title'   => $p['title'],
+								'post_excerpt' => $p['excerpt'],
+								'post_content' => wp_slash( self::pattern( $p['pattern'] ) ),
+							)
+						);
+						$cat = term_exists( $p['category'], 'category' );
+						$cat = $cat ? (int) $cat['term_id'] : (int) wp_insert_term( $p['category'], 'category' )['term_id'];
+						wp_set_post_categories( $existing_post->ID, array( $cat ) );
+						$log[] = "UPDATE article {$p['slug']}";
+					} else {
+						$log[] = "KEEP  article {$p['slug']} exists";
+					}
 					continue;
 				}
 				$cat = term_exists( $p['category'], 'category' );

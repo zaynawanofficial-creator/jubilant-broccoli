@@ -1,5 +1,16 @@
 # INSTALL — put the SEO Booster site live on seobooster.uk
 
+## Updating to theme 1.3.0 + plugin 0.5.0 (4 Nov 2026)
+1. **Backup** in Hostinger.
+2. **Plugin:** upload `seo-booster-core.zip` → **Replace current with uploaded**.
+3. **Import:** Tools → **SEO Booster catalog** → untick Dry run. Tick **Refresh package images** to get the new visuals. Click **Run import**. This adds 13 new services with 53 packages, plus the Canva Brand Kit package; 116 packages in total.
+4. **Theme:** upload `seo-booster-theme.zip` → **Replace current with uploaded**.
+5. Appearance → **SEO Booster Setup** → tick **Overwrite** → **Build the site**. This creates the 13 new service pages, rebuilds the existing pages, updates the 3 existing articles and adds 4 new ones with covers.
+6. **Clear every cache:** LiteSpeed Cache → Toolbox → **Purge All**. Also purge **CSS/JS optimised files** and **UCSS** if those are enabled. On your phone, clear the browser cache or test in a private tab.
+   - Your phone screenshots showed an old stylesheet on product, cart and checkout pages. The theme now versions its CSS by file date and inlines the critical mobile-header rules, but purging is still needed once.
+7. **If the header or footer doesn't change:** Appearance → Editor → Patterns → Template parts → Header/Footer → ⋮ → **Reset**.
+
+
 ## Updating to theme 1.2.0 + plugin 0.4.0 (3 Nov 2026)
 1. **Backup** in Hostinger.
 2. **Plugin:** upload `seo-booster-core.zip` → **Replace current with uploaded**. Brings the compact package picker and SEO title tags.

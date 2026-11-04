@@ -8,18 +8,20 @@
 
 <!-- wp:post-title {"level":1} /-->
 
-<!-- wp:group {"className":"sb-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
-<div class="wp-block-group sb-meta"><!-- wp:post-author-name {"isLink":false} /-->
-
-<!-- wp:post-date /-->
-
-<!-- wp:post-terms {"term":"category"} /--></div>
-<!-- /wp:group --></div>
+<!-- wp:shortcode -->
+[sb_byline]
+<!-- /wp:shortcode --></div>
 <!-- /wp:group -->
 
 <!-- wp:post-featured-image {"aspectRatio":"16/9","className":"sb-cover"} /-->
 
 <!-- wp:post-content {"className":"sb-prose","layout":{"type":"constrained"}} /-->
+
+<!-- wp:group {"className":"sb-after-post","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sb-after-post"><!-- wp:shortcode -->
+[sb_author]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
 
 <!-- wp:group {"className":"sb-article-cta","layout":{"type":"constrained"}} -->
 <div class="wp-block-group sb-article-cta"><!-- wp:heading {"level":2} -->

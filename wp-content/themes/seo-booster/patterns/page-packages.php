@@ -24,7 +24,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
-<p class="sb-lead">Every package in one place. Prices are in [sb_currency] and every card shows what is included, the turnaround and the revisions.</p>
+<p class="sb-lead">Every package in one place, with what is included, the turnaround and the revisions. Pick a package, add your project details and check out in minutes.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"className":"sb-jump"} -->
@@ -54,6 +54,58 @@
 
 <!-- wp:list-item -->
 <li><a href="#graphic-design">Graphic Design &amp; Branding</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#local-seo">Local SEO</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#monthly-seo">Monthly SEO Services</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#seo-consultancy">SEO Consultancy</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#ecommerce-seo">Ecommerce SEO</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#on-page-seo">On-Page SEO</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#white-label-seo">White Label SEO</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#ai-seo">AI SEO</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#website-migration">Website Migration</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#ecommerce-website-development">Ecommerce Website Development</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#ppc-management">PPC Management</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#facebook-ads">Facebook Ads Management</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#tiktok-ads">TikTok Ads</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#social-media-management">Social Media Management</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:column -->
@@ -217,6 +269,292 @@
 
 <!-- wp:paragraph {"className":"sb-card__more"} -->
 <p class="sb-card__more"><a href="/services/graphic-design/">More about Graphic Design &amp; Branding →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"local-seo","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="local-seo" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Local SEO</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Google Business Profile optimisation, local citations and location pages that help nearby customers find you.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="local-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/local-seo/">More about Local SEO →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"monthly-seo","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="monthly-seo" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Monthly SEO Services</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Managed SEO each month: technical fixes, content, links and a clear report, with no long contract.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="monthly-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/monthly-seo/">More about Monthly SEO Services →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"seo-consultancy","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="seo-consultancy" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">SEO Consultancy</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">One-to-one SEO advice: strategy calls, roadmaps and an expert to sense-check your plans.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="seo-consultancy"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/seo-consultancy/">More about SEO Consultancy →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"ecommerce-seo","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="ecommerce-seo" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Ecommerce SEO</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">SEO for WooCommerce and Shopify stores: product and category optimisation, technical fixes and schema.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="ecommerce-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/ecommerce-seo/">More about Ecommerce SEO →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"on-page-seo","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="on-page-seo" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">On-Page SEO</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Page-by-page optimisation: titles, headings, content, internal links and schema for the pages that matter.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="on-page-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/on-page-seo/">More about On-Page SEO →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"white-label-seo","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="white-label-seo" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">White Label SEO</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Unbranded SEO fulfilment for agencies and freelancers: audits, links, local SEO and monthly plans.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="white-label-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/white-label-seo/">More about White Label SEO →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"ai-seo","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="ai-seo" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">AI SEO</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Get found in AI answers: optimisation for Google AI Overviews, ChatGPT and other AI search tools.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="ai-seo"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/ai-seo/">More about AI SEO →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"website-migration","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="website-migration" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Website Migration</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Move to a new host, domain or platform without losing rankings: redirects, checks and monitoring.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="website-migration"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/website-migration/">More about Website Migration →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"ecommerce-website-development","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="ecommerce-website-development" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Ecommerce Website Development</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">WooCommerce and Shopify stores built to sell: product setup, payments, shipping and SEO basics.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="ecommerce-website-development"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/ecommerce-website-development/">More about Ecommerce Website Development →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"ppc-management","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="ppc-management" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">PPC Management</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Google Ads audits, campaign setup and monthly PPC management focused on profitable conversions.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="ppc-management"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/ppc-management/">More about PPC Management →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"facebook-ads","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="facebook-ads" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Facebook Ads Management</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Facebook and Instagram ads: audits, campaign setup, ad creatives and monthly management.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="facebook-ads"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/facebook-ads/">More about Facebook Ads Management →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"tiktok-ads","align":"full","className":"sb-section","layout":{"type":"constrained"}} -->
+<section id="tiktok-ads" class="wp-block-group alignfull sb-section"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">TikTok Ads</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">TikTok ads setup, hooks and scripts, and monthly management for brands reaching younger audiences.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="tiktok-ads"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/tiktok-ads/">More about TikTok Ads →</a></p>
+<!-- /wp:paragraph --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"section","anchor":"social-media-management","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
+<section id="social-media-management" class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head"} -->
+<div class="wp-block-group alignwide sb-section-head"><!-- wp:heading -->
+<h2 class="wp-block-heading">Social Media Management</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-lead"} -->
+<p class="sb-lead">Organic social media growth: content calendars, posts and captions, and monthly management.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide"><!-- wp:shortcode -->
+[sb_packages service="social-media-management"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more"><a href="/services/social-media-management/">More about Social Media Management →</a></p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 

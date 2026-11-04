@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">WordPress website design for small businesses, at a fixed price</h1>
+<h1 class="wp-block-heading">Website design and development services at a fixed price</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -134,7 +134,7 @@
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
-<p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
+<p class="sb-center sb-muted">Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 

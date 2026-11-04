@@ -57,7 +57,9 @@ check( '49' === $by['off-page-seo-premium-links-3']->price && '1' === $by['off-p
 check( str_contains( $by['graphic-design-branding-1']->meta['_sb_deliverables'], '2 logo concepts' ) && ! str_contains( $by['graphic-design-branding-1']->meta['_sb_deliverables'], 'Full Brand' ), 'branding cards get their own deliverables' );
 $q = $by['seo-audit-audit-packages-3'];
 check( 'publish' === $q->status && '' === $q->price && 'quote' === $q->meta['_sb_pricing_model'], 'quote package published without a price' );
-check( 'draft' === $by['ppc-management-ppc-packages-1']->status, 'planned services stay draft' );
+check( 'draft' === $by['analytics-and-tracking-tracking-setup-1']->status, 'planned services stay draft' );
+check( 'publish' === $by['local-seo-local-seo-packages-1']->status && '1' === $by['local-seo-local-seo-packages-2']->meta['_sb_featured'], 'new service published with featured tier from by_sku' );
+check( str_contains( $by['graphic-design-branding-5']->meta['_sb_deliverables'], 'Canva' ), 'extra Canva package gets its own deliverables' );
 check( 'draft' === $by['marketing-automation-automation-packages-3']->status, 'draft quote package stays draft' );
 foreach ( $by as $sku => $p ) {
 	if ( 'publish' === $p->status && 'fixed' === $p->meta['_sb_pricing_model'] && ! ( (float) $p->price > 0 ) ) { check( false, "published fixed package without price: $sku" ); }

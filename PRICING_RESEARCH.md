@@ -60,3 +60,19 @@ All prices are editable in wp-admin, so no code change is needed to adjust them.
 - https://fatlabwebsupport.com/blog/website-maintenance/wordpress-care-plan-pricing/
 - https://www.manypixels.co/blog/post/social-media-design-cost
 - https://ddiy.co/graphic-design-pricing-list/
+
+## New services (4 Nov 2026), same budget band
+- **Local SEO:** Google Business Profile Optimisation $79, Local SEO Starter $149, Local SEO Growth $299, Local SEO Management – 1 Month $249
+- **Monthly SEO Services:** SEO Starter – 1 Month $199, SEO Growth – 1 Month $399, SEO Pro – 1 Month $699, SEO Strategy Roadmap $149
+- **SEO Consultancy:** 60-Minute SEO Consultation $79, SEO Strategy Session $149, 90-Day SEO Roadmap $299, SEO Consultant – 1 Month $499
+- **Ecommerce SEO:** Product Page Optimisation (10 products) $99, Category Page Optimisation (5 categories) $129, Store SEO Setup (Shopify or WooCommerce) $249, Ecommerce SEO – 1 Month $399
+- **On-Page SEO:** On-Page SEO – 1 Page $29, On-Page SEO – 5 Pages $119, On-Page SEO – 10 Pages $219, On-Page SEO – 25 Pages $499
+- **White Label SEO:** White Label SEO Audit $99, White Label Local SEO Pack $199, White Label SEO – 1 Month (Starter) $299, White Label SEO – 1 Month (Growth) $599
+- **AI SEO:** AI Search Visibility Check $79, Entity & Schema Setup $149, AI-Ready Content Optimisation (5 pages) $199, AI SEO – 1 Month $349
+- **Website Migration:** Migration Audit & Plan $99, WordPress Host Migration $149, SEO Website Migration (up to 100 pages) $399, Large SEO Migration (up to 500 pages) $799
+- **Ecommerce Website Development:** Product Upload (25 products) $49, Shopify Starter Store $549, WooCommerce Starter Store $599, Growth Store (up to 100 products) $999
+- **PPC Management:** Google Ads Audit $99, Campaign Setup $199, PPC Management – 1 Month (Starter) $299, PPC Management – 1 Month (Growth) $499
+- **Facebook Ads Management:** Facebook Ads Audit $79, Facebook Ads Campaign Setup $179, Ad Creative Pack (5 ads) $99, Facebook Ads Management – 1 Month $299
+- **TikTok Ads:** TikTok Ads Audit $79, TikTok Hooks & Scripts (5) $69, TikTok Ads Campaign Setup $199, TikTok Ads Management – 1 Month $299
+- **Social Media Management:** Content Calendar (1 month) $99, 12 Social Posts + Captions $149, Social Management – 1 Month (Starter) $249, Social Management – 1 Month (Growth) $449
+- **Graphic design:** Canva Brand Kit Setup $69

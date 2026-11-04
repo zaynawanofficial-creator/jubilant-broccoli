@@ -9,44 +9,68 @@
  */
 ?>
 <!-- wp:paragraph -->
-<p>A slow site loses visitors and sales, and Core Web Vitals are part of how Google assesses page experience. Before paying for optimisation, work through this checklist. Many sites get much faster from the first few items alone.</p>
+<p>A slow site loses visitors before they read a word, and page experience is one of the signals Google uses. The good news: most WordPress sites get noticeably faster from a handful of simple fixes. Work through this checklist before paying for optimisation. You may not need to.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:group {"className":"sb-panel sb-takeaways"} -->
+<div class="wp-block-group sb-panel sb-takeaways"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Key takeaways</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"sb-ticks"} -->
+<ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
+<li>Measure first with PageSpeed Insights and note LCP, INP and CLS.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Images, caching and unused plugins cause most slow WordPress sites.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Real-user data matters more than a perfect lab score.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If a cached page is still slow, hosting may be the bottleneck.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Measure first</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Test your homepage and one key page in Google PageSpeed Insights. Note the Largest Contentful Paint (LCP), Interaction to Next Paint (INP) and Cumulative Layout Shift (CLS). Google's "good" thresholds are LCP up to 2.5 seconds, INP up to 200 milliseconds and CLS up to 0.1.</p>
+<p>Test your homepage and one important page in <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a>. Note the three Core Web Vitals: Largest Contentful Paint (LCP), Interaction to Next Paint (INP) and Cumulative Layout Shift (CLS). Google's "good" thresholds are an LCP of 2.5 seconds or less, INP of 200 milliseconds or less and CLS of 0.1 or less (<a href="https://web.dev/articles/vitals" target="_blank" rel="noopener">web.dev: Web Vitals</a>).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">The checklist</h2>
+<h2 class="wp-block-heading">The 12-point checklist</h2>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Compress images.</strong> Serve WebP or AVIF and resize images to the size they are displayed at.</li>
+<li><strong>Compress images.</strong> Serve WebP or AVIF, and resize images to the size they are actually displayed.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Lazy-load below-the-fold images</strong>, but never the main hero image, which should load first.</li>
+<li><strong>Lazy-load images below the fold</strong>, but never the main hero image. That one should load first.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Use page caching.</strong> Most hosts offer it, or use a reputable caching plugin.</li>
+<li><strong>Turn on page caching.</strong> Most good hosts include it. Otherwise use one reputable caching plugin, not three.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Remove unused plugins.</strong> Deactivate and delete anything you do not need.</li>
+<li><strong>Delete unused plugins.</strong> Deactivated plugins are a security risk too.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Check your theme and builder.</strong> Heavy page builders can add a lot of CSS and JavaScript to every page.</li>
+<li><strong>Check your theme and page builder.</strong> Heavy builders can add large amounts of CSS and JavaScript to every page.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Limit third-party scripts</strong> such as chat widgets, trackers and embedded feeds. Each one adds load time.</li>
+<li><strong>Limit third-party scripts.</strong> Chat widgets, trackers and embedded feeds each add load time.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -54,11 +78,11 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Reserve space for images and embeds</strong> so the layout does not jump as the page loads (CLS).</li>
+<li><strong>Reserve space for images and embeds</strong> so the layout does not jump while loading, which is the main cause of poor CLS.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Update PHP</strong> to a currently supported version. It is free speed.</li>
+<li><strong>Update PHP</strong> to a version WordPress currently recommends (<a href="https://wordpress.org/about/requirements/" target="_blank" rel="noopener">WordPress requirements</a>). It is often free speed.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -70,7 +94,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review hosting.</strong> If the server response time (TTFB) is slow on a cached page, the host may be the bottleneck.</li>
+<li><strong>Review your hosting.</strong> If server response time stays slow on a cached page, the host is likely the bottleneck.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -79,9 +103,67 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>PageSpeed lab scores are useful for testing, but Google uses data from real visitors (the Chrome UX Report) where available. A perfect lab score is not required. Aim for real users to experience "good" vitals.</p>
+<p>PageSpeed lab scores are useful for testing changes, but Google uses data from real visitors where it has enough of it. A perfect 100 in the lab is not required. What matters is that real users experience "good" Core Web Vitals on your important pages.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:heading -->
+<h2 class="wp-block-heading">When to get help</h2>
+<!-- /wp:heading -->
+
 <!-- wp:paragraph -->
-<p>Need help? Our <a href="/services/technical-seo/">Core Web Vitals optimisation</a> includes a backup, the fixes and an honest before/after report, and our <a href="/services/website-maintenance/">maintenance plans</a> keep a site fast after updates.</p>
+<p>If you have worked through the list and pages are still slow, the cause is usually deeper: a heavy theme, a plugin conflict, unoptimised database queries or underpowered hosting. That is where our <a href="/services/technical-seo/">Core Web Vitals optimisation</a> comes in, with a backup first and an honest before/after report. To keep a site fast after updates, see our <a href="/services/website-maintenance/">website maintenance plans</a>.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A simple before-and-after routine</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Before changing anything, take a full backup and record the PageSpeed results for three key pages. Make one change at a time, clear your cache and test again. Keeping a short log of what you changed and what happened means you can undo anything that breaks the site, and you will learn which fixes actually made a difference on your setup.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"sb-faq","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sb-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>What is a good PageSpeed score for WordPress?</summary><!-- wp:paragraph -->
+<p>Aim for "good" Core Web Vitals for real users rather than a perfect lab score. Many fast, successful sites score in the 70s or 80s in the lab.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Do caching plugins conflict with each other?</summary><!-- wp:paragraph -->
+<p>Yes. Run one caching solution, either your host's or a single plugin, never several at once.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Will a new theme make my site faster?</summary><!-- wp:paragraph -->
+<p>Sometimes, but test first. A lightweight theme helps most when your current theme or page builder loads a lot of unused code.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How often should I check site speed?</summary><!-- wp:paragraph -->
+<p>After every major update, new plugin or design change, and at least monthly for important pages.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-inline-cta"} -->
+<div class="wp-block-group sb-inline-cta"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Want it fixed for you?</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>We optimise images, caching, scripts and fonts, then show you the before and after.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/services/technical-seo/#packages">See Core Web Vitals packages</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->

@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Off-page SEO and link building, done by hand and proven with live URLs</h1>
+<h1 class="wp-block-heading">Link building services and off-page SEO, done by hand and proven with live URLs</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-lead"} -->
@@ -138,7 +138,7 @@
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"sb-center sb-muted"} -->
-<p class="sb-center sb-muted">Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
+<p class="sb-center sb-muted">Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 
@@ -478,7 +478,7 @@
 <!-- wp:group {"className":"sb-faq","layout":{"type":"constrained"}} -->
 <div class="wp-block-group sb-faq"><!-- wp:details -->
 <details class="wp-block-details"><summary>What is the difference between citations, profile links and guest posts?</summary><!-- wp:paragraph -->
-<p>Citations are business listings with your name, address and phone, mainly a local SEO trust signal. Profile links come from accounts on established platforms. Guest posts are articles on other websites with a contextual link to you. Our guide <a href="/insights/citations-vs-profile-backlinks/">explains when each one helps</a>.</p>
+<p>Citations are business listings with your name, address and phone, mainly a local SEO trust signal. Profile links come from accounts on established platforms. Guest posts are articles on other websites with a contextual link to you. Our guide <a href="/citations-vs-profile-backlinks/">explains when each one helps</a>.</p>
 <!-- /wp:paragraph --></details>
 <!-- /wp:details -->
 

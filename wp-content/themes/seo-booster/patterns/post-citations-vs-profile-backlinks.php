@@ -9,19 +9,43 @@
  */
 ?>
 <!-- wp:paragraph -->
-<p>"Citations" and "profile backlinks" are often sold together, and many sellers use the words interchangeably. They do different jobs, though. Knowing the difference helps you buy the right thing and avoid paying for links that do nothing.</p>
+<p>"Citations" and "profile backlinks" are often sold together, and plenty of sellers use the two words as if they mean the same thing. They do not. They do different jobs, they are judged differently by search engines, and buying the wrong one is one of the most common ways small businesses waste their first SEO budget.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:group {"className":"sb-panel sb-takeaways"} -->
+<div class="wp-block-group sb-panel sb-takeaways"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Key takeaways</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"sb-ticks"} -->
+<ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
+<li>Citations confirm who and where your business is. They matter most for local search.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Profile backlinks build brand presence and help new sites get discovered.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Consistency beats volume: one wrong address can undo the value of ten correct listings.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Neither replaces strong pages and editorial links for competitive keywords.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:heading -->
 <h2 class="wp-block-heading">What is a business citation?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>A citation is any online mention of your business name, address and phone number (often shortened to NAP). Typical sources are business directories, map apps, industry listings and local chamber or association sites.</p>
+<p>A citation is any online mention of your business name, address and phone number, often shortened to NAP. You find them on business directories, map apps, industry associations, local chambers of commerce and review platforms. Many include a link to your website, but the link is not the point. The point is the data.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Citations matter most for <strong>local SEO</strong>. Search engines cross-check your business details across the web. Consistent details build confidence that your business is real and where you say it is, while conflicting addresses or old phone numbers do the opposite.</p>
+<p>Search engines cross-check those details across the web to confirm that your business is real, where it is and how to contact it. Google lists relevance, distance and prominence as the main factors in local results, and consistent information across trusted sites feeds into prominence (see <a href="https://support.google.com/business/answer/7091" target="_blank" rel="noopener">Google's guide to local ranking</a>). That is why citations are a core part of <a href="/services/local-seo/">local SEO</a>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -29,57 +53,123 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>A profile backlink is a link from an account or profile page you create on an established platform: a community, a design portfolio site, a developer platform or a social bookmarking site. The profile usually describes your brand and links to your website.</p>
+<p>A profile backlink is a link from an account or profile page you create on an established platform: a professional community, a design portfolio site, a developer platform, a podcast directory or a business network. The profile describes your brand and links to your website.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Profile links help a new site get discovered and add brand mentions. Individually they carry little weight. Their value is in breadth and in looking like a real, active brand across the web.</p>
+<p>On their own, individual profile links carry modest weight. Their value comes from breadth and legitimacy: a real brand tends to have a footprint across many platforms, and search engines notice when a site has none. For a brand-new website, a set of well-made profiles also helps crawlers discover your pages sooner.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Side by side</h2>
+<h2 class="wp-block-heading">Citations vs profile backlinks, side by side</h2>
 <!-- /wp:heading -->
 
 <!-- wp:table {"className":"sb-table"} -->
-<figure class="wp-block-table sb-table"><table class="has-fixed-layout"><thead><tr><th></th><th>Citations</th><th>Profile backlinks</th></tr></thead><tbody><tr><td>Main purpose</td><td>Confirm business identity and location</td><td>Brand presence and link discovery</td></tr><tr><td>Most useful for</td><td>Local businesses, service areas</td><td>New sites, any niche</td></tr><tr><td>Key requirement</td><td>Identical name, address and phone</td><td>A complete, genuine-looking profile</td></tr><tr><td>Link attribute</td><td>Often nofollow, which is fine</td><td>Mixed dofollow and nofollow</td></tr></tbody></table></figure>
+<figure class="wp-block-table sb-table"><table class="has-fixed-layout"><thead><tr><th></th><th>Citations</th><th>Profile backlinks</th></tr></thead><tbody><tr><td>Main purpose</td><td>Confirm business identity and location</td><td>Brand presence and link discovery</td></tr><tr><td>Most useful for</td><td>Local businesses and service areas</td><td>New sites, online-only brands</td></tr><tr><td>What matters most</td><td>Identical name, address and phone</td><td>Complete, genuine-looking profiles</td></tr><tr><td>Link attribute</td><td>Often nofollow, which is fine</td><td>Mixed dofollow and nofollow</td></tr><tr><td>Typical mistake</td><td>Inconsistent or outdated details</td><td>Thousands of empty, automated profiles</td></tr></tbody></table></figure>
 <!-- /wp:table -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Which do you need?</h2>
+<h2 class="wp-block-heading">Which one does your business need?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>A local business</strong> (plumber, clinic, salon, agency with an office): start with citations, then add profile links.</li>
+<li><strong>A local business</strong> such as a plumber, clinic, salon or office-based agency: start with citations and your Google Business Profile, then add profile links.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>An online-only business</strong>: focus on profile links and, as your site matures, editorial links such as guest posts.</li>
+<li><strong>An online-only business</strong>: focus on profile links first, then move to editorial links such as guest posts as your site matures. Our guide to <a href="/choose-guest-post-dr-tier/">choosing a guest post tier</a> explains how.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>A brand-new website</strong>: a small mix of both gives search engines signals to find and trust you sooner.</li>
+<li><strong>A brand-new website</strong>: a small mix of both gives search engines the signals to discover and trust you sooner.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>A business that has moved or rebranded</strong>: fix existing citations before building new ones. Old addresses are actively harmful.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Three mistakes to avoid</h2>
+<h2 class="wp-block-heading">Four mistakes that waste money</h2>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Inconsistent details.</strong> "Ltd" in one place, "Limited" in another, and an old phone number elsewhere all weaken citations. Decide on one exact format first.</li>
+<li><strong>Inconsistent details.</strong> "Ltd" in one place, "Limited" in another, and an old phone number elsewhere all weaken citations. Decide on one exact format before anything is submitted.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Buying thousands of automated links.</strong> Mass-submission software creates low-quality, spammy profiles that can do more harm than good.</li>
+<li><strong>Buying thousands of automated links.</strong> Mass-submission software creates low-quality profiles on abandoned sites. Google's <a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">spam policies</a> are clear that links made to manipulate rankings can be ignored or penalised.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Expecting rankings from these alone.</strong> Citations and profiles are foundations. Competitive keywords also need strong content and editorial links.</li>
+<li><strong>Ignoring the reports.</strong> If a provider cannot give you a list of live URLs, you have no way to check what you paid for.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Expecting rankings from these alone.</strong> Citations and profiles are foundations. Competitive keywords also need strong pages, content and editorial links.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to check the work you buy</h2>
+<!-- /wp:heading -->
+
 <!-- wp:paragraph -->
-<p>Our <a href="/services/off-page-seo/">off-page SEO packages</a> mix citations and profile links, created by hand with consistent business details and a report of every live URL.</p>
+<p>Ask for a spreadsheet of every live URL, open a sample of them, and check that the business details match yours exactly. Good providers welcome this. It is the standard we hold ourselves to, and every <a href="/services/off-page-seo/">link building package</a> we sell ends with that report.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A quick citation audit you can do yourself</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Search Google for your business name with your old phone number, then with your old address if you have moved. Every result that shows outdated details is a listing worth fixing. Then search for your name plus your town and check the first two pages for directories where you are missing entirely. Write the results in a simple spreadsheet. That list is the starting point any good local SEO provider would use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"sb-faq","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sb-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>How many citations does a local business need?</summary><!-- wp:paragraph -->
+<p>There is no magic number. Most small local businesses benefit from accurate listings on the major platforms, the main directories in their country and the key sites in their industry. Accuracy and relevance matter far more than a specific count.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Are nofollow citations worthless?</summary><!-- wp:paragraph -->
+<p>No. Citations are mainly about confirming your business details, not passing link authority, so a nofollow link on a trusted directory still does its job.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How long do citations take to have an effect?</summary><!-- wp:paragraph -->
+<p>Search engines need to recrawl the listings, which can take a few weeks. Fixing inconsistent details on major platforms usually has the quickest impact.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Should I remove old or duplicate listings?</summary><!-- wp:paragraph -->
+<p>Yes, where you can. Duplicates and outdated addresses confuse search engines and customers. Claim and correct them, or ask the platform to merge or remove them.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-inline-cta"} -->
+<div class="wp-block-group sb-inline-cta"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Want this done properly?</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Our citation and profile packages are built by hand with consistent details, and you get a report of every live URL.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/services/off-page-seo/#packages">See link building packages</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->

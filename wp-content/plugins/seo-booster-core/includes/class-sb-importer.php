@@ -38,13 +38,14 @@ class SB_Importer {
 		}
 		$report = null;
 		if ( isset( $_POST['sb_import'] ) && check_admin_referer( 'sb_import' ) ) {
-			$report = self::import( self::default_file(), ! empty( $_POST['sb_dry_run'] ) );
+			$report = self::import( self::default_file(), ! empty( $_POST['sb_dry_run'] ), ! empty( $_POST['sb_refresh_images'] ) );
 		}
 		echo '<div class="wrap"><h1>' . esc_html__( 'SEO Booster catalog', 'seo-booster-core' ) . '</h1>';
 		echo '<p>' . esc_html__( 'Creates or updates service packages from the bundled SERVICE_CATALOG.csv, matched by SKU. Prices you change later in wp-admin are overwritten only if you import again.', 'seo-booster-core' ) . '</p>';
 		echo '<form method="post">';
 		wp_nonce_field( 'sb_import' );
 		echo '<p><label><input type="checkbox" name="sb_dry_run" value="1" checked> ' . esc_html__( 'Dry run (show what would change)', 'seo-booster-core' ) . '</label></p>';
+		echo '<p><label><input type="checkbox" name="sb_refresh_images" value="1"> ' . esc_html__( 'Refresh package images (replaces only images added by this importer, never your own uploads)', 'seo-booster-core' ) . '</label></p>';
 		submit_button( __( 'Run import', 'seo-booster-core' ), 'primary', 'sb_import' );
 		echo '</form>';
 		if ( $report ) {
@@ -105,9 +106,17 @@ class SB_Importer {
 	/**
 	 * Attach data/images/{sku}.webp as the product image, unless the product already has one.
 	 */
-	public static function attach_image( int $product_id, string $sku, string $title ): void {
-		if ( ! function_exists( 'wp_upload_bits' ) || get_post_thumbnail_id( $product_id ) ) {
+	public static function attach_image( int $product_id, string $sku, string $title, bool $refresh = false ): void {
+		if ( ! function_exists( 'wp_upload_bits' ) ) {
 			return;
+		}
+		$current = (int) get_post_thumbnail_id( $product_id );
+		if ( $current ) {
+			// Keep the owner's own images; only replace images this importer attached, and only when asked.
+			if ( ! $refresh || ! get_post_meta( $current, '_sb_pkg_image', true ) ) {
+				return;
+			}
+			wp_delete_attachment( $current, true );
 		}
 		$src = SB_CORE_DIR . 'data/images/' . $sku . '.webp';
 		if ( ! is_readable( $src ) ) {
@@ -159,7 +168,7 @@ class SB_Importer {
 		return is_wp_error( $res ) ? 0 : (int) $res['term_id'];
 	}
 
-	public static function import( string $file, bool $dry = false ): array {
+	public static function import( string $file, bool $dry = false, bool $refresh_images = false ): array {
 		$rows = self::read_csv( $file );
 		if ( ! $rows ) {
 			return array( 'No rows read from ' . $file );
@@ -257,7 +266,7 @@ class SB_Importer {
 			SB_Packages::$bypass_gate = true;
 			$id                       = $product->save();
 			SB_Packages::$bypass_gate = false;
-			self::attach_image( (int) $id, $sku, $row['package_title'] );
+			self::attach_image( (int) $id, $sku, $row['package_title'], $refresh_images );
 			wp_set_object_terms( $id, array( $group_id ), SB_Packages::TAX );
 		}
 		$log[] = $dry ? 'Dry run — nothing saved.' : 'Done.';

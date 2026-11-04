@@ -18,6 +18,9 @@ class SB_Site {
 		add_shortcode( 'sb_year', static fn() => esc_html( wp_date( 'Y' ) ) );
 		add_shortcode( 'sb_currency', static fn() => esc_html( get_woocommerce_currency() ) );
 		add_shortcode( 'sb_breadcrumbs', array( __CLASS__, 'breadcrumbs' ) );
+		add_shortcode( 'sb_author', array( __CLASS__, 'author_box' ) );
+		add_shortcode( 'sb_byline', array( __CLASS__, 'byline' ) );
+		add_shortcode( 'sb_founder_photo', array( __CLASS__, 'founder_photo' ) );
 		add_action( 'save_post_product', array( __CLASS__, 'flush_prices' ) );
 		add_action( 'woocommerce_update_product', array( __CLASS__, 'flush_prices' ) );
 		add_filter( 'wp_robots', array( __CLASS__, 'robots' ) );
@@ -26,6 +29,56 @@ class SB_Site {
 		add_filter( 'render_block_woocommerce/add-to-cart-form', array( __CLASS__, 'quote_button_block' ), 10, 2 );
 		add_filter( 'render_block_woocommerce/add-to-cart-with-options', array( __CLASS__, 'quote_button_block' ), 10, 2 );
 		add_action( 'woocommerce_single_product_summary', array( __CLASS__, 'quote_button_classic' ), 31 );
+	}
+
+	/* ------------------------------------------------------------------ founder / author */
+
+	/** Founder details (filterable: add_filter( 'sb_founder', fn( $f ) => array_merge( $f, [ 'bio' => '…' ] ) )). */
+	public static function founder(): array {
+		$photo = function_exists( 'get_theme_file_path' ) && file_exists( get_theme_file_path( 'assets/images/team/zain-malik.webp' ) ) ? get_theme_file_uri( 'assets/images/team/zain-malik.webp' ) : '';
+		return apply_filters(
+			'sb_founder',
+			array(
+				'name'  => 'Zain Malik',
+				'role'  => __( 'Founder, SEO Booster', 'seo-booster-core' ),
+				'photo' => $photo,
+				'url'   => home_url( '/about/#founder' ),
+				'bio'   => __( 'Zain Malik founded SEO Booster to make SEO and web services easier to buy: a clear scope, a fair fixed price and proof of every deliverable. He writes our Insights guides to help business owners make better decisions about search, websites and marketing.', 'seo-booster-core' ),
+				'same'  => array(),
+			)
+		);
+	}
+
+	public static function founder_photo( $atts = array() ): string {
+		$f    = self::founder();
+		$size = (int) ( $atts['size'] ?? 96 );
+		return $f['photo'] ? '<img class="sb-founder-photo" src="' . esc_url( $f['photo'] ) . '" width="' . $size . '" height="' . $size . '" alt="' . esc_attr( $f['name'] ) . '" loading="lazy">' : '';
+	}
+
+	public static function byline(): string {
+		$f    = self::founder();
+		$cats = get_the_category();
+		$out  = '<p class="sb-byline">' . self::founder_photo( array( 'size' => 36 ) ) . '<span>' . esc_html__( 'By', 'seo-booster-core' ) . ' <a href="' . esc_url( $f['url'] ) . '">' . esc_html( $f['name'] ) . '</a></span>';
+		$out .= '<span>' . esc_html( (string) get_the_date() ) . '</span>';
+		$mod  = get_the_modified_date( 'U' );
+		if ( $mod && $mod - (int) get_the_date( 'U' ) > DAY_IN_SECONDS ) {
+			/* translators: %s: date */
+			$out .= '<span>' . esc_html( sprintf( __( 'Updated %s', 'seo-booster-core' ), get_the_modified_date() ) ) . '</span>';
+		}
+		$words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', get_the_ID() ) ) );
+		/* translators: %d: minutes */
+		$out .= '<span>' . esc_html( sprintf( __( '%d min read', 'seo-booster-core' ), max( 1, (int) round( $words / 220 ) ) ) ) . '</span>';
+		if ( $cats ) {
+			$out .= '<span><a href="' . esc_url( get_category_link( $cats[0] ) ) . '">' . esc_html( $cats[0]->name ) . '</a></span>';
+		}
+		return $out . '</p>';
+	}
+
+	public static function author_box(): string {
+		$f = self::founder();
+		return '<aside class="sb-author" aria-label="' . esc_attr__( 'About the author', 'seo-booster-core' ) . '">' . self::founder_photo( array( 'size' => 88 ) )
+			. '<div><p class="sb-author__kicker">' . esc_html__( 'Written by', 'seo-booster-core' ) . '</p><p class="sb-author__name"><a href="' . esc_url( $f['url'] ) . '">' . esc_html( $f['name'] ) . '</a> <span>' . esc_html( $f['role'] ) . '</span></p>'
+			. '<p class="sb-author__bio">' . esc_html( $f['bio'] ) . '</p></div></aside>';
 	}
 
 	/* ------------------------------------------------------------------ prices */
@@ -211,6 +264,23 @@ class SB_Site {
 			printf( '<meta property="og:image" content="%s">' . "\n", esc_url( $img ) );
 		}
 		echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+
+		if ( is_singular( 'post' ) ) {
+			$f       = self::founder();
+			$article = array(
+				'@context'      => 'https://schema.org',
+				'@type'         => 'Article',
+				'headline'      => wp_strip_all_tags( get_the_title() ),
+				'description'   => $desc,
+				'datePublished' => get_the_date( 'c' ),
+				'dateModified'  => get_the_modified_date( 'c' ),
+				'mainEntityOfPage' => get_permalink(),
+				'image'         => has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'full' ) : null,
+				'author'        => array_filter( array( '@type' => 'Person', 'name' => $f['name'], 'url' => $f['url'], 'image' => $f['photo'] ?: null, 'jobTitle' => $f['role'], 'sameAs' => $f['same'] ?: null ) ),
+				'publisher'     => array( '@type' => 'Organization', 'name' => get_bloginfo( 'name' ), 'url' => home_url( '/' ) ),
+			);
+			echo '<script type="application/ld+json">' . wp_json_encode( array_filter( $article ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+		}
 
 		if ( is_front_page() ) {
 			$org = array(

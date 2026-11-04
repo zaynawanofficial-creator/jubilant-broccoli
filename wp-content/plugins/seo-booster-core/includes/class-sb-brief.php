@@ -104,6 +104,23 @@ class SB_Brief {
 				'competitors' => array( __( 'Main competitors', 'seo-booster-core' ), 'urls', false, __( 'One per line.', 'seo-booster-core' ) ),
 				'access'      => array( __( 'Search Console / Analytics access', 'seo-booster-core' ), 'select', false, __( 'Never send passwords.', 'seo-booster-core' ), array( 'invite' => __( 'I will invite you as a user', 'seo-booster-core' ), 'none' => __( 'I do not have them set up', 'seo-booster-core' ) ) ),
 			) + $common,
+			'ads'     => array(
+				'site_url'  => array( __( 'Website or landing page', 'seo-booster-core' ), 'url', true, '' ),
+				'offer'     => array( __( 'What are you advertising?', 'seo-booster-core' ), 'textarea', true, __( 'Product, service or offer, and what makes it different.', 'seo-booster-core' ) ),
+				'goal'      => array( __( 'Main goal', 'seo-booster-core' ), 'select', true, '', array( 'leads' => __( 'Leads (calls, forms, bookings)', 'seo-booster-core' ), 'sales' => __( 'Online sales', 'seo-booster-core' ), 'traffic' => __( 'Website visits', 'seo-booster-core' ), 'awareness' => __( 'Brand awareness', 'seo-booster-core' ) ) ),
+				'budget'    => array( __( 'Monthly ad budget', 'seo-booster-core' ), 'select', true, __( 'Paid directly to the ad platform, not to us.', 'seo-booster-core' ), array( 'u500' => __( 'Under $500', 'seo-booster-core' ), '500-2k' => '$500 – $2,000', '2k-5k' => '$2,000 – $5,000', '5k+' => __( '$5,000+', 'seo-booster-core' ) ) ),
+				'locations' => array( __( 'Target locations', 'seo-booster-core' ), 'text', true, __( 'Countries, cities or radius.', 'seo-booster-core' ) ),
+				'audience'  => array( __( 'Ideal customer', 'seo-booster-core' ), 'textarea', false, '' ),
+				'account'   => array( __( 'Ad account', 'seo-booster-core' ), 'select', true, __( 'We will send our access request. Never share passwords.', 'seo-booster-core' ), array( 'have' => __( 'I have an account and will grant access', 'seo-booster-core' ), 'new' => __( 'Please help me set one up', 'seo-booster-core' ) ) ),
+			) + $common,
+			'social'  => array(
+				'business_name' => array( __( 'Brand / business name', 'seo-booster-core' ), 'text', true, '' ),
+				'platforms'     => array( __( 'Platforms', 'seo-booster-core' ), 'text', true, __( 'e.g. Instagram and LinkedIn. Add profile links.', 'seo-booster-core' ) ),
+				'audience'      => array( __( 'Who are you trying to reach?', 'seo-booster-core' ), 'text', true, '' ),
+				'tone'          => array( __( 'Tone of voice', 'seo-booster-core' ), 'select', true, '', array( 'professional' => __( 'Professional', 'seo-booster-core' ), 'friendly' => __( 'Friendly', 'seo-booster-core' ), 'bold' => __( 'Bold and playful', 'seo-booster-core' ), 'premium' => __( 'Premium', 'seo-booster-core' ) ) ),
+				'topics'        => array( __( 'Products, services or topics to feature', 'seo-booster-core' ), 'textarea', true, '' ),
+				'examples'      => array( __( 'Accounts you like', 'seo-booster-core' ), 'urls', false, __( 'One per line. Brand files can be uploaded after checkout.', 'seo-booster-core' ) ),
+			) + $common,
 			'generic' => array(
 				'site_url' => array( __( 'Website URL', 'seo-booster-core' ), 'url', false, '' ),
 				'details'  => array( __( 'What do you need?', 'seo-booster-core' ), 'textarea', true, '' ),

@@ -126,7 +126,7 @@ class SB_Shortcode {
 	public static function unit_price( WC_Product $p ): string {
 		$qty  = (int) $p->get_meta( '_sb_quantity' );
 		$unit = (string) $p->get_meta( '_sb_unit' );
-		$map  = array( 'links' => __( 'per link', 'seo-booster-core' ), 'articles' => __( 'per article', 'seo-booster-core' ), 'graphics' => __( 'per graphic', 'seo-booster-core' ), 'pages' => __( 'per page', 'seo-booster-core' ), 'words' => __( 'per 100 words', 'seo-booster-core' ) );
+		$map  = array( 'links' => __( 'per link', 'seo-booster-core' ), 'articles' => __( 'per article', 'seo-booster-core' ), 'graphics' => __( 'per graphic', 'seo-booster-core' ), 'pages' => __( 'per page', 'seo-booster-core' ), 'products' => __( 'per product', 'seo-booster-core' ), 'posts' => __( 'per post', 'seo-booster-core' ), 'words' => __( 'per 100 words', 'seo-booster-core' ) );
 		if ( $qty < 2 || ! isset( $map[ $unit ] ) || 'quote' === $p->get_meta( '_sb_pricing_model' ) || ! (float) $p->get_price() ) {
 			return '';
 		}

@@ -118,6 +118,50 @@
 <!-- wp:group {"align":"wide","className":"sb-grid sb-grid\u002d\u002d4"} -->
 <div class="wp-block-group alignwide sb-grid sb-grid--4"><!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
 <div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/hero-growth.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><a href="/services/monthly-seo/">Monthly SEO Services</a></h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Managed SEO each month: technical fixes, content, links and a clear report, with no long contract.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-price-from"} -->
+<p class="sb-price-from">From <strong>[sb_from service="monthly-seo"]</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more">View packages →</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-local.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><a href="/services/local-seo/">Local SEO</a></h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Google Business Profile optimisation, local citations and location pages that help nearby customers find you.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-price-from"} -->
+<p class="sb-price-from">From <strong>[sb_from service="local-seo"]</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more">View packages →</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
 <figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-offpage.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
@@ -162,28 +206,6 @@
 
 <!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
 <div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
-<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-technical.svg' ) ); ?>" alt=""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/services/technical-seo/">Technical SEO</a></h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Hands-on fixes for indexing, redirects, structured data and Core Web Vitals, with a before/after report.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"sb-price-from"} -->
-<p class="sb-price-from">From <strong>[sb_from service="technical-seo"]</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"sb-card__more"} -->
-<p class="sb-card__more">View packages →</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
-<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
 <figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-webdev.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
@@ -206,19 +228,41 @@
 
 <!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
 <div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
-<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-maintenance.svg' ) ); ?>" alt=""/></figure>
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-store.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/services/website-maintenance/">Website Maintenance &amp; Fixes</a></h3>
+<h3 class="wp-block-heading"><a href="/services/ecommerce-website-development/">Ecommerce Website Development</a></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>One-off WordPress fixes and simple monthly care: updates, backups, monitoring and small changes.</p>
+<p>WooCommerce and Shopify stores built to sell: product setup, payments, shipping and SEO basics.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"sb-price-from"} -->
-<p class="sb-price-from">From <strong>[sb_from service="website-maintenance"]</strong></p>
+<p class="sb-price-from">From <strong>[sb_from service="ecommerce-website-development"]</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-card__more"} -->
+<p class="sb-card__more">View packages →</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
+<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
+<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-ads.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><a href="/services/ppc-management/">PPC Management</a></h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Google Ads audits, campaign setup and monthly PPC management focused on profitable conversions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"sb-price-from"} -->
+<p class="sb-price-from">From <strong>[sb_from service="ppc-management"]</strong></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"sb-card__more"} -->
@@ -246,46 +290,12 @@
 <!-- wp:paragraph {"className":"sb-card__more"} -->
 <p class="sb-card__more">View packages →</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"sb-card sb-card\u002d\u002dsvc"} -->
-<div class="wp-block-group sb-card sb-card--svc"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-card__art"} -->
-<figure class="wp-block-image size-full sb-card__art"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/art-design.svg' ) ); ?>" alt=""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/services/graphic-design/">Graphic Design &amp; Branding</a></h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Social media graphics, ad creatives and brand kits in your colours, delivered ready to use.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"sb-price-from"} -->
-<p class="sb-price-from">From <strong>[sb_from service="graphic-design"]</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"sb-card__more"} -->
-<p class="sb-card__more">View packages →</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"sb-card sb-card\u002d\u002doutline"} -->
-<div class="wp-block-group sb-card sb-card--outline"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Something else?</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><!-- wp:paragraph -->
-<p>PPC, analytics, email and automation projects are quoted individually.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"sb-card__more"} -->
-<p class="sb-card__more"><a href="/get-a-quote/">Request a quote →</a></p>
-<!-- /wp:paragraph --></p>
-<!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group --></section>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"sb-center sb-card__more"} -->
+<p class="sb-center sb-card__more"><a href="/services/">See all 20 services →</a></p>
+<!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dblue","layout":{"type":"constrained"}} -->

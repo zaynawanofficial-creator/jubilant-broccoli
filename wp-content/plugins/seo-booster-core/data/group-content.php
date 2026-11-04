@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-return array(
+$sb_base = array(
 	'profiles-and-citations'  => array(
 		'intro'        => 'Foundational links that make your business easy to find and verify: business listings, local citations, directory submissions and brand profiles on established platforms. Ideal for new sites, local businesses and brands that need consistent name, address and phone (NAP) data across the web.',
 		'brief'        => 'offpage',
@@ -132,3 +132,10 @@ return array(
 	'email-packages'          => array( 'brief' => 'generic' ),
 	'automation-packages'     => array( 'brief' => 'generic' ),
 );
+
+// New services and extra packages (generated): merged so existing keys gain extra by_sku entries.
+$sb_extra = require __DIR__ . '/group-content-extra.php';
+foreach ( $sb_extra as $sb_key => $sb_val ) {
+	$sb_base[ $sb_key ] = isset( $sb_base[ $sb_key ] ) ? array_replace_recursive( $sb_base[ $sb_key ], $sb_val ) : $sb_val;
+}
+return $sb_base;

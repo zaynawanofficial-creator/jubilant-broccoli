@@ -259,4 +259,91 @@ for i, (iss, pr, c) in enumerate([('Fix broken internal links', 'High', ('#FEE2E
     b += f'<rect x="266" y="{y}" width="218" height="38" rx="8" fill="{SOFT}"/>' + pill(274, y + 9, pr, *c, w=42, size=9) + t(324, y + 23, iss, 10.5, 600)
 b += '</g>'
 write('report-audit.svg', svg(520, 400, b, 'Example audit report: executive summary and prioritised fixes'))
+
+# ------------------------------------------------------------------ new services (4 Nov 2026)
+def icon(name, glyph, title):
+    S = f'fill="none" stroke="{INK}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"'
+    write(f'icon-{name}.svg', svg(56, 56, f'<rect width="56" height="56" rx="14" fill="{B50}"/>' + glyph.replace('S_', S), title))
+icon('local', '<path d="M28 44s-12-11-12-20a12 12 0 0 1 24 0c0 9-12 20-12 20z" S_/><circle cx="28" cy="24" r="4.5" fill="#B9F24C" stroke="#0C1930" stroke-width="2.4"/>', 'Local SEO icon')
+icon('ads', '<rect x="12" y="16" width="32" height="24" rx="4" S_/><path d="M18 34l6-7 5 4 8-9" S_/><circle cx="41" cy="15" r="4.5" fill="#B9F24C"/>', 'Paid ads icon')
+icon('social', '<circle cx="19" cy="28" r="5" S_/><circle cx="37" cy="18" r="5" S_/><circle cx="37" cy="38" r="5" S_/><path d="M23.5 25.5l9-5M23.5 30.5l9 5" S_/><circle cx="37" cy="38" r="2.5" fill="#B9F24C"/>', 'Social media icon')
+icon('ai', '<rect x="14" y="14" width="28" height="28" rx="8" S_/><path d="M22 34l4-12 4 12M23.5 30h5M35 22v12" S_/><circle cx="43" cy="13" r="4" fill="#B9F24C"/>', 'AI SEO icon')
+icon('migration', '<rect x="10" y="17" width="14" height="22" rx="3" S_/><rect x="32" y="17" width="14" height="22" rx="3" S_/><path d="M25 28h6M28 25l3 3-3 3" S_/><circle cx="39" cy="28" r="3" fill="#B9F24C"/>', 'Website migration icon')
+icon('store', '<path d="M14 22h28l-2 18H16z" S_/><path d="M21 22a7 7 0 0 1 14 0" S_/><circle cx="28" cy="31" r="3.5" fill="#B9F24C" stroke="#0C1930" stroke-width="2.2"/>', 'Online store icon')
+
+# local SEO: map pack + profile
+b = card(20, 24, 290, 330, 'Google Maps · "plumber near me"')
+b += f'<rect x="34" y="62" width="262" height="110" rx="10" fill="#E8F0FE"/>' + ''.join(f'<path d="M{x} {y}h{w}" stroke="#C7D7F5" stroke-width="{sw}"/>' for x, y, w, sw in [(34, 90, 262, 6), (34, 130, 262, 4), (120, 62, 0, 0)])
+b += f'<path d="M150 62v110M220 62v110" stroke="#C7D7F5" stroke-width="5"/>'
+for (x, y, c) in [(110, 112, BLUE), (190, 96, RED), (250, 140, BLUE)]:
+    b += f'<path d="M{x} {y+18}s-11-10-11-18a11 11 0 0 1 22 0c0 8-11 18-11 18z" fill="{c}"/><circle cx="{x}" cy="{y}" r="4" fill="{WHITE}"/>'
+for i, (n, st, hl) in enumerate([('Your Business Ltd', '4.9 ★ · Open now', True), ('Competitor A', '4.2 ★ · Closes 5pm', False), ('Competitor B', '3.8 ★ · Open now', False)]):
+    y = 186 + i * 54
+    b += f'<rect x="34" y="{y}" width="262" height="46" rx="10" fill="{B50 if hl else SOFT}" stroke="{BLUE if hl else LINE}"/>' + t(48, y + 20, n, 12, 800 if hl else 600) + t(48, y + 36, st, 10, 500, BODY)
+b += card(290, 70, 214, 250, 'Business profile', dark=True)
+b += ''.join(check(312, 124 + i * 36, 8) + t(328, 128 + i * 36, s_, 11, 600, WHITE) for i, s_ in enumerate(['Categories set', 'Services listed', 'Hours and photos', 'Weekly posts', 'Review replies']))
+write('art-local.svg', svg(520, 380, b, 'Illustration: Google Maps results with your business on top and an optimised business profile'))
+
+# PPC dashboard
+b = card(16, 20, 488, 340, 'Google Ads · campaigns')
+b += f'<rect x="32" y="58" width="456" height="26" rx="6" fill="{INK}"/>' + ''.join(t(x, 75, c, 10, 700, WHITE) for c, x in [('Campaign', 42), ('Status', 200), ('Clicks', 270), ('Conv.', 330), ('Cost / conv.', 390)])
+for i, (n, stt, cl, cv, cpa, ok) in enumerate([('Search · Emergency plumber', 'Active', '412', '38', 'Improving', True), ('Search · Boiler repair', 'Active', '286', '21', 'Stable', True), ('Broad match test', 'Paused', '0', '0', 'Wasted spend cut', False), ('Remarketing', 'Active', '134', '9', 'Testing', True)]):
+    y = 92 + i * 38
+    b += f'<rect x="32" y="{y}" width="456" height="32" rx="6" fill="{SOFT if i % 2 else WHITE}" stroke="{LINE}"/>' + t(42, y + 20, n, 10.5, 600) + pill(196, y + 6, stt, *(OK if ok else ('#FEE2E2', RED)), w=56, size=9) + t(270, y + 20, cl, 10.5, 600) + t(330, y + 20, cv, 10.5, 600) + t(390, y + 20, cpa, 10, 600, GREEN if ok else RED)
+b += f'<rect x="32" y="252" width="220" height="92" rx="10" fill="{B50}"/>' + t(46, 274, 'Search terms added as negatives', 10.5, 700, BLUE_D) + ''.join(t(46, 296 + i * 18, '– ' + w_, 10, 500, BODY) for i, w_ in enumerate(['"free plumbing course"', '"plumber jobs"', '"diy boiler fix"']))
+b += f'<rect x="264" y="252" width="224" height="92" rx="10" fill="{INK}"/>' + t(280, 276, 'Conversion tracking', 11, 700, WHITE) + check(288, 300, 8) + t(304, 304, 'Calls and forms tracked', 10.5, 600, '#CBD5E1') + check(288, 326, 8) + t(304, 330, 'Ad spend paid to Google', 10.5, 600, '#CBD5E1')
+write('art-ads.svg', svg(520, 380, b, 'Illustration: a Google Ads campaign table, negative keywords and conversion tracking'))
+
+# ad creatives (feed + story)
+b = f'<g filter="url(#sh)"><rect x="24" y="30" width="250" height="320" rx="16" fill="{WHITE}" stroke="{LINE}"/></g>' + f'<circle cx="48" cy="56" r="12" fill="{INK}"/>' + t(68, 54, 'Your Brand', 11.5, 800) + t(68, 69, 'Sponsored', 9.5, 500, BODY)
+b += t(40, 98, 'Tired of slow quotes? Get a fixed', 11, 500) + t(40, 114, 'price in 60 seconds.', 11, 500)
+b += f'<rect x="40" y="126" width="218" height="150" rx="10" fill="{INK}"/>' + t(58, 170, 'Fixed price.', 20, 800, WHITE, head=True) + t(58, 196, 'No surprises.', 20, 800, LIME, head=True) + pill(58, 230, 'See packages', LIME, INK, w=96)
+b += f'<rect x="40" y="286" width="218" height="48" rx="8" fill="{SOFT}"/>' + t(52, 306, 'yourbrand.com', 9.5, 500, BODY) + t(52, 322, 'Get your free quote', 11, 700) + pill(196, 300, 'Learn more', B50, BLUE_D, w=56, size=8.5)
+b += f'<g filter="url(#sh)"><rect x="300" y="20" width="196" height="340" rx="22" fill="{INK}"/></g><rect x="312" y="36" width="172" height="308" rx="14" fill="{NAVY3}"/>'
+b += pill(324, 52, 'HOOK · first 2 seconds', LIME, INK, w=140, size=9) + t(324, 110, '"I paid $800 for', 15, 800, WHITE, head=True) + t(324, 130, 'a website. Then I', 15, 800, WHITE, head=True) + t(324, 150, 'found this…"', 15, 800, WHITE, head=True)
+b += t(324, 290, 'Captions on · 9:16', 10, 600, '#CBD5E1') + f'<rect x="324" y="304" width="148" height="28" rx="8" fill="{BLUE}"/>' + t(398, 322, 'Shop now', 11, 700, WHITE, 'middle')
+write('art-adcreative.svg', svg(520, 380, b, 'Illustration: a feed ad and a vertical story ad with a strong hook'))
+
+# social calendar
+b = card(16, 20, 488, 340, 'Content calendar · this month')
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+b += ''.join(t(52 + i * 92, 74, d, 10.5, 700, SLATE) for i, d in enumerate(days))
+posts = [(0, 0, 'Tip', 'How to…', B50, BLUE_D), (2, 0, 'Product', 'New in', '#DCFCE7', GREEN), (4, 0, 'Reel', 'Behind scenes', '#FEF3C7', AMBER), (1, 1, 'Carousel', '5 mistakes', B50, BLUE_D), (3, 1, 'Review', 'Customer story', '#DCFCE7', GREEN),
+         (0, 2, 'Offer', 'This week', '#FEE2E2', RED), (2, 2, 'Tip', 'Quick win', B50, BLUE_D), (4, 2, 'Reel', 'Day in life', '#FEF3C7', AMBER)]
+for col, row, kind, txt, bg, fg in posts:
+    x, y = 32 + col * 92, 88 + row * 84
+    b += f'<rect x="{x}" y="{y}" width="84" height="74" rx="10" fill="{SOFT}" stroke="{LINE}"/>' + pill(x + 8, y + 8, kind, bg, fg, w=62, size=9) + t(x + 8, y + 48, txt, 10, 600) + check(x + 72, y + 62, 6)
+b += pill(32, 336 - 4, 'Approved ✓  Scheduled at best times', LIME, INK, w=210)
+write('art-social.svg', svg(520, 380, b, 'Illustration: a monthly social media content calendar with approved posts'))
+
+# AI answer citing your site
+b = card(20, 24, 480, 330, 'AI answer')
+b += f'<rect x="40" y="64" width="300" height="38" rx="19" fill="{SOFT}" stroke="{LINE}"/>' + t(58, 88, 'Who offers fixed-price local SEO?', 12, 600)
+b += f'<rect x="40" y="116" width="440" height="150" rx="14" fill="{B50}"/>' + t(58, 142, 'Several providers sell fixed-price local SEO.', 12, 600) + t(58, 162, 'One option is SEO Booster, which lists', 12, 600) + t(58, 182, 'deliverables, turnaround and a live-URL', 12, 600) + t(58, 202, 'report for each package.', 12, 600)
+b += pill(58, 222, '[1] seobooster.uk/services/local-seo', WHITE, BLUE_D, w=230, size=9.5) + pill(296, 222, '[2] directory', WHITE, BODY, w=90, size=9.5)
+b += t(40, 296, 'What helps AI tools cite you', 11.5, 800)
+b += ''.join(check(52 + i * 150, 320, 8) + t(66 + i * 150, 324, s_, 10.5, 600) for i, s_ in enumerate(['Clear answers', 'Consistent facts', 'Schema + authority']))
+write('art-ai.svg', svg(520, 380, b, 'Illustration: an AI answer that cites your website as a source'))
+
+# migration redirect map
+b = card(16, 24, 488, 330, 'Redirect map · 301')
+b += t(40, 78, 'Old URL', 10.5, 700, SLATE) + t(300, 78, 'New URL', 10.5, 700, SLATE)
+for i, (o, nw) in enumerate([('/services.html', '/services/'), ('/seo-packages.php', '/packages/'), ('/blog/2019/speed', '/insights/speed-checklist/'), ('/contact-us', '/contact/'), ('/shop/item?id=42', '/product/blue-mug/')]):
+    y = 90 + i * 42
+    b += f'<rect x="32" y="{y}" width="200" height="32" rx="8" fill="#FEF2F2" stroke="#FECACA"/>' + t(44, y + 20, o, 10.5, 600, RED)
+    b += f'<path d="M240 {y+16}h44" stroke="{BLUE}" stroke-width="2.5"/><path d="M280 {y+11}l6 5-6 5" fill="none" stroke="{BLUE}" stroke-width="2.5"/>' + t(262, y + 11, '301', 9, 800, BLUE, 'middle')
+    b += f'<rect x="292" y="{y}" width="196" height="32" rx="8" fill="#F0FDF4" stroke="#BBF7D0"/>' + t(304, y + 20, nw, 10.5, 600, GREEN)
+b += pill(32, 314, 'Pre-launch crawl ✓', LIME, INK, w=118) + pill(158, 314, '404s monitored', B50, BLUE_D, w=104) + pill(270, 314, 'Search Console updated', B50, BLUE_D, w=150)
+write('art-migration.svg', svg(520, 380, b, 'Illustration: a redirect map from old URLs to new URLs'))
+
+# online store
+b = card(16, 24, 340, 330, 'yourstore.com · Shop')
+for i, (n, pr) in enumerate([('Linen shirt', '$39'), ('Canvas tote', '$24'), ('Ceramic mug', '$18'), ('Wool scarf', '$32')]):
+    x, y = 32 + (i % 2) * 158, 62 + (i // 2) * 140
+    b += f'<rect x="{x}" y="{y}" width="148" height="128" rx="10" fill="{SOFT}" stroke="{LINE}"/><rect x="{x+10}" y="{y+10}" width="128" height="62" rx="8" fill="{["#DBEAFE", "#E0E7FF", "#DCFCE7", "#FEF3C7"][i]}"/>' + t(x + 10, y + 90, n, 11, 700) + t(x + 10, y + 108, pr, 11, 800, BLUE_D) + pill(x + 90, y + 96, 'Add', INK, WHITE, w=46, size=9)
+b += card(318, 90, 186, 260, 'Checkout', dark=True)
+b += ''.join(check(338, 140 + i * 34, 8) + t(354, 144 + i * 34, s_, 10.5, 600, WHITE) for i, s_ in enumerate(['Cards & PayPal', 'Shipping rules', 'Taxes set', 'Order emails', 'Product schema']))
+b += f'<rect x="336" y="314" width="150" height="26" rx="8" fill="{LIME}"/>' + t(411, 331, 'Place order', 11, 800, INK, 'middle')
+write('art-store.svg', svg(520, 380, b, 'Illustration: an online store product grid and a configured checkout'))
+
 print('v2 art written')

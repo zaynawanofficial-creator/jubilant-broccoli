@@ -1,5 +1,61 @@
 # PROGRESS
 
+## SEO data build-out: theme 1.3.0, plugin 0.5.0 · 4 Nov 2026 · 🟡 ready to install
+**Owner feedback + GB keyword data (Ahrefs exports):**
+- the mobile header was broken on inner pages, and cart and checkout looked default
+- the blog was plain and had short posts with no links, and `[sb_breadcrumbs]` showed as raw text
+- "Prices in USD" was redundant
+- the founder (Zain Malik) was missing
+- every service keyword needed a dedicated page
+
+**Root causes**
+- **`[sb_breadcrumbs]` showing as text:** WordPress runs `do_shortcode` on a template *before* `do_blocks`, so shortcodes inside patterns (the Insights hero) were never expanded. Added a `render_block_core/shortcode` filter.
+- **Mobile header and unstyled steps on product, cart and checkout (phone only):** the HTML was 1.2 but the CSS was older, i.e. a stale stylesheet from LiteSpeed's optimised CSS or the browser cache. Fixed by versioning `style.css` with `filemtime()` and inlining the critical header and steps-bar rules in `wp_head`. The owner still needs to purge caches (INSTALL step 6).
+
+**Changes**
+- **13 new service pages + 53 packages** (`tools/services_new.py` → `build_services.py` generates the CSV rows and `data/group-content-extra.php`):
+  - SEO: Local SEO, Monthly SEO, SEO Consultancy, Ecommerce SEO, On-Page SEO, White Label SEO, AI SEO
+  - Web: Website Migration, Ecommerce Website Development
+  - Ads & social: PPC Management, Facebook Ads, TikTok Ads, Social Media Management
+  - Plus a Canva Brand Kit Setup package (keyword: "canva brand kit", 600/mo).
+  - Each page has a keyword-led H1, What-is section, proof section, fit/not-fit, package picker, features, process, FAQ, related services, SEO title and meta description.
+  - New "ads" and "social" project-details forms.
+  - 7 new labelled illustrations, 6 icons, and package images for all 113 catalogue rows.
+- **Existing pages retargeted:**
+
+  | Page | Target keyword | GB volume/mo |
+  |---|---|---|
+  | Home | SEO services UK | 11k |
+  | Off-page | link building services | 450 |
+  | SEO audit | seo audit service | 1,300 |
+  | Website development | website development services | 2,000 |
+  | Maintenance | website maintenance services | 1,100 |
+  | Content | seo content writing service | 450 |
+
+- **Navigation:** Services mega-menu (4 groups), the Services hub with 4 groups, home shows 8 key services, and the footer has 4 equal columns.
+- **Founder:** Zain Malik's photo (self-hosted), a "Meet the founder" section on About, a byline and author box on every article, and Article + Person schema.
+- **Blog:**
+  - Redesigned: hero with working breadcrumbs, featured latest guide, topic chips, card grid and a founder CTA.
+  - 3 articles expanded and 4 new ones (Canva brand kit, local SEO checklist, PPC costs, AI SEO). Each runs 620–910 words with key takeaways, FAQ, internal links to services and packages, and cited official sources (Google Search Central, web.dev, Google Business/Ads Help, Canva Help, Ahrefs).
+  - Covers for all 7 articles.
+- **Cart and checkout:** checkout now uses the full site header and footer; both pages have a dark hero with progress steps, a "what happens next" strip, a trust row and payment marks.
+- **Removed:** "Prices in USD" from the footer, service pages, Packages and How it works.
+- **Importer:** opt-in "Refresh package images" (replaces only importer-attached images).
+
+**Verification**
+- Block validator: **58 files, 5,430 blocks, 0 invalid**.
+- `php -l` clean. Importer smoke test passes (113 rows, including new-service and Canva checks).
+- Approximate render of home, local-seo, about, services and a post: no page-level overflow at 1440 or 390 px.
+
+**Not verified:**
+- the live mobile rendering after a cache purge
+- WooCommerce cart and checkout block styling
+- the external article links: this environment blocks those sites, so they were confirmed by search results or are long-standing official URLs
+
+**Owner input still useful:**
+- Zain's bio details: background, years of experience, credentials, LinkedIn or other profiles (for the author box and `sameAs` schema)
+- whether TikTok Ads should stay as a full page (GB volume is only ~30/mo)
+
 ## Polish round: theme 1.2.0, plugin 0.4.0 · 3 Nov 2026 · 🟡 ready to install
 **Owner feedback:** the legal pages were plain; footer columns were uneven and there were no payment methods; on mobile the CTA covered the header and there was no Home link; pricing lists were long and messy; the blog hero was off; illustrations looked like empty mockups; the copy needed an SEO pass.
 

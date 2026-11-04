@@ -33,7 +33,7 @@ class SB_Packages {
 			'_sb_requirements'   => array( __( 'What we need from you (one per line)', 'seo-booster-core' ), 'textarea' ),
 			'_sb_turnaround'     => array( __( 'Turnaround', 'seo-booster-core' ), 'text' ),
 			'_sb_revisions'      => array( __( 'Revisions / replacements', 'seo-booster-core' ), 'text' ),
-			'_sb_brief_profile'  => array( __( 'Brief form', 'seo-booster-core' ), 'select', array( 'offpage' => 'Off-page SEO', 'web' => 'Website build', 'fix' => 'Fix / maintenance', 'content' => 'Content', 'design' => 'Design', 'seo' => 'SEO / audit', 'generic' => 'Generic' ) ),
+			'_sb_brief_profile'  => array( __( 'Brief form', 'seo-booster-core' ), 'select', array( 'offpage' => 'Off-page SEO', 'web' => 'Website build', 'fix' => 'Fix / maintenance', 'content' => 'Content', 'design' => 'Design', 'seo' => 'SEO / audit', 'ads' => 'Paid ads', 'social' => 'Social media', 'generic' => 'Generic' ) ),
 			'_sb_terms_version'  => array( __( 'Terms version', 'seo-booster-core' ), 'text' ),
 			'_sb_sort'           => array( __( 'Sort order', 'seo-booster-core' ), 'number' ),
 			'_sb_featured'       => array( __( 'Highlight as "Most popular"', 'seo-booster-core' ), 'checkbox' ),

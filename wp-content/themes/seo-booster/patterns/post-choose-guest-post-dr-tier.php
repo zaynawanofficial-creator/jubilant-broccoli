@@ -9,15 +9,39 @@
  */
 ?>
 <!-- wp:paragraph -->
-<p>Guest posts are usually sold by Domain Rating (DR), a 0 to 100 score from Ahrefs that estimates the strength of a website's backlink profile. A higher DR often means a stronger link and a higher price. DR is useful, but it is not the whole story.</p>
+<p>Guest posts are usually sold by Domain Rating, or DR, an Ahrefs score from 0 to 100 that estimates how strong a website's backlink profile is (<a href="https://ahrefs.com/blog/domain-rating/" target="_blank" rel="noopener">Ahrefs explains how DR is calculated</a>). Higher DR generally means a stronger link and a higher price. DR is a useful shortcut, but buying on DR alone is how people end up paying premium prices for links that do very little.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:group {"className":"sb-panel sb-takeaways"} -->
+<div class="wp-block-group sb-panel sb-takeaways"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Key takeaways</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"sb-ticks"} -->
+<ul class="wp-block-list sb-ticks"><!-- wp:list-item -->
+<li>DR measures a site's links, not its traffic, relevance or quality.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Match the tier to your own site. A natural profile has a range of strengths.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Check real traffic, relevance and editorial standards before you buy.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Paid links should be labelled. Avoid "guaranteed dofollow, permanent" offers.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
 <!-- wp:heading -->
-<h2 class="wp-block-heading">What DR does and does not tell you</h2>
+<h2 class="wp-block-heading">What DR tells you, and what it does not</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>DR measures links pointing to a site, not its traffic, relevance or editorial standards. A site can have a high DR and almost no real readers, especially if it sells many links. That is why we look at more than one metric.</p>
+<p>DR looks only at links pointing to a site. It says nothing about whether real people read the site, whether it covers your topic, or whether it sells links to anyone who pays. A DR 60 blog with no search traffic and twenty sponsored posts a day is far less valuable than a DR 35 industry site with a real audience.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -25,11 +49,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:table {"className":"sb-table"} -->
-<figure class="wp-block-table sb-table"><table class="has-fixed-layout"><thead><tr><th>Your situation</th><th>Sensible starting tier</th></tr></thead><tbody><tr><td>New site, few or no links</td><td>DR 10+ to DR 20+, plus citations and profile links</td></tr><tr><td>Established local or niche site</td><td>DR 30+ to DR 40+</td></tr><tr><td>Competitive national keywords</td><td>DR 50+ and above, mixed with lower tiers</td></tr><tr><td>Launch or news story</td><td>Press release plus one or two strong posts</td></tr></tbody></table></figure>
+<figure class="wp-block-table sb-table"><table class="has-fixed-layout"><thead><tr><th>Your situation</th><th>Sensible starting tier</th></tr></thead><tbody><tr><td>New site with few or no links</td><td>DR 10+ to DR 20+, alongside citations and profile links</td></tr><tr><td>Established local or niche site</td><td>DR 30+ to DR 40+</td></tr><tr><td>Competitive national keywords</td><td>DR 50+ and above, mixed with lower tiers</td></tr><tr><td>Product launch or company news</td><td>A press release plus one or two strong posts</td></tr></tbody></table></figure>
 <!-- /wp:table -->
 
 <!-- wp:paragraph -->
-<p>A natural link profile has a range of strengths. Jumping straight to only high-DR links on a brand-new site looks unusual and is a poor use of budget.</p>
+<p>Jumping straight to only high-DR links on a brand-new site looks unusual and is rarely the best use of budget. Build foundations first, then add strength.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -38,23 +62,23 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Real organic traffic</strong>: the site should receive visitors from search, not just have a high score.</li>
+<li><strong>Real organic traffic.</strong> The site should get visitors from search, not just have a high score.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Topical relevance</strong>: a link from a site in your field is worth more than a random general blog.</li>
+<li><strong>Topical relevance.</strong> A link from a site in your field is worth more than a random general blog.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Editorial standards</strong>: real articles with real authors, not pages stuffed with "write for us" posts.</li>
+<li><strong>Editorial standards.</strong> Real articles with real authors, not pages of "write for us" posts.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Outbound link volume</strong>: sites linking out to dozens of unrelated businesses every day pass less value.</li>
+<li><strong>Outbound link volume.</strong> Sites linking to dozens of unrelated businesses every day pass less value.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Disclosure</strong>: reputable publishers label sponsored content. That is normal and keeps everyone within search engine guidelines.</li>
+<li><strong>Disclosure.</strong> Reputable publishers label sponsored content, which keeps everyone inside search engine guidelines.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -63,7 +87,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Google's spam policies say links that are paid for should be qualified, for example with <code>rel="sponsored"</code>. Many publishers handle this themselves. Avoid anyone selling "guaranteed dofollow, permanent, undisclosed" links, because that is exactly the pattern Google looks for.</p>
+<p>Google asks that links which are paid for are qualified, for example with <code>rel="sponsored"</code> (<a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" target="_blank" rel="noopener">Google: qualify your outbound links</a>). Many publishers handle this themselves. Be wary of anyone selling "guaranteed dofollow, permanent, undisclosed" links. That combination is exactly what Google's <a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">link spam policy</a> is designed to catch.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -72,7 +96,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Start with foundations: citations and profile links.</li>
+<li>Start with foundations: <a href="/citations-vs-profile-backlinks/">citations and profile links</a>.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -84,10 +108,64 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Review progress after a few months before buying more.</li>
+<li>Review progress after two or three months before buying more.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If you are unsure where to start, an <a href="/services/seo-audit/">SEO audit</a> will show whether links are even your biggest problem.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to spot a link farm</h2>
+<!-- /wp:heading -->
+
 <!-- wp:paragraph -->
-<p>See our <a href="/services/off-page-seo/#packages">Premium Links packages</a>, with guest posts from DR 10+ to DR 70+ and a live-URL report on publication.</p>
+<p>Open the site's recent posts. If every article is on a different, unrelated topic, each one links out to a business, and nobody seems to read or comment, you are probably looking at a site that exists to sell links. Check whether it ranks for anything in Google, and whether its traffic comes from a real audience. A smaller, genuine site in your niche is almost always the better buy.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"sb-faq","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sb-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Is a higher DR always better?</summary><!-- wp:paragraph -->
+<p>Not on its own. Relevance, real traffic and editorial standards often matter more than a few extra DR points.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Should guest post links be dofollow?</summary><!-- wp:paragraph -->
+<p>Publishers decide. Paid placements should be qualified, for example with rel="sponsored". A natural link profile includes a mix.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How many guest posts do I need?</summary><!-- wp:paragraph -->
+<p>It depends on your competitors. Compare the number and quality of sites linking to the pages that outrank you, and close the gap gradually.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Where should guest posts link to?</summary><!-- wp:paragraph -->
+<p>To the page that best answers the topic of the article, often a service or guide page, using natural anchor text.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"sb-inline-cta"} -->
+<div class="wp-block-group sb-inline-cta"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Ready to add premium links?</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Our guest posts run from DR 10+ to DR 70+, on real sites, with a live-URL report on publication.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/services/off-page-seo/#packages">See guest post tiers</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->

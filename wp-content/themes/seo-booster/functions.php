@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SBT_VERSION', '1.2.0' );
+define( 'SBT_VERSION', '1.3.0' );
 
 add_action(
 	'after_setup_theme',
@@ -23,7 +23,35 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	static function () {
-		wp_enqueue_style( 'seo-booster', get_stylesheet_uri(), array(), SBT_VERSION );
+		// Version from the file's modified time, so every theme update busts browser and optimiser caches.
+		wp_enqueue_style( 'seo-booster', get_stylesheet_uri(), array(), SBT_VERSION . '.' . (string) filemtime( get_stylesheet_directory() . '/style.css' ) );
+	}
+);
+
+/*
+ * Critical header CSS printed inline, so the mobile header is correct even if a cached or "optimised"
+ * stylesheet is stale (LiteSpeed CSS combine / UCSS can keep old copies per page).
+ */
+add_action(
+	'wp_head',
+	static function () {
+		echo '<style id="sb-critical">'
+			. '@media (max-width:1080px){.sb-header .sb-header__cta,.sb-header .sb-header__search{display:none!important}}'
+			. '@media (max-width:600px){.sb-header .sb-header__account{display:none!important}.sb-header__inner{min-height:64px}.sb-header__nav{gap:.5rem!important}}'
+			. '.sb-steps-bar{list-style:none!important;display:flex;flex-wrap:wrap;gap:.5rem;padding:0!important}'
+			. '</style>' . "\n";
+	},
+	99
+);
+
+/*
+ * Shortcodes inside patterns used by templates (e.g. [sb_breadcrumbs] in the Insights hero) are expanded after
+ * WordPress has already run do_shortcode on the template, so run it on the rendered Shortcode block.
+ */
+add_filter(
+	'render_block_core/shortcode',
+	static function ( string $html ): string {
+		return str_contains( $html, '[' ) ? do_shortcode( $html ) : $html;
 	}
 );
 

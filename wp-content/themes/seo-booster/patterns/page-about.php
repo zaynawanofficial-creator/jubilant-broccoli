@@ -64,6 +64,48 @@
 <!-- /wp:columns --></section>
 <!-- /wp:group -->
 
+<!-- wp:group {"tagName":"section","anchor":"founder","align":"full","className":"sb-section sb-section\u002d\u002dblue","layout":{"type":"constrained"}} -->
+<section id="founder" class="wp-block-group alignfull sb-section sb-section--blue"><!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"sb-split sb-founder"} -->
+<div class="wp-block-columns are-vertically-aligned-center alignwide sb-split sb-founder"><!-- wp:column {"width":"38%"} -->
+<div class="wp-block-column" style="flex-basis:38%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"sb-founder__photo"} -->
+<figure class="wp-block-image size-full sb-founder__photo"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/team/zain-malik.webp' ) ); ?>" alt="Zain Malik, founder of SEO Booster"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"62%"} -->
+<div class="wp-block-column" style="flex-basis:62%"><!-- wp:paragraph {"className":"sb-eyebrow"} -->
+<p class="sb-eyebrow">Meet the founder</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Zain Malik</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"sb-founder__role"} -->
+<p class="sb-founder__role">Founder, SEO Booster</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Zain started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That idea shapes everything here, from fixed-price packages with written deliverables to live-URL reports and plain-English audits. Zain also writes our <a href="/insights/">Insights</a> guides, so business owners can make better decisions about search and marketing, whether or not they buy from us.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/insights/">Read Zain's guides</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/contact/">Talk to us</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></section>
+<!-- /wp:group -->
+
 <!-- wp:group {"tagName":"section","align":"full","className":"sb-section sb-section\u002d\u002dsoft","layout":{"type":"constrained"}} -->
 <section class="wp-block-group alignfull sb-section sb-section--soft"><!-- wp:group {"align":"wide","className":"sb-section-head sb-center"} -->
 <div class="wp-block-group alignwide sb-section-head sb-center"><!-- wp:paragraph {"className":"sb-eyebrow"} -->

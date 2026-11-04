@@ -6,6 +6,10 @@ const posts = [
   ['citations-vs-profile-backlinks', 'Link building', 'Citations vs profile backlinks', 'art-offpage'],
   ['choose-guest-post-dr-tier', 'Link building', 'Choosing a guest post DR tier', 'report-links'],
   ['wordpress-speed-checklist', 'Websites', 'WordPress speed checklist', 'art-technical'],
+  ['canva-brand-kit-guide', 'Design', 'How to create a brand kit in Canva', 'art-design'],
+  ['local-seo-checklist', 'SEO', 'Local SEO checklist for small businesses', 'art-local'],
+  ['ppc-management-cost', 'Paid ads', 'PPC management costs explained', 'art-ads'],
+  ['ai-seo-guide', 'SEO', 'AI SEO: get cited in AI answers', 'art-ai'],
 ];
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1200, height: 675 } });

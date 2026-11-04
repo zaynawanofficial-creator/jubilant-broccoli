@@ -208,7 +208,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Secure checkout with the payment options shown at checkout. Prices are in [sb_currency].</p>
+<p>Secure checkout with card, PayPal or bank transfer, depending on the options shown at checkout.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

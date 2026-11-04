@@ -34,13 +34,20 @@ SERVICES = [
     ('graphic-design', 'graphic-design', 'Graphic Design &amp; Branding', 'design', 'design',
      'Social media graphics, ad creatives and brand kits in your colours, delivered ready to use.'),
 ]
+from services_new import NEW as NEW_SERVICES
+SERVICES += [(n['slug'], n['slug'], n['name'].replace('&', '&amp;'), n['icon'], n['art'], n['short']) for n in NEW_SERVICES]
 SVC = {s[0]: s for s in SERVICES}
+
+
+def art_file(s):
+    a = s[4]
+    return f'{a}.svg' if a.startswith(('art-', 'hero-', 'report-')) else f'art-{a}.svg'
 
 
 def svc_card(slug, dark=False):
     s = SVC[slug]
     return group(
-        image(f'art-{s[4]}.svg', '', 'sb-card__art'),
+        image(art_file(s), '', 'sb-card__art'),
         heading(f'<a href="/services/{s[0]}/">{s[2]}</a>', 3),
         para(s[5]),
         para(f'From <strong>[sb_from service="{s[1]}"]</strong>', 'sb-price-from'),
@@ -168,13 +175,13 @@ POSTS = []
 
 
 SEO_TITLES = {
-    'home': 'Fixed-Price SEO Services, Link Building & Websites | SEO Booster',
+    'home': 'SEO Services UK | Fixed-Price SEO, Link Building & Websites',
     'services': 'SEO, Web Design & Content Services with Fixed Prices | SEO Booster',
-    'off-page-seo': 'Off-Page SEO & Link Building Services | Citations & Guest Posts',
-    'seo-audit': 'SEO Audit Service | Prioritised, Plain-English Fix List',
+    'off-page-seo': 'Link Building Services | Off-Page SEO, Citations & Guest Posts',
+    'seo-audit': 'SEO Audit Service | Technical SEO Audit with Prioritised Fixes',
     'technical-seo': 'Technical SEO Services | Core Web Vitals, Schema & Fixes',
-    'website-development': 'WordPress Website Design for Small Businesses | Fixed Price',
-    'website-maintenance': 'WordPress Maintenance & Fixes | Care Plans from a Developer',
+    'website-development': 'Website Development Services | Design & Build at a Fixed Price',
+    'website-maintenance': 'Website Maintenance Services | WordPress Care Plans & Fixes',
     'content-writing': 'SEO Content Writing Services | Articles from 500 to 3,000 Words',
     'graphic-design': 'Graphic Design & Branding Packages | Logos, Brand Kits, Social',
     'packages': 'SEO & Website Packages and Prices | SEO Booster',
@@ -219,9 +226,9 @@ home = join(
         align='wide', cls='sb-trust', layout='flow'), align='full', cls='sb-section--dark sb-trustbar', layout='constrained', tag='section'),
     section(head('Services', 'Everything a growing website needs, priced up front',
                  'Start with one service or combine several. Each one has its own packages, so you only pay for what you need.'),
-            group(*[svc_card(s[0]) for s in SERVICES],
-                  card('Something else?', join(para('PPC, analytics, email and automation projects are quoted individually.'), para('<a href="/get-a-quote/">Request a quote →</a>', 'sb-card__more')), cls='sb-card sb-card--outline'),
-                  align='wide', layout='flow', cls='sb-grid sb-grid--4')),
+            group(*[svc_card(x) for x in ['monthly-seo', 'local-seo', 'off-page-seo', 'seo-audit', 'website-development', 'ecommerce-website-development', 'ppc-management', 'content-writing']],
+                  align='wide', layout='flow', cls='sb-grid sb-grid--4'),
+            para('<a href="/services/">See all 20 services →</a>', 'sb-center sb-card__more')),
     proof('report-links.svg', 'Illustration of a delivery report listing live URLs', 'Proof of work', 'Every order ends with something you can check',
           'No vague monthly summaries. You receive the actual output: live URLs, an audit PDF, a change log or your design files, with what was done and when.',
           ['Live-URL reports for every link order', 'Prioritised audit reports in plain English', 'Before/after measurements for technical work', 'Source files for websites and design'], cls='sb-section--blue'),
@@ -261,40 +268,40 @@ page('home', 'Home', home, 'Fixed-price SEO, link building, website, content and
 
 # ================================================================ SERVICES HUB
 hub_groups = [
-    ('SEO &amp; visibility', 'Get found: authority, technical health and a clear plan.', ['off-page-seo', 'seo-audit', 'technical-seo']),
-    ('Websites', 'Build it properly, then keep it fast, secure and working.', ['website-development', 'website-maintenance']),
+    ('SEO services', 'Get found on Google, in Maps and in AI answers, with work you can check.', ['monthly-seo', 'local-seo', 'off-page-seo', 'seo-audit', 'technical-seo', 'on-page-seo', 'ecommerce-seo', 'ai-seo', 'white-label-seo', 'seo-consultancy']),
+    ('Websites &amp; ecommerce', 'Build it properly, move it safely, then keep it fast and secure.', ['website-development', 'ecommerce-website-development', 'website-maintenance', 'website-migration']),
+    ('Paid ads &amp; social media', 'Reach buyers now with ads, and stay visible with consistent social content.', ['ppc-management', 'facebook-ads', 'tiktok-ads', 'social-media-management']),
     ('Content &amp; creative', 'Words and visuals that explain what you do and why it matters.', ['content-writing', 'graphic-design']),
 ]
 hub = join(
     page_hero('art-services.svg', 'Illustration of a service menu and package card', eyebrow('Services'), heading('Services with clear scope and fixed prices', 1),
           lead('Choose a service to see its packages, what is included and how we work. Not sure where to start? An <a href="/services/seo-audit/">SEO audit</a> tells you what will make the biggest difference.'),
           buttons(('See all packages', '/packages/'), ('Get a quote', '/get-a-quote/', 'outline'))),
-    *[section(head(eb, title, sub), group(*[svc_card(s) for s in slugs], align='wide', layout='flow', cls='sb-grid sb-grid--3'),
+    *[section(head(eb, title, sub), group(*[svc_card(s) for s in slugs], align='wide', layout='flow', cls='sb-grid sb-grid--4' if len(slugs) % 4 == 0 else 'sb-grid sb-grid--3'),
               cls='sb-section--soft' if i % 2 else '') for i, (title, sub, slugs) in enumerate(hub_groups) for eb in ['']],
-    section(head('Coming soon', 'Quoted services', 'These are available as custom projects while we finalise fixed packages.'),
-            group(card('PPC &amp; paid ads', 'Account audits, campaign setup and management for Google and Meta ads. Ad spend is always billed separately.'),
-                  card('Analytics &amp; tracking', 'GA4 and Google Tag Manager audits, setup and conversion tracking, with consent built in.'),
+    section(head('Custom projects', 'Quoted services', 'Available as custom projects. Tell us what you need and we will send a fixed quote.'),
+            group(card('Analytics &amp; tracking', 'GA4 and Google Tag Manager audits, setup and conversion tracking, with consent built in.'),
                   card('Email marketing', 'Templates, automations and campaign management on your existing email platform.'),
                   card('Marketing automation', 'Workflow audits and builds that connect your forms, CRM and email.'),
-                  align='wide', layout='flow', cls='sb-grid sb-grid--4'),
+                  align='wide', layout='flow', cls='sb-grid sb-grid--3'),
             buttons(('Request a quote', '/get-a-quote/')), cls='sb-section--blue'),
     cta(),
 )
-page('services', 'Services', hub, 'SEO, link building, website development, maintenance, content writing and graphic design services with fixed-price packages.', menu_order=1)
+page('services', 'Services', hub, 'SEO services, local SEO, link building, website development, ecommerce, PPC, social media, content and design, all with fixed-price packages you can order online.', menu_order=1)
 
 # ================================================================ SERVICE PAGES
 def service_page(slug, eb, h1, sub, checks, for_list, not_for, pk_title, pk_sub, features, process, needs, faqs, related, extra=None, title=None, excerpt=''):
     s = SVC[slug]
     content = join(
         hero(eb, h1, sub, [('See packages', '#packages'), ('Get a quote', f'/get-a-quote/?service={slug}', 'outline')], checks,
-             f'art-{s[4]}.svg', f'Illustration for {s[2].replace("&amp;", "and")}', crumbs=True),
+             art_file(s), f'Illustration for {s[2].replace("&amp;", "and")}', crumbs=True),
         section(columns(
             column(group(heading('Who it is for', 3), ul(for_list, 'sb-ticks'), cls='sb-card', layout='flow')),
             column(group(heading('Not the right fit if…', 3), ul(not_for, 'sb-crosses'), cls='sb-card', layout='flow')),
         ), cls='sb-section--tight'),
         section(head('Packages', pk_title, pk_sub, center=True),
                 group(shortcode(f'[sb_packages service="{s[1]}"]'), align='wide', layout='flow'),
-                para('Prices in [sb_currency]. Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.', 'sb-center sb-muted'),
+                para('Need a bigger or custom order? <a href="/get-a-quote/">Ask for a quote</a>.', 'sb-center sb-muted'),
                 cls='sb-section--soft', anchor='packages'),
         section(columns(column(eyebrow('The basics'), heading(WHATIS[slug][0]), width='40%'),
                         column(*[para(x) for x in WHATIS[slug][1]], width='60%'), cls='sb-split sb-whatis')),
@@ -318,7 +325,7 @@ def service_page(slug, eb, h1, sub, checks, for_list, not_for, pk_title, pk_sub,
 
 
 service_page('off-page-seo', 'Off-page SEO',
-    'Off-page SEO and link building, done by hand and proven with live URLs',
+    'Link building services and off-page SEO, done by hand and proven with live URLs',
     'Build the authority signals search engines and customers look for: consistent business listings, quality profile links, and guest posts on real websites grouped by Domain Rating.',
     ['From [sb_from service="off-page-seo"]', 'Manual submissions, no bots', 'Spreadsheet report of every live URL'],
     ['New websites that need a foundation of trusted links and listings', 'Local businesses that need consistent name, address and phone data', 'Established sites ready for editorial links on stronger domains', 'Agencies that need reliable white-label fulfilment'],
@@ -334,7 +341,7 @@ service_page('off-page-seo', 'Off-page SEO',
     [('Brief', 'You send your URL, business details, keywords and niche.'), ('Plan', 'We match platforms or publishers to your niche and DR tier.'),
      ('Build', 'Listings, profiles and articles are created and checked by hand.'), ('Report', 'You receive a spreadsheet of live URLs within the turnaround.')],
     ['Website URL and the pages to link to', 'Business name, address and phone (or "online only")', 'Main keywords or topics for anchor text', 'A short business description and category', 'An email address you control, for listing verification'],
-    [('What is the difference between citations, profile links and guest posts?', 'Citations are business listings with your name, address and phone, mainly a local SEO trust signal. Profile links come from accounts on established platforms. Guest posts are articles on other websites with a contextual link to you. Our guide <a href="/insights/citations-vs-profile-backlinks/">explains when each one helps</a>.'),
+    [('What is the difference between citations, profile links and guest posts?', 'Citations are business listings with your name, address and phone, mainly a local SEO trust signal. Profile links come from accounts on established platforms. Guest posts are articles on other websites with a contextual link to you. Our guide <a href="/citations-vs-profile-backlinks/">explains when each one helps</a>.'),
      ('Are the links dofollow?', 'Some are and some are not. Each platform and publisher decides. A natural link profile contains both, so we never sell "dofollow only" packages.'),
      ('What does DR mean?', 'Domain Rating is an Ahrefs score from 0 to 100 estimating a site\'s link strength. Your guest post is placed on a site at or above the DR tier you order, measured on the day of publishing.'),
      ('Will this improve my rankings?', 'Links are one of many ranking factors, and results depend on your site, content and competition. We guarantee the deliverables, not rankings.'),
@@ -400,7 +407,7 @@ service_page('technical-seo', 'Technical SEO',
     excerpt='Technical SEO fixes for indexing, redirects, structured data and Core Web Vitals, with backups and a before/after report.')
 
 service_page('website-development', 'Website development',
-    'WordPress website design for small businesses, at a fixed price',
+    'Website design and development services at a fixed price',
     'From a single landing page to a 10-page business site, built on WordPress so you can edit it yourself, with your content added and SEO basics set up from day one.',
     ['From [sb_from service="website-development"]', 'Mobile-friendly and fast', 'Edit it yourself after handover'],
     ['New businesses that need a credible website quickly', 'Owners replacing an outdated or slow site', 'Campaigns that need a focused landing page', 'Service businesses with 2 to 10 core pages'],
@@ -425,7 +432,7 @@ service_page('website-development', 'Website development',
     excerpt='WordPress website design and development packages: 1, 2, 5 and 10 pages with responsive design, SEO basics and handover.')
 
 service_page('website-maintenance', 'Website maintenance',
-    'WordPress maintenance and fixes, handled by a real developer',
+    'Website maintenance services and WordPress fixes, handled by a developer',
     'Something broken? Get a one-off fix. Want it to stay working? Choose a month of care with updates, backups, monitoring and small changes included.',
     ['From [sb_from service="website-maintenance"]', 'Backup before every fix', 'Written summary of what changed'],
     ['WordPress sites showing errors, white screens or broken layouts', 'Owners who do not have time for updates and backups', 'Sites that need small content or design changes regularly', 'Anyone worried about plugin conflicts after updates'],
@@ -449,7 +456,7 @@ service_page('website-maintenance', 'Website maintenance',
     excerpt='WordPress fixes and monthly website care: diagnosis, single and multi-fix bundles, updates, backups and monitoring.')
 
 service_page('content-writing', 'Content writing',
-    'SEO content writing that people actually want to read',
+    'SEO content writing services that people actually want to read',
     'Researched blog posts and guides from 500 to 3,000 words, or a batch of articles planned as a topic cluster that supports your main service pages.',
     ['From [sb_from service="content-writing"]', 'Plagiarism-checked', 'Meta title and description included'],
     ['Businesses that need regular blog content', 'Sites building topical authority around their services', 'Agencies that need dependable writers', 'Owners who know their subject but lack time to write'],
@@ -496,10 +503,19 @@ service_page('graphic-design', 'Graphic design',
     ['website-development', 'content-writing', 'off-page-seo'],
     excerpt='Graphic design packages: social media graphics, ad creatives, mini brand kits, brand refreshes and full brand identities.')
 
+# ---------------------------------------------------------------- new services (tools/services_new.py)
+for n in NEW_SERVICES:
+    pg = n['page']
+    WHATIS[n['slug']] = pg['whatis']
+    DELIVER[n['slug']] = pg['deliver']
+    SEO_TITLES[n['slug']] = pg['seo_title']
+    service_page(n['slug'], pg['eb'], pg['h1'], pg['sub'], pg['checks'], pg['for_'], pg['not_for'], pg['pk_title'], pg['pk_sub'],
+                 pg['features'], pg['process'], pg['needs'], pg['faqs'], pg['related'], title=n['name'], excerpt=pg['excerpt'])
+
 # ================================================================ PACKAGES
 packages = join(
     page_hero('art-packages.svg', 'Illustration of three package cards', eyebrow('Packages'), heading('All packages and prices', 1),
-          lead('Every package in one place. Prices are in [sb_currency] and every card shows what is included, the turnaround and the revisions.'),
+          lead('Every package in one place, with what is included, the turnaround and the revisions. Pick a package, add your project details and check out in minutes.'),
           ul([f'<a href="#{s[0]}">{s[2]}</a>' for s in SERVICES], 'sb-jump')),
     *[section(head('', s[2], s[5]), group(shortcode(f'[sb_packages service="{s[1]}"]'), align='wide', layout='flow'),
               para(f'<a href="/services/{s[0]}/">More about {s[2]} →</a>', 'sb-card__more'),
@@ -528,7 +544,7 @@ how = join(
             group(card('Turnaround', 'Shown on every package in working days. The clock starts when your brief is complete, not at payment.', 'scope'),
                   card('Revisions', 'Included where listed on the package. Revisions refine the agreed scope and do not add new deliverables.', 'human'),
                   card('Reports', 'Every order ends with proof: live URLs, an audit PDF, a change log or source files.', 'report'),
-                  card('Payments', 'Secure checkout with the payment options shown at checkout. Prices are in [sb_currency].', 'shield'),
+                  card('Payments', 'Secure checkout with card, PayPal or bank transfer, depending on the options shown at checkout.', 'shield'),
                   align='wide', layout='flow', cls='sb-grid sb-grid--4')),
     section(head('FAQ', 'Process questions', None, center=True), faq([
         ('Do I need an account?', 'Yes. An account is created at checkout so you can complete your brief, follow your order and download files securely.'),
@@ -550,6 +566,13 @@ about = join(
                width='55%'),
         column(image('hero-growth.svg', 'Illustration of a growth chart and link network'), width='45%'),
         cls='sb-split', center=True)),
+    section(columns(
+        column(image('team/zain-malik.webp', 'Zain Malik, founder of SEO Booster', 'sb-founder__photo'), width='38%'),
+        column(eyebrow('Meet the founder'), heading('Zain Malik'), para('Founder, SEO Booster', 'sb-founder__role'),
+               para('Zain started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.'),
+               para('That idea shapes everything here, from fixed-price packages with written deliverables to live-URL reports and plain-English audits. Zain also writes our <a href="/insights/">Insights</a> guides, so business owners can make better decisions about search and marketing, whether or not they buy from us.'),
+               buttons(('Read Zain\'s guides', '/insights/'), ('Talk to us', '/contact/', 'outline')), width='62%'),
+        cls='sb-split sb-founder', center=True), anchor='founder', cls='sb-section--blue'),
     section(head('Principles', 'How we work', None, center=True),
             group(card('Clarity over promises', 'We describe what we will deliver, not what Google will do. No ranking guarantees, ever.', 'scope'),
                   card('Proof of work', 'Every order ends with something you can verify: URLs, reports, files or a change log.', 'report'),
@@ -746,77 +769,256 @@ legal('accessibility', 'Accessibility Statement',
        ('review', 'Review', [para(f'This statement was last reviewed on {UPDATED}.')])],
       'Accessibility statement for seobooster.uk: WCAG 2.2 AA approach, measures taken, known limitations and how to get help.', art='art-contact.svg')
 
-# ================================================================ INSIGHTS (articles)
+# ================================================================ INSIGHTS (articles, by Zain Malik)
+def ext(url, label):
+    return f'<a href="{url}" target="_blank" rel="noopener">{label}</a>'
+
+
+def takeaways(items):
+    return group(heading('Key takeaways', 3), ul(items, 'sb-ticks'), cls='sb-panel sb-takeaways', layout='flow')
+
+
+def inline_cta(title, text, label, url):
+    return group(heading(title, 3), para(text), buttons((label, url)), cls='sb-inline-cta', layout='flow')
+
+
+def post_faq(items):
+    return join(heading('Frequently asked questions'), faq(items))
+
+
+POST_EXTRA = {
+'citations-vs-profile-backlinks': [
+  heading('A quick citation audit you can do yourself'),
+  para('Search Google for your business name with your old phone number, then with your old address if you have moved. Every result that shows outdated details is a listing worth fixing. Then search for your name plus your town and check the first two pages for directories where you are missing entirely. Write the results in a simple spreadsheet. That list is the starting point any good local SEO provider would use.'),
+  post_faq([('How many citations does a local business need?', 'There is no magic number. Most small local businesses benefit from accurate listings on the major platforms, the main directories in their country and the key sites in their industry. Accuracy and relevance matter far more than a specific count.'),
+            ('Are nofollow citations worthless?', 'No. Citations are mainly about confirming your business details, not passing link authority, so a nofollow link on a trusted directory still does its job.'),
+            ('How long do citations take to have an effect?', 'Search engines need to recrawl the listings, which can take a few weeks. Fixing inconsistent details on major platforms usually has the quickest impact.'),
+            ('Should I remove old or duplicate listings?', 'Yes, where you can. Duplicates and outdated addresses confuse search engines and customers. Claim and correct them, or ask the platform to merge or remove them.')])],
+'choose-guest-post-dr-tier': [
+  heading('How to spot a link farm'),
+  para('Open the site\'s recent posts. If every article is on a different, unrelated topic, each one links out to a business, and nobody seems to read or comment, you are probably looking at a site that exists to sell links. Check whether it ranks for anything in Google, and whether its traffic comes from a real audience. A smaller, genuine site in your niche is almost always the better buy.'),
+  post_faq([('Is a higher DR always better?', 'Not on its own. Relevance, real traffic and editorial standards often matter more than a few extra DR points.'),
+            ('Should guest post links be dofollow?', 'Publishers decide. Paid placements should be qualified, for example with rel="sponsored". A natural link profile includes a mix.'),
+            ('How many guest posts do I need?', 'It depends on your competitors. Compare the number and quality of sites linking to the pages that outrank you, and close the gap gradually.'),
+            ('Where should guest posts link to?', 'To the page that best answers the topic of the article, often a service or guide page, using natural anchor text.')])],
+'wordpress-speed-checklist': [
+  heading('A simple before-and-after routine'),
+  para('Before changing anything, take a full backup and record the PageSpeed results for three key pages. Make one change at a time, clear your cache and test again. Keeping a short log of what you changed and what happened means you can undo anything that breaks the site, and you will learn which fixes actually made a difference on your setup.'),
+  post_faq([('What is a good PageSpeed score for WordPress?', 'Aim for "good" Core Web Vitals for real users rather than a perfect lab score. Many fast, successful sites score in the 70s or 80s in the lab.'),
+            ('Do caching plugins conflict with each other?', 'Yes. Run one caching solution, either your host\'s or a single plugin, never several at once.'),
+            ('Will a new theme make my site faster?', 'Sometimes, but test first. A lightweight theme helps most when your current theme or page builder loads a lot of unused code.'),
+            ('How often should I check site speed?', 'After every major update, new plugin or design change, and at least monthly for important pages.')])],
+'canva-brand-kit-guide': [
+  heading('Turning your brand kit into templates'),
+  para('The kit only saves time when your team has templates to start from. Begin with the five formats you use most often, for example a square social post, a story, a quote card, a one-page flyer and a presentation cover. Build each with locked logo positions and your brand fonts, then share them with the team. From then on, new designs take minutes instead of starting from a blank page.'),
+  post_faq([('Is Canva Brand Kit free?', 'Brand Kits are part of Canva\'s paid plans, such as Pro and Teams. Free accounts have limited brand options, so check Canva\'s current plan details.'),
+            ('Can I have more than one brand kit?', 'On team plans you can create several kits, which is useful for agencies or businesses with sub-brands.'),
+            ('Can I upload my own fonts to Canva?', 'On supported plans, yes, as long as your font licence allows it.'),
+            ('What is the difference between a brand kit and brand guidelines?', 'The brand kit stores the assets. Guidelines explain how to use them: spacing, logo do\'s and don\'ts, tone of voice and examples.')])],
+'local-seo-checklist': [
+  heading('7. Make your website match your profile'),
+  para('Your website should confirm everything your Google Business Profile says. Put your business name, address and phone number in the footer, add a clear contact page with a map, and make sure your main service pages mention the areas you serve in natural sentences. Link from your profile to the most relevant page, not always the homepage. Every match between your profile and your website is another reason for Google to trust both.'),
+  heading('8. Keep it going'),
+  para('Local SEO is not a one-off job. New competitors open, platforms change and reviews keep arriving. Set a monthly routine: one or two profile posts, replies to every review, a check that your details are still correct, and one improvement to your website. Small, steady actions beat a burst of work followed by months of silence.'),
+  post_faq([('How long does local SEO take?', 'Profile and citation fixes are often reflected within weeks. Competitive areas and new businesses usually need several months of consistent work.'),
+            ('Do I need a physical address for local SEO?', 'No. Service-area businesses can hide their address on Google and list the areas they cover instead.'),
+            ('Should I create a page for every town?', 'Only where you genuinely serve the area and can say something specific about it. Thin copies with the town name swapped can hurt more than help.'),
+            ('How do I get more Google reviews?', 'Ask at the right moment, send a direct review link, and reply to every review. Never pay for or incentivise reviews.')])],
+'ppc-management-cost': [
+  heading('Questions to ask before hiring anyone'),
+  ul(['Will the ads run in my own account, and will I have admin access?', 'Exactly what work happens each week, and how will I see it?', 'Is conversion tracking included, and who checks it is accurate?', 'What is the notice period, and what happens to my account if I leave?', 'Do you charge a percentage of spend, and if so, is it capped?']),
+  para('A good provider answers all five without hesitation. If the answers are vague, keep looking.'),
+  post_faq([('What is a reasonable PPC management fee?', 'It depends on account size and complexity. For small accounts, flat monthly fees are usually clearer and better value than a percentage of spend.'),
+            ('How much should I spend on Google Ads?', 'Enough to get meaningful data, typically enough for at least 20 to 30 clicks a day in your main campaign. Start small, measure, then scale what converts.'),
+            ('Should I own my Google Ads account?', 'Always. Your account holds your data and history. Agencies should work in your account as users, not run ads from theirs.'),
+            ('How long before PPC campaigns perform well?', 'Expect a learning period of two to four weeks, then gradual improvement as search terms, bids and ads are optimised.')])],
+'ai-seo-guide': [
+  heading('Write pages AI tools can quote'),
+  para('Look at your most important service or guide page and ask: if someone asked an AI tool the main question this page answers, is there a clear two-sentence answer near the top? Is the price range, location or process stated plainly? Are facts like opening hours and services identical to your Google profile? Pages that answer directly, with specific details and consistent facts, are much easier for any system, human or machine, to rely on.'),
+  heading('AI SEO and normal SEO work together'),
+  para('Everything that helps AI tools understand you also helps Google: technical health, clear structure, authority and genuinely useful content. That is why we treat AI visibility as part of a broader <a href="/services/monthly-seo/">SEO plan</a> rather than a separate trick. Start with the foundations, then measure how AI answers change over time.'),
+  post_faq([('What is generative engine optimisation (GEO)?', 'GEO is the practice of making your content easy for generative AI tools to understand, trust and cite. It builds on classic SEO rather than replacing it.'),
+            ('Does schema markup help with AI search?', 'Structured data helps machines understand your pages and business details, which supports accurate AI answers. It is not a guarantee of being cited.'),
+            ('Should I block AI crawlers?', 'That is a business decision. Blocking them may protect content, but it also reduces the chance that AI tools mention or cite you.'),
+            ('Is AI-written content bad for SEO?', 'Not automatically. What matters is whether content is helpful, accurate and original. Low-value content at scale is a problem however it is written.')])],
+}
+
 post('citations-vs-profile-backlinks', 'Business citations vs profile backlinks: what is the difference and which do you need?', join(
-    para('"Citations" and "profile backlinks" are often sold together, and many sellers use the words interchangeably. They do different jobs, though. Knowing the difference helps you buy the right thing and avoid paying for links that do nothing.'),
+    para('"Citations" and "profile backlinks" are often sold together, and plenty of sellers use the two words as if they mean the same thing. They do not. They do different jobs, they are judged differently by search engines, and buying the wrong one is one of the most common ways small businesses waste their first SEO budget.'),
+    takeaways(['Citations confirm who and where your business is. They matter most for local search.', 'Profile backlinks build brand presence and help new sites get discovered.', 'Consistency beats volume: one wrong address can undo the value of ten correct listings.', 'Neither replaces strong pages and editorial links for competitive keywords.']),
     heading('What is a business citation?'),
-    para('A citation is any online mention of your business name, address and phone number (often shortened to NAP). Typical sources are business directories, map apps, industry listings and local chamber or association sites.'),
-    para('Citations matter most for <strong>local SEO</strong>. Search engines cross-check your business details across the web. Consistent details build confidence that your business is real and where you say it is, while conflicting addresses or old phone numbers do the opposite.'),
+    para('A citation is any online mention of your business name, address and phone number, often shortened to NAP. You find them on business directories, map apps, industry associations, local chambers of commerce and review platforms. Many include a link to your website, but the link is not the point. The point is the data.'),
+    para('Search engines cross-check those details across the web to confirm that your business is real, where it is and how to contact it. Google lists relevance, distance and prominence as the main factors in local results, and consistent information across trusted sites feeds into prominence (see ' + ext('https://support.google.com/business/answer/7091', 'Google\'s guide to local ranking') + '). That is why citations are a core part of <a href="/services/local-seo/">local SEO</a>.'),
     heading('What is a profile backlink?'),
-    para('A profile backlink is a link from an account or profile page you create on an established platform: a community, a design portfolio site, a developer platform or a social bookmarking site. The profile usually describes your brand and links to your website.'),
-    para('Profile links help a new site get discovered and add brand mentions. Individually they carry little weight. Their value is in breadth and in looking like a real, active brand across the web.'),
-    heading('Side by side'),
+    para('A profile backlink is a link from an account or profile page you create on an established platform: a professional community, a design portfolio site, a developer platform, a podcast directory or a business network. The profile describes your brand and links to your website.'),
+    para('On their own, individual profile links carry modest weight. Their value comes from breadth and legitimacy: a real brand tends to have a footprint across many platforms, and search engines notice when a site has none. For a brand-new website, a set of well-made profiles also helps crawlers discover your pages sooner.'),
+    heading('Citations vs profile backlinks, side by side'),
     table(['', 'Citations', 'Profile backlinks'], [
         ['Main purpose', 'Confirm business identity and location', 'Brand presence and link discovery'],
-        ['Most useful for', 'Local businesses, service areas', 'New sites, any niche'],
-        ['Key requirement', 'Identical name, address and phone', 'A complete, genuine-looking profile'],
-        ['Link attribute', 'Often nofollow, which is fine', 'Mixed dofollow and nofollow']]),
-    heading('Which do you need?'),
-    ul(['<strong>A local business</strong> (plumber, clinic, salon, agency with an office): start with citations, then add profile links.',
-        '<strong>An online-only business</strong>: focus on profile links and, as your site matures, editorial links such as guest posts.',
-        '<strong>A brand-new website</strong>: a small mix of both gives search engines signals to find and trust you sooner.']),
-    heading('Three mistakes to avoid'),
-    ul(['<strong>Inconsistent details.</strong> "Ltd" in one place, "Limited" in another, and an old phone number elsewhere all weaken citations. Decide on one exact format first.',
-        '<strong>Buying thousands of automated links.</strong> Mass-submission software creates low-quality, spammy profiles that can do more harm than good.',
-        '<strong>Expecting rankings from these alone.</strong> Citations and profiles are foundations. Competitive keywords also need strong content and editorial links.']),
-    para('Our <a href="/services/off-page-seo/">off-page SEO packages</a> mix citations and profile links, created by hand with consistent business details and a report of every live URL.'),
-), 'Citations and profile backlinks do different jobs. Learn what each one is, when it helps, and the mistakes that waste money.', 'Link building')
+        ['Most useful for', 'Local businesses and service areas', 'New sites, online-only brands'],
+        ['What matters most', 'Identical name, address and phone', 'Complete, genuine-looking profiles'],
+        ['Link attribute', 'Often nofollow, which is fine', 'Mixed dofollow and nofollow'],
+        ['Typical mistake', 'Inconsistent or outdated details', 'Thousands of empty, automated profiles']]),
+    heading('Which one does your business need?'),
+    ul(['<strong>A local business</strong> such as a plumber, clinic, salon or office-based agency: start with citations and your Google Business Profile, then add profile links.',
+        '<strong>An online-only business</strong>: focus on profile links first, then move to editorial links such as guest posts as your site matures. Our guide to <a href="/choose-guest-post-dr-tier/">choosing a guest post tier</a> explains how.',
+        '<strong>A brand-new website</strong>: a small mix of both gives search engines the signals to discover and trust you sooner.',
+        '<strong>A business that has moved or rebranded</strong>: fix existing citations before building new ones. Old addresses are actively harmful.']),
+    heading('Four mistakes that waste money'),
+    ul(['<strong>Inconsistent details.</strong> "Ltd" in one place, "Limited" in another, and an old phone number elsewhere all weaken citations. Decide on one exact format before anything is submitted.',
+        '<strong>Buying thousands of automated links.</strong> Mass-submission software creates low-quality profiles on abandoned sites. Google\'s ' + ext('https://developers.google.com/search/docs/essentials/spam-policies', 'spam policies') + ' are clear that links made to manipulate rankings can be ignored or penalised.',
+        '<strong>Ignoring the reports.</strong> If a provider cannot give you a list of live URLs, you have no way to check what you paid for.',
+        '<strong>Expecting rankings from these alone.</strong> Citations and profiles are foundations. Competitive keywords also need strong pages, content and editorial links.']),
+    heading('How to check the work you buy'),
+    para('Ask for a spreadsheet of every live URL, open a sample of them, and check that the business details match yours exactly. Good providers welcome this. It is the standard we hold ourselves to, and every <a href="/services/off-page-seo/">link building package</a> we sell ends with that report.'),
+    *POST_EXTRA['citations-vs-profile-backlinks'],
+    inline_cta('Want this done properly?', 'Our citation and profile packages are built by hand with consistent details, and you get a report of every live URL.', 'See link building packages', '/services/off-page-seo/#packages'),
+), 'Citations and profile backlinks do different jobs. What each one is, which your business needs, the mistakes that waste money and how to check the work.', 'Link building')
 
 post('choose-guest-post-dr-tier', 'How to choose a guest post tier by Domain Rating (without wasting money)', join(
-    para('Guest posts are usually sold by Domain Rating (DR), a 0 to 100 score from Ahrefs that estimates the strength of a website\'s backlink profile. A higher DR often means a stronger link and a higher price. DR is useful, but it is not the whole story.'),
-    heading('What DR does and does not tell you'),
-    para('DR measures links pointing to a site, not its traffic, relevance or editorial standards. A site can have a high DR and almost no real readers, especially if it sells many links. That is why we look at more than one metric.'),
+    para('Guest posts are usually sold by Domain Rating, or DR, an Ahrefs score from 0 to 100 that estimates how strong a website\'s backlink profile is (' + ext('https://ahrefs.com/blog/domain-rating/', 'Ahrefs explains how DR is calculated') + '). Higher DR generally means a stronger link and a higher price. DR is a useful shortcut, but buying on DR alone is how people end up paying premium prices for links that do very little.'),
+    takeaways(['DR measures a site\'s links, not its traffic, relevance or quality.', 'Match the tier to your own site. A natural profile has a range of strengths.', 'Check real traffic, relevance and editorial standards before you buy.', 'Paid links should be labelled. Avoid "guaranteed dofollow, permanent" offers.']),
+    heading('What DR tells you, and what it does not'),
+    para('DR looks only at links pointing to a site. It says nothing about whether real people read the site, whether it covers your topic, or whether it sells links to anyone who pays. A DR 60 blog with no search traffic and twenty sponsored posts a day is far less valuable than a DR 35 industry site with a real audience.'),
     heading('Match the tier to your site'),
     table(['Your situation', 'Sensible starting tier'], [
-        ['New site, few or no links', 'DR 10+ to DR 20+, plus citations and profile links'],
+        ['New site with few or no links', 'DR 10+ to DR 20+, alongside citations and profile links'],
         ['Established local or niche site', 'DR 30+ to DR 40+'],
         ['Competitive national keywords', 'DR 50+ and above, mixed with lower tiers'],
-        ['Launch or news story', 'Press release plus one or two strong posts']]),
-    para('A natural link profile has a range of strengths. Jumping straight to only high-DR links on a brand-new site looks unusual and is a poor use of budget.'),
+        ['Product launch or company news', 'A press release plus one or two strong posts']]),
+    para('Jumping straight to only high-DR links on a brand-new site looks unusual and is rarely the best use of budget. Build foundations first, then add strength.'),
     heading('Five quality checks beyond DR'),
-    ul(['<strong>Real organic traffic</strong>: the site should receive visitors from search, not just have a high score.',
-        '<strong>Topical relevance</strong>: a link from a site in your field is worth more than a random general blog.',
-        '<strong>Editorial standards</strong>: real articles with real authors, not pages stuffed with "write for us" posts.',
-        '<strong>Outbound link volume</strong>: sites linking out to dozens of unrelated businesses every day pass less value.',
-        '<strong>Disclosure</strong>: reputable publishers label sponsored content. That is normal and keeps everyone within search engine guidelines.']),
+    ul(['<strong>Real organic traffic.</strong> The site should get visitors from search, not just have a high score.',
+        '<strong>Topical relevance.</strong> A link from a site in your field is worth more than a random general blog.',
+        '<strong>Editorial standards.</strong> Real articles with real authors, not pages of "write for us" posts.',
+        '<strong>Outbound link volume.</strong> Sites linking to dozens of unrelated businesses every day pass less value.',
+        '<strong>Disclosure.</strong> Reputable publishers label sponsored content, which keeps everyone inside search engine guidelines.']),
     heading('Paid links and Google\'s rules'),
-    para('Google\'s spam policies say links that are paid for should be qualified, for example with <code>rel="sponsored"</code>. Many publishers handle this themselves. Avoid anyone selling "guaranteed dofollow, permanent, undisclosed" links, because that is exactly the pattern Google looks for.'),
+    para('Google asks that links which are paid for are qualified, for example with <code>rel="sponsored"</code> (' + ext('https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links', 'Google: qualify your outbound links') + '). Many publishers handle this themselves. Be wary of anyone selling "guaranteed dofollow, permanent, undisclosed" links. That combination is exactly what Google\'s ' + ext('https://developers.google.com/search/docs/essentials/spam-policies', 'link spam policy') + ' is designed to catch.'),
     heading('A simple buying plan'),
-    ul(['Start with foundations: citations and profile links.', 'Add one or two posts at a tier that matches your site.', 'Point links at your most useful pages, not only the homepage.', 'Review progress after a few months before buying more.']),
-    para('See our <a href="/services/off-page-seo/#packages">Premium Links packages</a>, with guest posts from DR 10+ to DR 70+ and a live-URL report on publication.'),
-), 'DR is useful but not the whole story. How to pick a guest post tier that fits your site, and five quality checks beyond the number.', 'Link building')
+    ul(['Start with foundations: <a href="/citations-vs-profile-backlinks/">citations and profile links</a>.', 'Add one or two posts at a tier that matches your site.', 'Point links at your most useful pages, not only the homepage.', 'Review progress after two or three months before buying more.', 'If you are unsure where to start, an <a href="/services/seo-audit/">SEO audit</a> will show whether links are even your biggest problem.']),
+    *POST_EXTRA['choose-guest-post-dr-tier'],
+    inline_cta('Ready to add premium links?', 'Our guest posts run from DR 10+ to DR 70+, on real sites, with a live-URL report on publication.', 'See guest post tiers', '/services/off-page-seo/#packages'),
+), 'DR is useful but not the whole story. How to pick a guest post tier that fits your site, five quality checks beyond the number and how to stay within Google\'s rules.', 'Link building')
 
 post('wordpress-speed-checklist', 'Is your WordPress site slow? A 12-point speed checklist before you pay anyone', join(
-    para('A slow site loses visitors and sales, and Core Web Vitals are part of how Google assesses page experience. Before paying for optimisation, work through this checklist. Many sites get much faster from the first few items alone.'),
+    para('A slow site loses visitors before they read a word, and page experience is one of the signals Google uses. The good news: most WordPress sites get noticeably faster from a handful of simple fixes. Work through this checklist before paying for optimisation. You may not need to.'),
+    takeaways(['Measure first with PageSpeed Insights and note LCP, INP and CLS.', 'Images, caching and unused plugins cause most slow WordPress sites.', 'Real-user data matters more than a perfect lab score.', 'If a cached page is still slow, hosting may be the bottleneck.']),
     heading('Measure first'),
-    para('Test your homepage and one key page in Google PageSpeed Insights. Note the Largest Contentful Paint (LCP), Interaction to Next Paint (INP) and Cumulative Layout Shift (CLS). Google\'s "good" thresholds are LCP up to 2.5 seconds, INP up to 200 milliseconds and CLS up to 0.1.'),
-    heading('The checklist'),
-    ul(['<strong>Compress images.</strong> Serve WebP or AVIF and resize images to the size they are displayed at.',
-        '<strong>Lazy-load below-the-fold images</strong>, but never the main hero image, which should load first.',
-        '<strong>Use page caching.</strong> Most hosts offer it, or use a reputable caching plugin.',
-        '<strong>Remove unused plugins.</strong> Deactivate and delete anything you do not need.',
-        '<strong>Check your theme and builder.</strong> Heavy page builders can add a lot of CSS and JavaScript to every page.',
-        '<strong>Limit third-party scripts</strong> such as chat widgets, trackers and embedded feeds. Each one adds load time.',
+    para('Test your homepage and one important page in ' + ext('https://pagespeed.web.dev/', 'PageSpeed Insights') + '. Note the three Core Web Vitals: Largest Contentful Paint (LCP), Interaction to Next Paint (INP) and Cumulative Layout Shift (CLS). Google\'s "good" thresholds are an LCP of 2.5 seconds or less, INP of 200 milliseconds or less and CLS of 0.1 or less (' + ext('https://web.dev/articles/vitals', 'web.dev: Web Vitals') + ').'),
+    heading('The 12-point checklist'),
+    ul(['<strong>Compress images.</strong> Serve WebP or AVIF, and resize images to the size they are actually displayed.',
+        '<strong>Lazy-load images below the fold</strong>, but never the main hero image. That one should load first.',
+        '<strong>Turn on page caching.</strong> Most good hosts include it. Otherwise use one reputable caching plugin, not three.',
+        '<strong>Delete unused plugins.</strong> Deactivated plugins are a security risk too.',
+        '<strong>Check your theme and page builder.</strong> Heavy builders can add large amounts of CSS and JavaScript to every page.',
+        '<strong>Limit third-party scripts.</strong> Chat widgets, trackers and embedded feeds each add load time.',
         '<strong>Host fonts locally</strong> and load only the weights you use.',
-        '<strong>Reserve space for images and embeds</strong> so the layout does not jump as the page loads (CLS).',
-        '<strong>Update PHP</strong> to a currently supported version. It is free speed.',
+        '<strong>Reserve space for images and embeds</strong> so the layout does not jump while loading, which is the main cause of poor CLS.',
+        '<strong>Update PHP</strong> to a version WordPress currently recommends (' + ext('https://wordpress.org/about/requirements/', 'WordPress requirements') + '). It is often free speed.',
         '<strong>Clean the database</strong> of old revisions, spam comments and expired transients.',
         '<strong>Use a CDN</strong> if your visitors are spread across countries.',
-        '<strong>Review hosting.</strong> If the server response time (TTFB) is slow on a cached page, the host may be the bottleneck.']),
+        '<strong>Review your hosting.</strong> If server response time stays slow on a cached page, the host is likely the bottleneck.']),
     heading('Lab scores vs real users'),
-    para('PageSpeed lab scores are useful for testing, but Google uses data from real visitors (the Chrome UX Report) where available. A perfect lab score is not required. Aim for real users to experience "good" vitals.'),
-    para('Need help? Our <a href="/services/technical-seo/">Core Web Vitals optimisation</a> includes a backup, the fixes and an honest before/after report, and our <a href="/services/website-maintenance/">maintenance plans</a> keep a site fast after updates.'),
-), 'Twelve practical checks to speed up a WordPress site, including images, caching, plugins and fonts, and how to read Core Web Vitals properly.', 'Websites')
+    para('PageSpeed lab scores are useful for testing changes, but Google uses data from real visitors where it has enough of it. A perfect 100 in the lab is not required. What matters is that real users experience "good" Core Web Vitals on your important pages.'),
+    heading('When to get help'),
+    para('If you have worked through the list and pages are still slow, the cause is usually deeper: a heavy theme, a plugin conflict, unoptimised database queries or underpowered hosting. That is where our <a href="/services/technical-seo/">Core Web Vitals optimisation</a> comes in, with a backup first and an honest before/after report. To keep a site fast after updates, see our <a href="/services/website-maintenance/">website maintenance plans</a>.'),
+    *POST_EXTRA['wordpress-speed-checklist'],
+    inline_cta('Want it fixed for you?', 'We optimise images, caching, scripts and fonts, then show you the before and after.', 'See Core Web Vitals packages', '/services/technical-seo/#packages'),
+), 'Twelve practical checks to speed up a WordPress site, from images and caching to plugins and fonts, plus how to read Core Web Vitals properly.', 'Websites')
+
+post('canva-brand-kit-guide', 'How to create a brand kit in Canva (and what to put in it)', join(
+    para('Canva\'s Brand Kit is one of the most useful features for small teams: it keeps your logos, colours and fonts one click away, so every social post, flyer and presentation looks like it came from the same business. Here is how to set one up properly, and what a good brand kit actually contains.'),
+    takeaways(['A Brand Kit stores your logos, colour palettes and fonts inside Canva.', 'Prepare your assets first: logo files, exact hex codes and font names.', 'Brand Kits are part of Canva\'s paid plans. Check your plan if the option is missing.', 'Branded templates are what make the kit save real time.']),
+    heading('What is a Canva brand kit?'),
+    para('A brand kit in Canva is a saved set of your brand assets: logos, colour palettes, fonts and, on some plans, guidelines and brand templates. Once it is set up, everyone on your team picks from the same approved assets instead of guessing colours or downloading old logos. Canva documents the feature in its help centre (' + ext('https://www.canva.com/help/brand-kit/', 'Canva: Set up Brand Kits') + ').'),
+    heading('Before you start: prepare your assets'),
+    ul(['<strong>Logo files</strong> in PNG with a transparent background, plus SVG if you have it. Include light and dark versions.',
+        '<strong>Exact colour codes</strong> in hex format, for example #0C1930. Do not pick colours by eye from a screenshot.',
+        '<strong>Font names</strong> for headings and body text. If your brand uses a licensed font, check that you are allowed to upload it.',
+        '<strong>A short tone-of-voice note</strong>, such as "friendly, plain English, no jargon", if your plan supports guidelines.']),
+    heading('How to set up a brand kit in Canva, step by step'),
+    ul(['Open Canva and select <strong>Brand</strong> from the side panel on the homepage.', 'Choose to create a new Brand Kit and give it a clear name, such as your business name.', 'Upload your <strong>logos</strong>: main, icon-only and light versions.', 'Add your <strong>colour palette</strong> using the exact hex codes.', 'Set your <strong>fonts</strong> for headings, subheadings and body text.', 'Add guidelines and brand templates if your plan includes them.']),
+    para('On some plans, Canva can also build a kit automatically from your website or a brand guidelines PDF (' + ext('https://www.canva.com/help/brand-kit-builder/', 'Canva: Brand Kit Builder') + '). It is a helpful start, but always review what it extracts. Logos and colours are not always picked up correctly.'),
+    heading('What a good brand kit includes'),
+    table(['Asset', 'Why it matters'], [
+        ['Logo variations', 'A wide logo, an icon and a light version cover almost every layout.'],
+        ['Primary and accent colours', 'Two or three main colours plus neutrals keep designs consistent.'],
+        ['Two fonts, maximum', 'One for headings and one for body text is easier to keep consistent.'],
+        ['Branded templates', 'Ready-made social posts and documents are what save your team real time.'],
+        ['Simple guidelines', 'Do\'s and don\'ts stop well-meaning team members from stretching the logo.']]),
+    heading('Common brand kit mistakes'),
+    ul(['Uploading a blurry logo screenshot instead of the original file.', 'Adding ten colours "just in case". Fewer colours make stronger branding.', 'Mixing fonts that look too similar, which reads as a mistake rather than a choice.', 'Never building templates, so everyone still starts from a blank page.']),
+    heading('Do you need a designer?'),
+    para('If you already have a professional logo and colours, setting up the kit yourself takes under an hour with this guide. If your logo is outdated, or you want ready-made templates your team can use straight away, our <a href="/services/graphic-design/">graphic design and branding packages</a> include a <a href="/services/graphic-design/#packages">Canva Brand Kit Setup</a> with five branded templates.'),
+    *POST_EXTRA['canva-brand-kit-guide'],
+    inline_cta('Want your Canva brand kit set up for you?', 'We add your logos, colours and fonts to Canva and design five branded templates for your team.', 'See branding packages', '/services/graphic-design/#packages'),
+), 'Step-by-step guide to creating a brand kit in Canva: what to prepare, how to set it up, what a good brand kit includes and the mistakes to avoid.', 'Design')
+
+post('local-seo-checklist', 'Local SEO for small businesses: a practical checklist', join(
+    para('When someone searches "electrician near me" or "accountant in Leeds", Google shows a map with three businesses before any normal results. Getting into that map pack is local SEO. This checklist covers what actually moves the needle for a small business, in the order we would tackle it.'),
+    takeaways(['Your Google Business Profile is the single most important local SEO asset.', 'Consistent name, address and phone number everywhere builds trust.', 'Reviews matter, but must be genuine. Fake reviews break Google policy.', 'Location pages help when you serve several areas.']),
+    heading('What is a local SEO service?'),
+    para('A local SEO service optimises the signals Google uses for local results. Google says it ranks local results on relevance, distance and prominence (' + ext('https://support.google.com/business/answer/7091', 'Google: improve your local ranking') + '). You cannot change distance, but you can improve relevance and prominence through your profile, your website, your citations and your reviews.'),
+    heading('1. Claim and complete your Google Business Profile'),
+    ul(['Choose the most accurate primary category, then add relevant secondary categories.', 'List every service you offer, with short descriptions.', 'Add opening hours, including holiday hours.', 'Upload real photos of your work, team and premises.', 'Post updates and offers regularly. It shows the business is active.']),
+    heading('2. Make your business details consistent everywhere'),
+    para('Your name, address and phone number should be identical on your website, your profile and every directory. Small differences, such as "Street" and "St" or an old phone number, create doubt. Fix existing listings before building new ones. Our guide to <a href="/citations-vs-profile-backlinks/">citations vs profile backlinks</a> explains why.'),
+    heading('3. Earn genuine reviews, and reply to them'),
+    para('Ask happy customers at the right moment, make it easy with a direct link, and reply to every review, good or bad. Never buy reviews or offer incentives. Fake reviews break Google\'s policies and can lead to your profile being restricted.'),
+    heading('4. Build local pages on your website'),
+    para('If you serve several towns, create a genuinely useful page for each: the services you offer there, local examples of your work and how to get in touch. Avoid copying the same text with the town name swapped. Search engines treat that as thin, duplicate content.'),
+    heading('5. Add LocalBusiness structured data'),
+    para('Structured data helps search engines read your business details accurately. Google documents the LocalBusiness type and its properties (' + ext('https://developers.google.com/search/docs/appearance/structured-data/local-business', 'Google: LocalBusiness structured data') + '). Test it with the ' + ext('https://search.google.com/test/rich-results', 'Rich Results Test') + '.'),
+    heading('6. Track what matters'),
+    para('Watch calls, direction requests and website clicks in your profile insights, and track a handful of local keywords monthly. Rankings vary by searcher location, so use a tool that checks from your area.'),
+    *POST_EXTRA['local-seo-checklist'],
+    inline_cta('Prefer to have it done for you?', 'Our local SEO packages cover your Google Business Profile, citations, location pages and schema, from a fixed price.', 'See local SEO packages', '/services/local-seo/#packages'),
+), 'A practical local SEO checklist for small businesses: Google Business Profile, consistent citations, genuine reviews, location pages, LocalBusiness schema and tracking.', 'SEO')
+
+post('ppc-management-cost', 'PPC management costs: what you should pay and what you should get', join(
+    para('PPC management pricing is confusing on purpose. Some agencies charge a percentage of your ad spend, some a flat monthly fee, some both, and many hide setup costs. Here is how the main models work, what a fair service should include, and how to tell if your account is being managed at all.'),
+    takeaways(['Ad spend and management fees are separate. You pay the ad platform directly.', 'Flat fees are easier to budget. Percentage fees grow with your spend.', 'A good manager works on search terms, ads and tracking every week.', 'Conversion tracking must be set up before any optimisation means anything.']),
+    heading('Ad spend vs management fee'),
+    para('Your ad spend is what you pay Google or Meta for clicks. The management fee is what you pay someone to run the account. Keep them separate: ads should be billed to your own card, in your own account, so you always keep the data and the history.'),
+    heading('Common pricing models'),
+    table(['Model', 'How it works', 'Watch out for'], [
+        ['Percentage of spend', 'A share of your monthly ad budget', 'Fees rise even when results do not'],
+        ['Flat monthly fee', 'A fixed price per month', 'Check how many campaigns are included'],
+        ['Hybrid', 'Flat fee plus a smaller percentage', 'Complexity, and harder to compare'],
+        ['One-off audit or setup', 'Fixed price for a defined job', 'Make sure you get the account, not just a report']]),
+    heading('What good PPC management includes'),
+    ul(['<strong>Conversion tracking that works.</strong> Without it, optimisation is guesswork (' + ext('https://support.google.com/google-ads/answer/6308', 'Google Ads: about conversion tracking') + ').',
+        '<strong>Search term reviews.</strong> Irrelevant searches added as negative keywords every week.',
+        '<strong>Ad testing.</strong> New ad copy tested against the current best performer.',
+        '<strong>Budget and bid management</strong> moved towards campaigns that convert.',
+        '<strong>Clear reporting</strong> showing spend, conversions and cost per result, not just clicks and impressions.']),
+    heading('Signs your account is not being managed'),
+    ul(['The change history shows almost no activity for weeks.', 'Search terms include obviously irrelevant phrases.', 'Every campaign uses broad match with no negative keywords.', 'Reports show clicks and impressions but never conversions.', 'You do not have admin access to your own ad account.']),
+    heading('Start with an audit'),
+    para('If you already run ads, a <a href="/services/ppc-management/#packages">Google Ads audit</a> is the cheapest way to find wasted spend before paying for ongoing management. If you advertise on Facebook and Instagram too, see our <a href="/services/facebook-ads/">Facebook ads management</a>.'),
+    *POST_EXTRA['ppc-management-cost'],
+    inline_cta('Want a second pair of eyes on your ads?', 'Our fixed-price Google Ads audit shows wasted spend, tracking gaps and the fixes in priority order.', 'See PPC packages', '/services/ppc-management/#packages'),
+), 'How PPC management is priced, what a fair service includes, signs your account is not being managed and why ad spend should always stay in your own account.', 'Paid ads')
+
+post('ai-seo-guide', 'AI SEO explained: how to get your business cited in AI answers', join(
+    para('More people now ask AI tools questions they used to type into Google: "Which local SEO companies offer fixed prices?" or "What should a website maintenance plan include?" Those tools summarise the web and sometimes cite sources. AI SEO, also called generative engine optimisation (GEO), is about becoming one of those sources.'),
+    takeaways(['AI search builds on the same foundations as normal SEO.', 'Clear, direct answers are easier for AI tools to quote.', 'Consistent brand facts across the web reduce mistakes in AI answers.', 'No one can guarantee a mention. Ignore anyone who claims otherwise.']),
+    heading('How AI search tools choose sources'),
+    para('Google says its AI features, such as AI Overviews, rely on the same systems and quality signals as regular search, and that the usual SEO best practices still apply (' + ext('https://developers.google.com/search/docs/appearance/ai-features', 'Google: AI features and your website') + '). Other assistants vary, but they tend to favour sources that are clear, specific, consistent and trusted.'),
+    heading('Five practical steps'),
+    ul(['<strong>Answer questions directly.</strong> Put a clear, one- or two-sentence answer near the top of the page, then add detail.',
+        '<strong>Structure pages well.</strong> Descriptive headings, short paragraphs, lists and tables make information easy to extract.',
+        '<strong>Keep brand facts consistent.</strong> Your name, services, location and prices should match across your site, profiles and directories.',
+        '<strong>Use structured data.</strong> Organization, service and FAQ markup help machines understand your pages (test them with the ' + ext('https://search.google.com/test/rich-results', 'Rich Results Test') + ').',
+        '<strong>Earn mentions on trusted sites.</strong> AI tools learn from the wider web, so reputable mentions matter.']),
+    heading('What to avoid'),
+    ul(['Hidden text or prompts aimed at AI crawlers. They break search guidelines and can backfire.', 'Mass-produced AI content with nothing new to say. Google\'s ' + ext('https://developers.google.com/search/docs/fundamentals/creating-helpful-content', 'helpful content guidance') + ' applies to AI-written pages too.', 'Paying for "guaranteed ChatGPT placement". It does not exist.']),
+    heading('How to measure AI visibility'),
+    para('Make a list of 20 to 30 questions your customers ask, run them through AI tools monthly, and record which brands are mentioned and which pages are cited. It is manual, but it shows whether your changes are working. Our <a href="/services/ai-seo/">AI SEO service</a> does this for you, alongside the fixes.'),
+    *POST_EXTRA['ai-seo-guide'],
+    inline_cta('See how AI tools describe your business', 'Our AI Search Visibility Check tests real customer questions and shows where you are missing.', 'See AI SEO packages', '/services/ai-seo/#packages'),
+), 'What AI SEO and generative engine optimisation (GEO) are, how AI tools choose sources, five practical steps to get cited and what to avoid.', 'SEO')
 
 # ================================================================ template heroes
 write_pattern('hero-insights', 'Hero: Insights', page_hero('art-content.svg', 'Illustration of a structured article with an outline',
