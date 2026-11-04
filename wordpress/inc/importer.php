@@ -234,7 +234,7 @@ function rrm_configure_rank_math( $s ) {
 		$general,
 		array(
 			'breadcrumbs'               => 'on',
-			'strip_category_base'       => 'on',
+			'strip_category_base'       => 'off',
 			'attachment_redirect_urls'  => 'on',
 			'nofollow_external_links'   => 'off',
 			'new_window_external_links' => 'on',
@@ -544,11 +544,12 @@ function rrm_step_posts( &$state, $deadline ) {
 			update_post_meta( $id, '_rrm_service', $p['service'] );
 		}
 	}
-	// Remove the default "Uncategorized" from view by renaming it.
-	$unc = get_term_by( 'slug', 'uncategorized', 'category' );
-	if ( $unc ) {
-		wp_update_term( $unc->term_id, 'category', array( 'name' => 'Insights', 'slug' => 'insights' ) );
+	// The default category (id from settings) must never own the /blog/ slug or look like a real topic.
+	$def = get_term( (int) get_option( 'default_category', 1 ), 'category' );
+	if ( $def && ! is_wp_error( $def ) && in_array( $def->slug, array( 'uncategorized', 'blog' ), true ) ) {
+		wp_update_term( $def->term_id, 'category', array( 'name' => 'Insights', 'slug' => 'insights', 'description' => '' ) );
 	}
+	update_option( 'rrm_flush_rewrite', 1 );
 	return true;
 }
 

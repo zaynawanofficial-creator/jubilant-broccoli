@@ -5,7 +5,7 @@ get_header();
 if ( is_home() ) {
 	rrm_page_hero( 'The RankRight Blog', 'Practical guides on SEO, link building, websites, content, PPC and social media — written by people who do the work every day.', 'Insights', array( array( 'Home', home_url( '/' ) ), array( 'Blog', home_url( '/blog/' ) ) ) );
 } else {
-	rrm_page_hero( wp_strip_all_tags( get_the_archive_title() ), wp_strip_all_tags( get_the_archive_description() ), 'Blog', array( array( 'Home', home_url( '/' ) ), array( 'Blog', home_url( '/blog/' ) ), array( wp_strip_all_tags( single_term_title( '', false ) ), '' ) ) );
+	rrm_page_hero( is_category() ? single_cat_title( '', false ) . ' Guides & Insights' : wp_strip_all_tags( get_the_archive_title() ), is_category() ? 'Practical, no-fluff ' . strtolower( single_cat_title( '', false ) ) . ' guides from the RankRight Media team.' : wp_strip_all_tags( get_the_archive_description() ), 'Blog', array( array( 'Home', home_url( '/' ) ), array( 'Blog', home_url( '/blog/' ) ), array( wp_strip_all_tags( single_term_title( '', false ) ), '' ) ) );
 }
 $cats = get_categories( array( 'hide_empty' => true ) );
 ?>
