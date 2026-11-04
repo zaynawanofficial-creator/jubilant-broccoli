@@ -54,6 +54,20 @@ function rrm_log( $msg ) {
 }
 
 function rrm_maybe_import() {
+	// Purge page/CSS caches whenever deployed theme assets change (LiteSpeed combines & caches CSS/JS).
+	$sig = '';
+	foreach ( array( 'css/main.css', 'css/wp.css', 'js/main.js' ) as $f ) {
+		$sig .= @filemtime( RRM_WP . '/theme/rankright/assets/' . $f ) . @filesize( RRM_WP . '/theme/rankright/assets/' . $f ); // phpcs:ignore
+	}
+	$sig .= @filemtime( RRM_WP . '/data/site.json' ); // phpcs:ignore
+	if ( get_option( 'rrm_asset_sig' ) !== $sig ) {
+		update_option( 'rrm_asset_sig', $sig, false );
+		do_action( 'litespeed_purge_all' );
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+		rrm_log( 'Caches purged (assets changed)' );
+	}
 	if ( get_option( 'rrm_flush_rewrite' ) ) {
 		delete_option( 'rrm_flush_rewrite' );
 		flush_rewrite_rules( false );
