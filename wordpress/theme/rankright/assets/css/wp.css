@@ -293,3 +293,8 @@
 }
 .order-steps .lbl{display:inline}
 .order-steps span.lbl{width:auto;height:auto;border:0;border-radius:0;display:inline;background:none}
+.woocommerce .wc-wrap dl.variation,.wc-wrap dl.variation{display:block;margin:8px 0 0}
+.wc-wrap dl.variation dt,.wc-wrap dl.variation dd{display:block!important;float:none!important;clear:both!important;margin:0!important;padding:0!important;width:auto!important}
+.wc-wrap dl.variation dt{margin-top:8px!important;font-size:.78rem;letter-spacing:.02em}
+.wc-wrap dl.variation dd p{display:block;margin:0;word-break:normal;overflow-wrap:break-word}
+.wc-wrap dl.variation dd,.wc-wrap td.product-name{word-break:normal}
