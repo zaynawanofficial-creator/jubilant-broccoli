@@ -279,3 +279,17 @@
 .select2-dropdown{background:#120827;color:var(--text);border-color:var(--border-2)}
 .wc-wrap input.input-text,.wc-wrap select{padding:12px 14px!important;border-radius:12px!important}
 @media (max-width:920px){.wc-wrap .woocommerce-checkout{grid-template-columns:1fr}.wc-wrap #order_review{position:static}}
+
+/* Checkout/cart tables must never widen the phone viewport */
+.woocommerce table.shop_table,.wc-wrap table{min-width:0!important;width:100%!important;table-layout:fixed}
+.wc-wrap table.shop_table td.product-total,.wc-wrap table.shop_table th.product-total{width:96px;text-align:right}
+.wc-wrap dl.variation dd,.wc-wrap dl.variation dd p,.wc-wrap td.product-name{overflow-wrap:anywhere;word-break:break-word}
+/* Remove distractions in the purchase flow */
+.rrm-order .mobile-cta,.woocommerce-checkout .mobile-cta,.woocommerce-cart .mobile-cta{display:none!important}
+.rrm-order .site-footer,.woocommerce-checkout .site-footer{padding-bottom:28px}
+@media (max-width:640px){
+	.order-steps li:not(.now) b{display:none}
+	.order-steps li:not(.now) .lbl{display:none}
+}
+.order-steps .lbl{display:inline}
+.order-steps span.lbl{width:auto;height:auto;border:0;border-radius:0;display:inline;background:none}

@@ -207,10 +207,10 @@ add_shortcode(
 		?>
 		<section class="order-hero"><div class="aurora"></div><div class="container rel">
 			<ol class="order-steps" aria-label="Order progress">
-				<li class="done"><span><?php echo rrm_icon( 'i-check' ); // phpcs:ignore ?></span>Package</li>
+				<li class="done"><span><?php echo rrm_icon( 'i-check' ); // phpcs:ignore ?></span><span class="lbl">Package</span></li>
 				<li class="now"><span>2</span>Project brief</li>
-				<li><span>3</span>Secure checkout</li>
-				<li><span>4</span>Kick-off</li>
+				<li><span>3</span><span class="lbl">Secure checkout</span></li>
+				<li><span>4</span><span class="lbl">Kick-off</span></li>
 			</ol>
 			<h1>Tell us about your project</h1>
 			<p class="lead">Takes about 2 minutes. Your brief is attached to your order so our team can start straight away.</p>
@@ -303,3 +303,5 @@ add_filter(
 );
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 add_filter( 'woocommerce_order_button_text', function () { return 'Pay securely & start my project'; } );
+
+add_filter( 'body_class', function ( $c ) { if ( is_page( 'order' ) ) { $c[] = 'rrm-order'; } return $c; } );
