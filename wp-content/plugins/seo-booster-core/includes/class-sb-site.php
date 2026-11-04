@@ -40,10 +40,10 @@ class SB_Site {
 			'sb_founder',
 			array(
 				'name'  => 'Zain Malik',
-				'role'  => __( 'Founder, SEO Booster', 'seo-booster-core' ),
+				'role'  => __( 'Founder — SEO, Web & eCommerce Expert', 'seo-booster-core' ),
 				'photo' => $photo,
 				'url'   => home_url( '/about/#founder' ),
-				'bio'   => __( 'Zain Malik founded SEO Booster to make SEO and web services easier to buy: a clear scope, a fair fixed price and proof of every deliverable. He writes our Insights guides to help business owners make better decisions about search, websites and marketing.', 'seo-booster-core' ),
+				'bio'   => __( 'Founder of SEO Booster UK with 10+ years of experience in SEO, website development and eCommerce strategy. Zain helps businesses grow online with data-driven, results-focused solutions, and writes our Insights guides to help owners make better decisions about search, websites and marketing.', 'seo-booster-core' ),
 				'same'  => array(),
 			)
 		);

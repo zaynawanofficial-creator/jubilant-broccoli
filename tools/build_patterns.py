@@ -568,8 +568,9 @@ about = join(
         cls='sb-split', center=True)),
     section(columns(
         column(image('team/zain-malik.webp', 'Zain Malik, founder of SEO Booster', 'sb-founder__photo'), width='38%'),
-        column(eyebrow('Meet the founder'), heading('Zain Malik'), para('Founder, SEO Booster', 'sb-founder__role'),
-               para('Zain started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.'),
+        column(eyebrow('Meet the founder'), heading('Zain Malik'), para('Founder — SEO, Web &amp; eCommerce Expert', 'sb-founder__role'),
+               para('Zain is the founder of SEO Booster UK, with more than 10 years of experience in SEO, website development and eCommerce strategy. He helps businesses grow online with data-driven, results-focused solutions.'),
+               para('He started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.'),
                para('That idea shapes everything here, from fixed-price packages with written deliverables to live-URL reports and plain-English audits. Zain also writes our <a href="/insights/">Insights</a> guides, so business owners can make better decisions about search and marketing, whether or not they buy from us.'),
                buttons(('Read Zain\'s guides', '/insights/'), ('Talk to us', '/contact/', 'outline')), width='62%'),
         cls='sb-split sb-founder', center=True), anchor='founder', cls='sb-section--blue'),

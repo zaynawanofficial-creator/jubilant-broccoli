@@ -14,6 +14,10 @@
 | Logo / favicon (2 Nov) | Claude designed placeholder versions in `brand/`, approved by the owner for use now |
 | App password | Three passwords supplied (2 Nov). All got `incorrect_password` **from inside this cloud container only**. Cause found: requests through the container's egress proxy get `401 incorrect_password` from `/wp-json/` even with **no** credentials, while a direct request returns 200. So the proxy path alters the Authorization header, and the passwords are probably valid. Not worked around (proxy must not be bypassed). Owner installs the plugin zip manually; MCP should work from the owner's own machine. Passwords stored only in the local user config, never in git |
 
+| Founder (4 Nov) | Zain Malik, "Founder — SEO, Web & eCommerce Expert"; 10+ years in SEO, website development and eCommerce strategy (owner-supplied). Used on About, the article author box and Person schema |
+| TikTok Ads page (4 Nov) | Kept as a separate service page (owner decision), despite low GB volume |
+| WP credentials (4 Nov) | `.mcp.json` reads `${WP_API_PASSWORD}`; the owner revokes the old Application Passwords in wp-admin (they remain in git history) |
+
 ## Original assumptions and open questions
 | Item | Current assumption / question |
 |---|---|

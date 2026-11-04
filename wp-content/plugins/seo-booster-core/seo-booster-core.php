@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEO Booster Core
  * Description:       Service packages, package groups, post-purchase project briefs and service order workflow for SEO Booster (WooCommerce).
- * Version:           0.5.0
+ * Version:           0.5.1
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SB_CORE_VERSION', '0.5.0' );
+define( 'SB_CORE_VERSION', '0.5.1' );
 define( 'SB_CORE_FILE', __FILE__ );
 define( 'SB_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SB_CORE_URL', plugin_dir_url( __FILE__ ) );

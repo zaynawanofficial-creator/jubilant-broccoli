@@ -82,11 +82,15 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"sb-founder__role"} -->
-<p class="sb-founder__role">Founder, SEO Booster</p>
+<p class="sb-founder__role">Founder — SEO, Web &amp; eCommerce Expert</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Zain started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.</p>
+<p>Zain is the founder of SEO Booster UK, with more than 10 years of experience in SEO, website development and eCommerce strategy. He helps businesses grow online with data-driven, results-focused solutions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>He started SEO Booster with a simple idea: buying SEO, website and design work should feel as clear as buying anything else online. You should know what you are getting, what it costs, when it arrives and how to check it was done.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

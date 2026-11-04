@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SBT_VERSION', '1.3.0' );
+define( 'SBT_VERSION', '1.3.1' );
 
 add_action(
 	'after_setup_theme',
