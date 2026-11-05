@@ -1,35 +1,72 @@
 <!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"sb-main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group sb-main"><!-- wp:group {"align":"full","className":"sb-page-hero","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull sb-page-hero"><!-- wp:shortcode -->
+<!-- wp:group {"tagName":"main","className":"sb-main sb-article","layout":{"type":"constrained"}} -->
+<main class="wp-block-group sb-main sb-article"><!-- wp:group {"align":"full","className":"sb-post-hero","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-post-hero"><!-- wp:group {"className":"sb-post-hero__inner","layout":{"type":"default"}} -->
+<div class="wp-block-group sb-post-hero__inner"><!-- wp:shortcode -->
 [sb_breadcrumbs]
 <!-- /wp:shortcode -->
 
-<!-- wp:post-title {"level":1} /-->
+<!-- wp:post-terms {"term":"category","className":"sb-post-cat"} /-->
+
+<!-- wp:post-title {"level":1,"className":"sb-post-title"} /-->
+
+<!-- wp:shortcode -->
+[sb_post_dek]
+<!-- /wp:shortcode -->
 
 <!-- wp:shortcode -->
 [sb_byline]
 <!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:post-featured-image {"aspectRatio":"16/9","className":"sb-cover"} /-->
+<!-- wp:group {"align":"wide","className":"sb-post-cover","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide sb-post-cover"><!-- wp:post-featured-image {"aspectRatio":"16/9","className":"sb-cover"} /--></div>
+<!-- /wp:group -->
 
-<!-- wp:post-content {"className":"sb-prose","layout":{"type":"constrained"}} /-->
+<!-- wp:group {"align":"wide","className":"sb-post-grid","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide sb-post-grid"><!-- wp:post-content {"className":"sb-prose","layout":{"type":"default"}} /-->
 
-<!-- wp:group {"className":"sb-after-post","layout":{"type":"constrained"}} -->
-<div class="wp-block-group sb-after-post"><!-- wp:shortcode -->
+<!-- wp:group {"tagName":"aside","className":"sb-post-aside","layout":{"type":"default"}} -->
+<aside class="wp-block-group sb-post-aside"><!-- wp:shortcode -->
+[sb_toc]
+<!-- /wp:shortcode -->
+
+<!-- wp:group {"className":"sb-aside-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group sb-aside-cta"><!-- wp:paragraph {"className":"sb-aside-cta__k"} -->
+<p class="sb-aside-cta__k">Need a hand?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Fixed-price SEO, website and ads packages with a clear scope and a report you can check.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"width":100} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link wp-element-button" href="/packages/">See packages</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="/get-a-quote/">Get a free quote</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></aside>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","className":"sb-post-end","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide sb-post-end"><!-- wp:shortcode -->
 [sb_author]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
+<!-- /wp:shortcode -->
 
-<!-- wp:group {"className":"sb-article-cta","layout":{"type":"constrained"}} -->
+<!-- wp:group {"className":"sb-article-cta","layout":{"type":"default"}} -->
 <div class="wp-block-group sb-article-cta"><!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Want this done for you?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Pick a fixed-price package or tell us what you need and we will reply with a clear scope and price.</p>
+<p>Pick a fixed-price package or tell us what you need and we will reply with a clear scope and price within one working day.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -41,6 +78,19 @@
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/get-a-quote/">Get a quote</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","className":"sb-related","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sb-related"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:heading {"level":2,"className":"sb-related__h"} -->
+<h2 class="wp-block-heading sb-related__h">Keep reading</h2>
+<!-- /wp:heading -->
+
+<!-- wp:shortcode -->
+[sb_related]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></main>
 <!-- /wp:group -->
 

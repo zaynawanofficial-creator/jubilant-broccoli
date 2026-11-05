@@ -1,5 +1,21 @@
 # INSTALL — put the SEO Booster site live on seobooster.uk
 
+## Updating to theme 1.4.0 + plugin 0.6.0 (5 Nov 2026)
+No re-import and no page rebuild needed. Templates and styles only.
+1. **Backup** in Hostinger.
+2. **Plugin:** upload `seo-booster-core.zip` → **Replace current with uploaded**. This brings the new package price display.
+3. **Theme:** upload `seo-booster-theme.zip` → **Replace current with uploaded**. This brings the new menu, cart and checkout fixes, and the new article layout.
+4. Appearance → **SEO Booster Setup** → untick everything except **Use the theme files for header, footer and templates** → **Build the site**.
+   - This moves any header or template copies saved in the Site Editor to the Trash, so the new menu shows.
+   - Pages and posts are not touched.
+5. LiteSpeed Cache → Toolbox → **Purge All**. Also purge CSS/JS optimised files and UCSS if they are on.
+6. **Check on your phone:**
+   - Tap **Menu**. A panel slides in from the right with search, all pages, Services in 4 groups, and the quote and packages buttons.
+   - On desktop, hover **Services** to open the mega menu.
+   - Cart and checkout now have a dark header band with white text.
+   - Any blog post now has an "On this page" box and a "Keep reading" row.
+7. **Changing menu links:** edit `sbt_nav_items()` in `wp-content/themes/seo-booster/inc/nav.php`, or ask Claude. The core Navigation block is no longer used, because its mobile overlay was trapped inside the sticky header and showed only "Home".
+
 ## Updating to theme 1.3.0 + plugin 0.5.0 (4 Nov 2026)
 1. **Backup** in Hostinger.
 2. **Plugin:** upload `seo-booster-core.zip` → **Replace current with uploaded**.

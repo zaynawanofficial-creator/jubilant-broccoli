@@ -134,6 +134,15 @@ class SB_Shortcode {
 		return wp_strip_all_tags( wc_price( $each ) ) . ' ' . $map[ $unit ];
 	}
 
+	/** Panel price: whole numbers without ".00"; sale prices keep WooCommerce's own del/ins markup. */
+	private static function panel_price( WC_Product $p ): string {
+		if ( $p->is_on_sale() ) {
+			return $p->get_price_html();
+		}
+		$v = (float) wc_get_price_to_display( $p );
+		return wc_price( $v, array( 'decimals' => floor( $v ) == $v ? 0 : 2 ) ); // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+	}
+
 	private static function short_price( WC_Product $p ): string {
 		if ( 'quote' === $p->get_meta( '_sb_pricing_model' ) || ! $p->is_purchasable() ) {
 			return esc_html__( 'Quote', 'seo-booster-core' );
@@ -190,9 +199,10 @@ class SB_Shortcode {
 			if ( $p->get_meta( '_sb_ideal_for' ) ) {
 				echo '<p class="sb-pk__ideal">' . esc_html__( 'Ideal for:', 'seo-booster-core' ) . ' ' . esc_html( (string) $p->get_meta( '_sb_ideal_for' ) ) . '</p>';
 			}
-			echo '</div><div class="sb-pk__price">' . ( $quote ? esc_html__( 'Custom quote', 'seo-booster-core' ) : wp_kses_post( $p->get_price_html() ) );
+			echo '</div><div class="sb-pk__price' . ( $quote ? ' is-quote' : '' ) . '"><span class="sb-pk__label">' . esc_html( $quote ? __( 'Price', 'seo-booster-core' ) : __( 'Fixed price', 'seo-booster-core' ) ) . '</span>';
+			echo '<span class="sb-pk__amount">' . ( $quote ? esc_html__( 'Custom quote', 'seo-booster-core' ) : wp_kses_post( self::panel_price( $p ) ) ) . '</span>';
 			if ( $unit ) {
-				echo '<span>' . esc_html( $unit ) . '</span>';
+				echo '<span class="sb-pk__unit">' . esc_html( $unit ) . '</span>';
 			}
 			echo '</div></div>';
 			if ( $facts ) {

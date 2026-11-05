@@ -89,6 +89,7 @@ final class SBT_Setup {
 			'brand'     => array( true, __( 'Upload the logo and site icon, set the site title and tagline', 'seo-booster' ) ),
 			'demo'      => array( true, __( 'Move old WoodMart demo pages to Draft: ', 'seo-booster' ) . implode( ', ', self::DEMO ) ),
 			'woo'       => array( true, __( 'WooCommerce for services: require an account at checkout (needed for the project brief), USD currency, link Terms page at checkout', 'seo-booster' ) ),
+			'templates' => array( false, __( 'Use the theme files for header, footer and templates: move any copies saved in the Site Editor to the Trash (restore them from the Trash if needed). Tick this if the menu or a template does not match the latest theme.', 'seo-booster' ) ),
 			'bacs'      => array( false, __( 'Enable "Direct bank transfer" as a payment method so test orders can be placed (orders stay On hold until you confirm payment). Connect Stripe / PayPal separately.', 'seo-booster' ) ),
 		);
 		echo '<table class="form-table" role="presentation"><tbody>';
@@ -293,6 +294,30 @@ final class SBT_Setup {
 			$bacs['description'] = $bacs['description'] ?? __( 'Pay by bank transfer. Use your order number as the reference. Work starts once payment is received.', 'seo-booster' );
 			update_option( 'woocommerce_bacs_settings', $bacs );
 			$log[] = 'SET   Direct bank transfer enabled (add your bank details in WooCommerce → Settings → Payments)';
+		}
+
+		if ( ! empty( $o['templates'] ) ) {
+			$saved = get_posts(
+				array(
+					'post_type'      => array( 'wp_template', 'wp_template_part' ),
+					'post_status'    => array( 'publish', 'draft', 'auto-draft' ),
+					'posts_per_page' => -1,
+					'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+						array(
+							'taxonomy' => 'wp_theme',
+							'field'    => 'name',
+							'terms'    => get_stylesheet(),
+						),
+					),
+				)
+			);
+			foreach ( $saved as $t ) {
+				wp_trash_post( $t->ID );
+				$log[] = "RESET {$t->post_type} '{$t->post_name}': Site Editor copy moved to Trash, theme file is used again";
+			}
+			if ( ! $saved ) {
+				$log[] = 'OK    No Site Editor copies of templates found; theme files are already in use';
+			}
 		}
 
 		flush_rewrite_rules();

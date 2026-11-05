@@ -316,8 +316,16 @@
 .sb-pk__head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; padding-bottom: 1rem; border-bottom: 1px solid var(--sb-line); }
 .sb-pk__title { margin: 0; font-size: 1.25rem; color: var(--sb-ink); line-height: 1.25; }
 .sb-pk__ideal { margin: .3rem 0 0; font-size: .875rem; color: #64748b; }
-.sb-pk__price { text-align: right; font: 800 2rem/1 Manrope, system-ui, sans-serif; color: var(--sb-ink); white-space: nowrap; }
-.sb-pk__price span { display: block; font: 600 .78rem/1.4 Inter, system-ui, sans-serif; color: #15803d; margin-top: .35rem; }
+.sb-pk__price { display: flex; flex-direction: column; align-items: flex-end; gap: .3rem; text-align: right; flex: none; }
+.sb-pk__label { font: 700 .6875rem/1 Inter, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #64748b; }
+.sb-pk__amount { display: inline-flex; align-items: flex-start; gap: .4rem; font: 800 2.25rem/1 Manrope, system-ui, sans-serif; letter-spacing: -.02em; color: var(--sb-ink); white-space: nowrap; }
+.sb-pk__amount .woocommerce-Price-amount, .sb-pk__amount bdi { display: inline-flex; align-items: flex-start; font: inherit; color: inherit; }
+.sb-pk__amount .woocommerce-Price-currencySymbol { font-size: .5em; line-height: 1; margin: .2em .08em 0 0; color: inherit; }
+.sb-pk__amount del { font-size: .45em; font-weight: 600; color: #94a3b8; align-self: center; }
+.sb-pk__amount ins { text-decoration: none; }
+.sb-pk__amount .screen-reader-text { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.sb-pk__price.is-quote .sb-pk__amount { font-size: 1.5rem; }
+.sb-pk__unit { display: inline-block; font: 700 .75rem/1.2 Inter, system-ui, sans-serif; color: #166534; background: #ecfccb; border: 1px solid #d9f99d; border-radius: 999px; padding: .3rem .6rem; white-space: nowrap; }
 .sb-pk__facts { list-style: none; padding: 0; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .sb-pk__facts li { background: var(--sb-bg); border: 1px solid var(--sb-line); border-radius: 10px; padding: .45rem .75rem; font-size: .8125rem; font-weight: 600; color: var(--sb-ink); }
 .sb-pk__facts li span { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; }
@@ -339,8 +347,10 @@
 	.sb-pk__tier { grid-template-columns: 18px 1fr auto; padding: .7rem .85rem; }
 	.sb-pk__pop { grid-column: 2; justify-self: start; order: 3; }
 	.sb-pk__list { grid-template-columns: 1fr; }
-	.sb-pk__head { flex-direction: column; }
-	.sb-pk__price { text-align: left; }
+	.sb-pk__head { flex-direction: column; gap: .85rem; }
+	.sb-pk__price { box-sizing: border-box; width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; text-align: left; background: #f8fafc; border: 1px solid var(--sb-line); border-radius: 14px; padding: .75rem .9rem; }
+	.sb-pk__label { flex-basis: 100%; }
+	.sb-pk__amount { font-size: 2rem; }
 }
 
 /* ---------- 0.5.0: author box + byline ---------- */

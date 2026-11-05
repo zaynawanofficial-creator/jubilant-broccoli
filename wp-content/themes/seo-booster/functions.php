@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SBT_VERSION', '1.3.1' );
+define( 'SBT_VERSION', '1.4.0' );
 
 add_action(
 	'after_setup_theme',
@@ -39,6 +39,9 @@ add_action(
 			. '@media (max-width:1080px){.sb-header .sb-header__cta,.sb-header .sb-header__search{display:none!important}}'
 			. '@media (max-width:600px){.sb-header .sb-header__account{display:none!important}.sb-header__inner{min-height:64px}.sb-header__nav{gap:.5rem!important}}'
 			. '.sb-steps-bar{list-style:none!important;display:flex;flex-wrap:wrap;gap:.5rem;padding:0!important}'
+			. '.sb-header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#fff}.sb-burger-wrap{display:none}.sb-drawer[hidden]{display:none}'
+			. '@media (max-width:1023px){.sb-header .sb-nav{display:none!important}.sb-burger-wrap{display:block}}'
+			. '.sb-shop-hero.sb-hero{background:var(--wp--preset--gradient--ink-glow)!important}.sb-shop-hero.sb-hero h1{color:#fff!important}'
 			. '</style>' . "\n";
 	},
 	99
@@ -51,7 +54,8 @@ add_action(
 add_filter(
 	'render_block_core/shortcode',
 	static function ( string $html ): string {
-		return str_contains( $html, '[' ) ? do_shortcode( $html ) : $html;
+		$html = str_contains( $html, '[' ) ? do_shortcode( $html ) : $html;
+		return sbt_unraw( $html );
 	}
 );
 
@@ -135,3 +139,5 @@ add_filter(
 );
 
 require_once get_theme_file_path( 'inc/setup.php' );
+require_once get_theme_file_path( 'inc/nav.php' );
+require_once get_theme_file_path( 'inc/post.php' );

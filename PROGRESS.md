@@ -1,5 +1,51 @@
 # PROGRESS
 
+## Menu, checkout, pricing and article fixes: theme 1.4.0, plugin 0.6.0 · 5 Nov 2026 · 🟡 ready to install
+**Deploy:** Hostinger_Connector needs authorisation in claude.ai connector settings, and the plugin's Hostinger server can't connect through this container's proxy. The WP REST route still fails because the proxy alters the Authorization header. So delivery is zips again (see INSTALL.md).
+
+### Fixed
+- **Menu showed only "Home" on phones.**
+  - Cause: `.sb-header` had `backdrop-filter`, which makes it the containing block for the core Navigation overlay (`position:fixed`). The open menu was clipped to the 64px header. Reproduced on the live site with Playwright: the overlay was 390×64.
+  - Fix: a new theme menu, `inc/nav.php` + `assets/js/nav.js`, rendered through the `[sb_nav]` and `[sb_nav_toggle]` shortcodes in `parts/header.html`.
+  - Desktop (≥1024px): a mega panel with 4 service groups, opened by hover or click, with Escape and outside-click to close.
+  - Below 1024px: a "Menu" button opens a slide-in drawer with search, accordion Services, the CTA buttons, an account link and email. It has focus trap, Escape, scroll lock and focus return.
+  - Active and current states use `aria-current`. The header no longer uses blur, and the template-part wrapper is now the sticky element.
+  - Shortcode output is swapped in after the Shortcode block's `wpautop` (`sbt_raw` / `sbt_unraw`), so menu markup is never split into `<p>` tags. Tested against WordPress's real `wpautop`.
+- **Cart/checkout white text on a light background.** `.sb-shop-hero` overrode the dark `.sb-hero` background. The hero is now explicitly dark, and the steps pills are readable (done, current and next states).
+  - Woo text colours are pinned.
+  - Cart rows use an image | details | total grid on phones; the image no longer covers the name.
+  - The checkout summary is one box instead of a box inside a box, with square thumbnails and bold titles.
+  - Mobile gaps are tighter, "What happens next" is compact, and trust cards sit 2 per row on phones.
+- **Package panel price split into "$ / 449.00 / per page".** The `.sb-pk__price span` rule also hit WooCommerce's price spans.
+  - New markup: label "Fixed price", then the amount with a superscript currency, then a unit-price pill (`.sb-pk__unit`).
+  - Whole prices drop ".00"; sale prices keep WooCommerce's del/ins markup.
+  - On phones the price sits in its own row card.
+- **Blog post layout.**
+  - The global "no gaps between sections" rule removed all paragraph spacing inside articles. Prose now has real rhythm: 1.0625rem/1.75 text, H2 dividers, list markers, link underlines, takeaways box.
+  - New `single.html`: category chip, title, standfirst (excerpt), byline, then the cover overlapping the hero.
+  - Two columns: the article plus a sticky "On this page" box (`[sb_toc]`, with anchors added to H2s on render) and a CTA card.
+  - After the article: the author box, a dark CTA, and "Keep reading" with 3 related posts (`[sb_related]`, same category first). A reading-progress bar sits at the top.
+  - Byline and author box styles now live in the theme, because the plugin CSS isn't loaded on posts.
+
+### Improvements found along the way
+- Setup screen option **"Use the theme files for header, footer and templates"**. It moves Site Editor copies to the Trash (recoverable), so a saved header can't hide theme updates.
+- Inline critical CSS now also covers the menu breakpoint and the dark checkout hero, so a stale LiteSpeed CSS copy can't bring the bugs back.
+- The mobile article breadcrumb hides the long current title, which is already the H1.
+
+### Tests run
+- Block validation (`@wordpress/blocks`): 58 files, 5,416 blocks, 0 problems.
+- `php -l` on all changed PHP: clean.
+- `tests/importer-smoke.php`: ALL PASSED. New `tests/nav-smoke.php`: 9/9 PASSED (all 20 service links in the mega menu and drawer, active state, `wpautop` safety, dialog attributes).
+- Visual check against the **live** site (Playwright, new CSS and markup injected) at 390, 768, 1024 and 1440px:
+  - header bar, drawer open/close (focus moved to Close; Escape returns focus to the button)
+  - mega panel
+  - cart, checkout, package panel and article
+  - no horizontal scroll at any width
+- **Not run:** the real WordPress render of the new PHP (blocked in this container). Check on the site after install.
+
+### Next step
+Install the two zips (INSTALL.md, top section), purge LiteSpeed, check on a phone. Then connect Stripe/PayPal in test mode for a sandbox order.
+
 ## SEO data build-out: theme 1.3.0, plugin 0.5.0 · 4 Nov 2026 · 🟡 ready to install
 **Owner feedback + GB keyword data (Ahrefs exports):**
 - the mobile header was broken on inner pages, and cart and checkout looked default
